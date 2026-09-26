@@ -52,6 +52,10 @@ Route::get('/venue/{slug}', [FrontendController::class, 'venueDetail']);
 Route::get('/event', [FrontendController::class, 'event'])->name('event');
 Route::get('/event/{slug}', [FrontendController::class, 'eventDetail'])->name('event.detail');
 
+// Portfolio
+Route::get('/portfolio', [FrontendController::class, 'portfolio'])->name('portfolio');
+Route::get('/portfolio/{slug}', [FrontendController::class, 'portfolioDetail'])->name('portfolio.detail');
+
 // Blog
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/blog-post/{slug}', [FrontendController::class, 'blogDetail'])->name('blog.detail');
