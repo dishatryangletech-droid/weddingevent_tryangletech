@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Master Custom Animations & Interactive Components for Knotcraft Template
  * Supports offline execution: Dropdowns, Accordions (FAQ), Tabs, Sliders, Lightboxes,
  * GSAP SplitText, ScrollTrigger, Counters, Marquees, and Lenis Smooth Scroll.
@@ -542,7 +542,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     items.forEach((it) => {
       it.style.flex = "0 0 auto";
-      it.style.whiteSpace = "nowrap";
+      it.style.display = "flex";
+      it.style.flexWrap = "nowrap";
       it.style.willChange = "transform";
     });
 

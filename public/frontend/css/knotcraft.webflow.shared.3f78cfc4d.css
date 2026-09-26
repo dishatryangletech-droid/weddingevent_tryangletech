@@ -1,4 +1,4 @@
-﻿html {
+html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   font-family: sans-serif;
@@ -6617,6 +6617,12 @@ label {
   max-width: 25.625rem;
   margin-right: 1.875rem;
   padding: 1.875rem 1.5625rem 1.5625rem;
+  white-space: normal;
+}
+
+.fda-review-card p,
+.fda-offer-card p {
+  white-space: normal;
 }
 
 .fda-text-semi-bold {
@@ -18727,4 +18733,155 @@ a.w-webflow-badge,
 }
 .fda-megamenu-text-wrapper:hover .fda-mega-menu-font.fda-2 {
   transform: translate(0px, -100%) !important;
+}
+
+/* Long card height (approx 800px) for Services section cards */
+.fda-about-v8-card-v2 {
+  height: 800px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.fda-about-v8-card-image-v2 {
+  height: 580px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+.fda-about-v8-card-image-v2 img,
+.fda-moments-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+
+
+/* Centered card content + smooth hover image animation for Promise cards */
+.fda-moments-card-v3 {
+  min-height: 280px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 2.5rem 1.5rem !important;
+  transition: min-height 0.4s ease !important;
+  cursor: pointer !important;
+}
+
+.fda-moments-card-top-box {
+  position: relative !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+.fda-moments-title-v3 {
+  max-width: 19.75rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.fda-moments-bg-image-box {
+  position: relative !important;
+  width: 100% !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, margin-top 0.4s ease !important;
+  margin-top: 0 !important;
+  border-radius: 8px !important;
+}
+
+.fda-moments-bg-image-box.fda-active {
+  height: 240px !important;
+  opacity: 1 !important;
+  margin-top: 20px !important;
+}
+
+.fda-moments-cards-wrapper:hover .fda-moments-bg-image-box.fda-active {
+  height: 0 !important;
+  opacity: 0 !important;
+  margin-top: 0 !important;
+}
+
+.fda-moments-card-v3:hover .fda-moments-bg-image-box {
+  height: 240px !important;
+  opacity: 1 !important;
+  margin-top: 20px !important;
+}
+
+.fda-moments-bg-image {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+.fda-moments-bg-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.fda-moments-card-v3:hover .fda-moments-bg-image img {
+  transform: scale(1.08) !important;
+}
+
+/* Team Member Card Hover Animation & Social Links Reveal */
+.fda-team-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+.fda-team-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.fda-team-card:hover .fda-team-image img {
+  transform: scale(1.08) !important;
+}
+
+.fda-team-bottom-strip-wrap {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 20 !important;
+}
+
+.fda-team-bottom-social-wrap {
+  opacity: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.4s ease, opacity 0.4s ease !important;
+  background-color: rgba(38, 38, 38, 0.9) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.fda-team-card:hover .fda-team-bottom-social-wrap,
+.fda-team-card.fda-active .fda-team-bottom-social-wrap {
+  opacity: 1 !important;
+  max-height: 60px !important;
+}
+
+/* Override Webflow preloader hidden rules for service & content elements */
+[appear], [text-appear], .fda-service-v3-card, .fda-service-v3-col-2, .fda-service-v3-col-3, .fda-service-v3-col-4, .fda-planning-card, .fda-monitor-box, .fda-catalog-card {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
