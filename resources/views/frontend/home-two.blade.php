@@ -100,7 +100,7 @@ counters.forEach((counter) => {
 
 <!--Webflow custom code: banner-text-appear-->
 <!--Webflow custom code: banner-text-appear-->
-<script src="{{ asset('js/gsap.min.js') }}"></script>
+
 <script src="{{ asset('js/SplitText.min.js') }}"></script>
 
 <script>
@@ -162,7 +162,7 @@ counters.forEach((counter) => {
   Matches the panel's target field: [banner-appear]
 -->
  
-<script src="{{ asset('js/gsap.min.js') }}"></script>
+
 
 <script>
   window.Webflow ||= [];
@@ -172,17 +172,20 @@ counters.forEach((counter) => {
     if (targets.length) {
       gsap.set(targets, { perspective: 2000 });
 
-      gsap.from(targets, {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        delay: 0.5,
-        ease: "power2.out",
-        stagger: {
-          each: 0.2,
-          from: "start"
+      gsap.fromTo(targets, 
+        { opacity: 0, y: 30 }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.5,
+          ease: "power2.out",
+          stagger: {
+            each: 0.2,
+            from: "start"
+          }
         }
-      });
+      );
     }
   });
 </script>

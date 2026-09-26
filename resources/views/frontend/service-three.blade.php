@@ -89,6 +89,12 @@
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
+                    class="fda-menu-font-v1">Portfolio</a>
+                  <div class="fda-nav-menu-line"></div>
+                </div>
+              </div>
+              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
                 <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}"
                     class="fda-menu-font-v1">Blog</a>
                   <div class="fda-nav-menu-line"></div>
@@ -334,6 +340,12 @@
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
                 <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}"
                     class="fda-menu-font-v1">Events</a>
+                  <div class="fda-nav-menu-line"></div>
+                </div>
+              </div>
+              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
+                    class="fda-menu-font-v1">Portfolio</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
@@ -835,7 +847,7 @@
             <div class="w-layout-hflex fda-booking-logo"><img
                 src="{{ asset('images/6a6305bf5040b777232a17cd_Site-logo.svg') }}" loading="lazy" width="147"
                 height="24" alt="Site-logo" /></div>
-            <div class="fda-color-dark-brown">Youâ€™ll received a confirmation within 24h</div>
+            <div class="fda-color-dark-brown">You'll received a confirmation within 24h</div>
           </div>
           <div id="Booking-Form-V2" class="fda-booking-form-block w-form">
             <form id="wf-form-Booking-Form-V2-2" name="wf-form-Booking-Form-V2-2" data-name="Booking Form V2"
@@ -921,7 +933,7 @@
           <div class="w-layout-vflex fda-hero-v7-left">
             <div class="w-layout-vflex fda-hero-v7-left-top">
               <div class="fda-gap-medium">
-                <h1 banner-text-appear="" class="fda-gap-none fda-color-white">Making yourÂ Â <br />wedding dreams real
+                <h1 banner-text-appear="" class="fda-gap-none fda-color-white">Making your <br />wedding dreams real
                 </h1>
               </div>
               <div class="fda-gap-large fda-hero-v7-description-wrapper">
@@ -965,7 +977,7 @@
         </div>
       </div>
       <div class="fda-hero-background-image-wrapper"><img class="fda-hero-v7-background-image"
-          src="{{ asset('images/6a6305bf5040b777232a17f9_Service-3-banner-image.avif') }}" width="1920"
+          src="{{ asset('images/6a6305bf5040b777232a17f5_Service-one-banner.avif') }}" width="1920"
           alt="Service-3-banner-image" loader-banner-image="" banner-image="1" loading="eager" fetchpriority="high" />
         <div class="fda-hero-image-layer"></div>
       </div>
@@ -1045,7 +1057,7 @@
         </div>
       </div>
     </section>
-    <section data-wf--fda-elegance--variant="base" class="fda-card-marquee fda-section-gap-bottom fda-overflow-hidden">
+    <!-- <section data-wf--fda-elegance--variant="base" class="fda-card-marquee fda-section-gap-bottom fda-overflow-hidden">
       <div class="w-layout-vflex fda-card-marquee-main">
         <div class="w-layout-blockcontainer fda-container-medium w-container">
           <div class="w-layout-vflex fda-marquee-top fda-text-center">
@@ -1246,7 +1258,7 @@
                   <div class="w-layout-hflex fda-monitor-contact-image fda-radius fda-overflow-hidden"><img
                       src="{{ asset('images/6a6305be5040b777232a14e8_Bride-image.avif') }}" loading="lazy"
                       alt="Bride-image" /></div>
-                  <div class="fda-color-white">Letâ€™s create your perfect wedding together.</div>
+                  <div class="fda-color-white">Let's create your perfect wedding together.</div>
                 </div><a data-wf--fda-button-v1--variant="base" href="{{ route('luxury-package') }}"
                   class="fda-button-v1 w-inline-block">
                   <div class="fda-button-overlay"></div>
@@ -1290,7 +1302,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="fda-service-v3 fda-section-gap-bottom fda-overflow-hidden">
       <div class="w-layout-blockcontainer fda-container-medium w-container">
         <div class="w-layout-vflex fda-service-v3-main">
@@ -1511,7 +1523,7 @@
       </div>
     </section>
 
-    <section class="fda-gallery fda-section-gap-bottom fda-overflow-hidden">
+    <!-- <section class="fda-gallery fda-section-gap-bottom fda-overflow-hidden">
       <div class="w-layout-blockcontainer fda-container-small w-container">
         <div class="w-layout-vflex fda-text-warp-v1 fda-text-center">
           <h2 text-appear="" class="fda-gap-none fda-gap-xl">Our gallery</h2>
@@ -1694,7 +1706,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </main>
   <section class="fda-footer fda-overflow-hidden">
     <div class="fda-footer-block">
@@ -1892,7 +1904,7 @@
 
   <!--Webflow custom code: banner-text-appear-->
   <!--Webflow custom code: banner-text-appear-->
-  <script src="{{ asset('js/gsap.min.js') }}"></script>
+  
   <script src="{{ asset('js/SplitText.min.js') }}"></script>
 
   <script>
@@ -1954,7 +1966,7 @@
   Matches the panel's target field: [banner-appear]
 -->
 
-  <script src="{{ asset('js/gsap.min.js') }}"></script>
+  
 
   <script>
     window.Webflow ||= [];
@@ -1964,9 +1976,9 @@
       if (targets.length) {
         gsap.set(targets, { perspective: 2000 });
 
-        gsap.from(targets, {
-          opacity: 0,
-          y: 30,
+        gsap.fromTo(targets, { opacity: 0, y: 30 }, {
+          opacity: 1,
+          y: 0,
           duration: 0.6,
           delay: 0.5,
           ease: "power2.out",
