@@ -131,7 +131,7 @@
                 <div class="fda-text-style-h6">Beautifully curated</div>
                 <div class="fda-story-paragraph">
                   <p class="fda-gap-none">Part of the wedding journey begins with understanding your unique story. </p>
-                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ route('classic-package') }}"
+                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ url('#') }}"
                   class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
@@ -145,7 +145,7 @@
                 <div class="fda-text-style-h6">Seamless celebrations</div>
                 <div class="fda-story-paragraph">
                   <p class="fda-gap-none">A beautiful marriage launch begins with honoring your personal romance.</p>
-                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ route('elegance-package') }}"
+                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ url('#') }}"
                   class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
@@ -440,7 +440,7 @@
                     src="{{ asset('images/6a6305be5040b777232a14e8_Bride-image.avif') }}" loading="lazy"
                     alt="Bride-image" /></div>
                 <div class="fda-color-white">Letâ€™s create your perfect wedding together</div>
-              </div><a data-wf--fda-button-v1--variant="base" href="{{ route('luxury-package') }}"
+              </div><a data-wf--fda-button-v1--variant="base" href="{{ url('#') }}"
                 class="fda-button-v1 w-inline-block">
                 <div class="fda-button-overlay"></div>
                 <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">

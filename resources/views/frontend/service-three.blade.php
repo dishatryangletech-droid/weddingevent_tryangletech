@@ -386,7 +386,7 @@
                       src="{{ asset('images/6a6305be5040b777232a14e8_Bride-image.avif') }}" loading="lazy"
                       alt="Bride-image" /></div>
                   <div class="fda-color-white">Let's create your perfect wedding together.</div>
-                </div><a data-wf--fda-button-v1--variant="base" href="{{ route('luxury-package') }}"
+                </div><a data-wf--fda-button-v1--variant="base" href="{{ url('#') }}"
                   class="fda-button-v1 w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">

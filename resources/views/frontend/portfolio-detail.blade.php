@@ -554,7 +554,7 @@
                               </a>
                             </div>
                             <div class="w-layout-hflex fda-megamenu-text-box">
-                              <div class="fda-megamenu-dot"></div><a href="{{ route('home-two') }}"
+                              <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                 class="fda-megamenu-text-wrapper w-inline-block">
                                 <div class="fda-megamenu-page-box">
                                   <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
@@ -564,7 +564,7 @@
                               </a>
                             </div>
                             <div class="w-layout-hflex fda-megamenu-text-box">
-                              <div class="fda-megamenu-dot"></div><a href="{{ route('home-three') }}"
+                              <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                 class="fda-megamenu-text-wrapper w-inline-block">
                                 <div class="w-layout-vflex fda-megamenu-page-box">
                                   <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
@@ -602,7 +602,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
@@ -612,7 +612,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-three') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
@@ -632,7 +632,7 @@
                                 <div class="fda-tag-text-v1">SERVICES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-one') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
@@ -642,7 +642,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
@@ -672,7 +672,7 @@
                                 <div class="fda-tag-text-v1">PACKAGES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('classic-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
@@ -682,7 +682,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('elegance-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
@@ -692,7 +692,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('luxury-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
@@ -721,12 +721,12 @@
                             <div class="fda-tag-text-v1">OTHER PAGES</div>
                           </div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-2">Venue details</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
                               href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
@@ -783,7 +783,7 @@
                     <div class="w-layout-hflex fda-megamenu-mobile">
                       <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
                         <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('classic-package') }}"
+                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                             class="fda-megamenu-text-wrapper w-inline-block">
                             <div class="w-layout-vflex fda-megamenu-page-box">
                               <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
@@ -793,7 +793,7 @@
                           </a>
                         </div>
                         <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('elegance-package') }}"
+                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                             class="fda-megamenu-text-wrapper w-inline-block">
                             <div class="w-layout-vflex fda-megamenu-page-box">
                               <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
@@ -803,7 +803,7 @@
                           </a>
                         </div>
                         <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('luxury-package') }}"
+                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                             class="fda-megamenu-text-wrapper w-inline-block">
                             <div class="w-layout-vflex fda-megamenu-page-box">
                               <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
@@ -849,7 +849,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
@@ -859,7 +859,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-three') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
@@ -879,7 +879,7 @@
                                 <div class="fda-tag-text-v1">SERVICES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-one') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
@@ -889,7 +889,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
@@ -919,7 +919,7 @@
                                 <div class="fda-tag-text-v1">PACKAGES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('classic-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
@@ -929,7 +929,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('elegance-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
@@ -939,7 +939,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('luxury-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
@@ -968,12 +968,12 @@
                             <div class="fda-tag-text-v1">OTHER PAGES</div>
                           </div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-2">Venue details</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
                               href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
@@ -1006,7 +1006,7 @@
                     <div class="w-layout-hflex fda-megamenu-mobile">
                       <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
                         <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('service-one') }}"
+                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                             class="fda-megamenu-text-wrapper w-inline-block">
                             <div class="w-layout-vflex fda-megamenu-page-box">
                               <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
@@ -1016,7 +1016,7 @@
                           </a>
                         </div>
                         <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('service-two') }}"
+                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                             class="fda-megamenu-text-wrapper w-inline-block">
                             <div class="w-layout-vflex fda-megamenu-page-box">
                               <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
@@ -1062,7 +1062,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
@@ -1072,7 +1072,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home-three') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
@@ -1092,7 +1092,7 @@
                                 <div class="fda-tag-text-v1">SERVICES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-one') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
@@ -1102,7 +1102,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-two') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
@@ -1132,7 +1132,7 @@
                                 <div class="fda-tag-text-v1">PACKAGES</div>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('classic-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
@@ -1142,7 +1142,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('elegance-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
@@ -1152,7 +1152,7 @@
                                 </a>
                               </div>
                               <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('luxury-package') }}"
+                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
                                   class="fda-megamenu-text-wrapper w-inline-block">
                                   <div class="w-layout-vflex fda-megamenu-page-box">
                                     <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
@@ -1181,12 +1181,12 @@
                             <div class="fda-tag-text-v1">OTHER PAGES</div>
                           </div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ route('venue') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
+                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ route('venue.detail', ['slug' => 'olive-grove-banquet-grounds']) }}"
+                              href="{{ url('#') }}"
                               class="fda-mega-menu-font fda-2">Venue details</a></div>
                           <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
                               href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
