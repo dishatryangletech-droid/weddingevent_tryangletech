@@ -62,6 +62,11 @@
             background-repeat: no-repeat;
             color: #ffffff;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .section-hero-lovio::before {
             content: '';
