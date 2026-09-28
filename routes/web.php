@@ -133,4 +133,20 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/about/expertise/item', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'storeItem'])->name('admin.about.expertise.item.store');
     Route::delete('/about/expertise/item/{id}', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'deleteItem'])->name('admin.about.expertise.item.delete');
     Route::post('/about/expertise/reorder', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'reorderItems'])->name('admin.about.expertise.reorder');
+
+    // Contact Us Page Settings
+    Route::get('/contact/header', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'index'])->name('admin.contact.header.index');
+    Route::post('/contact/header', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'updateHeader'])->name('admin.contact.header.update');
+    Route::post('/contact/card', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'storeCard'])->name('admin.contact.card.store');
+    Route::delete('/contact/card/{id}', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'deleteCard'])->name('admin.contact.card.delete');
+    Route::post('/contact/card/reorder', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'reorderCards'])->name('admin.contact.card.reorder');
+
+    Route::get('/contact/form', [\App\Http\Controllers\Backend\ContactFormController::class, 'index'])->name('admin.contact.form.index');
+    Route::post('/contact/form', [\App\Http\Controllers\Backend\ContactFormController::class, 'update'])->name('admin.contact.form.update');
+
+    Route::get('/contact/faq', [\App\Http\Controllers\Backend\ContactFaqController::class, 'index'])->name('admin.contact.faq.index');
+    Route::post('/contact/faq/header', [\App\Http\Controllers\Backend\ContactFaqController::class, 'updateHeader'])->name('admin.contact.faq.header.update');
+    Route::post('/contact/faq/item', [\App\Http\Controllers\Backend\ContactFaqController::class, 'storeItem'])->name('admin.contact.faq.item.store');
+    Route::delete('/contact/faq/item/{id}', [\App\Http\Controllers\Backend\ContactFaqController::class, 'deleteItem'])->name('admin.contact.faq.item.delete');
+    Route::post('/contact/faq/reorder', [\App\Http\Controllers\Backend\ContactFaqController::class, 'reorderItems'])->name('admin.contact.faq.reorder');
 });
