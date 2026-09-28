@@ -20,7 +20,8 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
 // Services
-Route::get('/service', [FrontendController::class, 'serviceThree'])->name('service-three')->name('services');
+Route::get('/service', [FrontendController::class, 'serviceThree'])->name('service-three');
+Route::get('/services', [FrontendController::class, 'serviceThree'])->name('services');
 
 // Booking Inquiry
 Route::get('/booking-inquiry', [FrontendController::class, 'bookingInquiry'])->name('booking-inquiry');
@@ -169,6 +170,19 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::match(['post', 'patch'], '/service-page/faqs/{faq}/toggle-status', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'toggleStatus'])->name('admin.service-page.faqs.toggle-status');
     Route::match(['post', 'patch'], '/service-page/faqs/{faq}/toggle', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'toggleStatus'])->name('admin.service-page.faqs.toggle');
     Route::post('/service-page/faqs/settings', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'updateSettings'])->name('admin.service-page.faqs.settings.update');
+
+    // Event Page Settings
+    Route::get('/event-page/banner', [\App\Http\Controllers\Backend\EventBannerSectionController::class, 'index'])->name('admin.event-page.banner.index');
+    Route::post('/event-page/banner', [\App\Http\Controllers\Backend\EventBannerSectionController::class, 'update'])->name('admin.event-page.banner.update');
+
+    Route::get('/event-page/items', [\App\Http\Controllers\Backend\EventItemController::class, 'index'])->name('admin.event-page.items.index');
+    Route::post('/event-page/items/header', [\App\Http\Controllers\Backend\EventItemController::class, 'updateHeader'])->name('admin.event-page.items.header.update');
+    Route::get('/event-page/items/create', [\App\Http\Controllers\Backend\EventItemController::class, 'create'])->name('admin.event-page.items.create');
+    Route::post('/event-page/items', [\App\Http\Controllers\Backend\EventItemController::class, 'store'])->name('admin.event-page.items.store');
+    Route::get('/event-page/items/{item}/edit', [\App\Http\Controllers\Backend\EventItemController::class, 'edit'])->name('admin.event-page.items.edit');
+    Route::put('/event-page/items/{item}', [\App\Http\Controllers\Backend\EventItemController::class, 'update'])->name('admin.event-page.items.update');
+    Route::delete('/event-page/items/{item}', [\App\Http\Controllers\Backend\EventItemController::class, 'destroy'])->name('admin.event-page.items.destroy');
+    Route::match(['post', 'patch'], '/event-page/items/{item}/toggle', [\App\Http\Controllers\Backend\EventItemController::class, 'toggleStatus'])->name('admin.event-page.items.toggle');
 
     // General / Footer Settings
     Route::get('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'index'])->name('admin.footer.index');

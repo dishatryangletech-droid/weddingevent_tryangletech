@@ -117,14 +117,32 @@ class FrontendController extends Controller
      */
     public function event(): View
     {
-        return view('frontend.event');
+        $eventBanner = \App\Models\EventBannerSection::getSettings();
+        $eventHeader = \App\Models\EventSectionHeader::getSettings();
+        $eventItems = \App\Models\EventPageItem::where('status', 'active')->orderBy('sort_order', 'asc')->get();
+
+        return view('frontend.event', compact('eventBanner', 'eventHeader', 'eventItems'));
     }
 
     public function eventDetail(string $slug): View
     {
+        $item = \App\Models\EventPageItem::where('slug', $slug)->first();
+        if (! $item) {
+            $item = \App\Models\EventPageItem::first();
+        }
+
+        $upcomingEvents = \App\Models\EventPageItem::where('id', '!=', $item?->id)
+            ->where('status', 'active')
+            ->take(3)
+            ->get();
+
         $viewName = "frontend.event.{$slug}";
         if (view()->exists($viewName)) {
-            return view($viewName);
+            return view($viewName, compact('item', 'upcomingEvents'));
+        }
+
+        if ($item) {
+            return view('frontend.event.romantic-garden-couple-shoot', compact('item', 'upcomingEvents'));
         }
 
         abort(404);
