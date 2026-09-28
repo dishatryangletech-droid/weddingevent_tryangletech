@@ -1,138 +1,107 @@
 @extends('backend.layouts.app')
-
-@section('title', 'About Us Mission Section')
-@section('page_title', 'About Us Page > Mission Section')
+@section('title', 'About Us - Mission Section')
+@section('page_title', 'About Us - Mission Section Settings')
 
 @section('content')
-  <div class="admin-card" style="margin-bottom: 1.5rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">About Us Mission Section</div>
-        <div class="card-subtitle">Manage the "Our mission" section on the About Us page.</div>
-      </div>
-      <a href="{{ url('/about-us') }}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
+<div class="card">
+    <div class="card-body">
+        <form id="about-mission-form" action="{{ route('admin.about.mission.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Section Header Settings</h5>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Tagline</label>
+                    <input type="text" name="tagline" class="form-control" value="{{ $mission->tagline ?? '' }}" placeholder="OUR MISSION">
+                </div>
+                <div>
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ $mission->title ?? '' }}" placeholder="Dedicated to create graceful wedding experiences">
+                </div>
+                <div>
+                    <label class="form-label">Button Text</label>
+                    <input type="text" name="button_text" class="form-control" value="{{ $mission->button_text ?? '' }}" placeholder="Contact us">
+                </div>
+                <div>
+                    <label class="form-label">Button Link</label>
+                    <input type="text" name="button_link" class="form-control" value="{{ $mission->button_link ?? '' }}" placeholder="/contact">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-control" rows="3">{{ $mission->description ?? '' }}</textarea>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Right Side Video / Poster</h5>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; align-items: start;">
+                <div>
+                    <label class="form-label">Video Poster Image</label>
+                    <input type="file" name="video_poster" class="form-control">
+                </div>
+                <div>
+                    @if(isset($mission->video_poster) && $mission->video_poster)
+                        <img src="{{ asset($mission->video_poster) }}" alt="Poster" style="max-height: 80px; border-radius: 8px; border: 1px solid var(--border-color);">
+                    @endif
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <div>
+                    <label class="form-label">Video File (MP4)</label>
+                    <input type="file" name="video_mp4" class="form-control">
+                    @if(isset($mission->video_mp4) && $mission->video_mp4)
+                        <small style="color: var(--success); display: block; margin-top: 0.5rem;">Current MP4 is set</small>
+                    @endif
+                </div>
+                <div>
+                    <label class="form-label">Video File (WebM)</label>
+                    <input type="file" name="video_webm" class="form-control">
+                    @if(isset($mission->video_webm) && $mission->video_webm)
+                        <small style="color: var(--success); display: block; margin-top: 0.5rem;">Current WebM is set</small>
+                    @endif
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Bottom 4 Numbered Feature Blocks</h5>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                @for($i = 1; $i <= 4; $i++)
+                <div style="border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px; background-color: var(--bg-card-hover, #f8f9fa);">
+                    <h6 style="margin-top: 0; margin-bottom: 1rem;">Feature 0{{ $i }}</h6>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label class="form-label">Title</label>
+                        <input type="text" name="feature_{{ $i }}_title" class="form-control" value="{{ $mission->{'feature_'.$i.'_title'} ?? '' }}">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: start;">
+                        <div>
+                            <label class="form-label">Thumbnail Image</label>
+                            <input type="file" name="feature_{{ $i }}_image" class="form-control">
+                        </div>
+                        <div>
+                            @if(isset($mission->{'feature_'.$i.'_image'}) && $mission->{'feature_'.$i.'_image'})
+                                <img src="{{ asset($mission->{'feature_'.$i.'_image'}) }}" alt="Thumbnail" style="max-height: 40px; border-radius: 4px;">
+                            @else
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">No thumbnail set</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endfor
+            </div>
+        </form>
     </div>
+</div>
 
-    <form action="{{ route('admin.about.mission.update') }}" method="POST" enctype="multipart/form-data">
-      @csrf
-
-      <div style="padding: 1.5rem;">
-        
-        <div class="form-group">
-          <label class="form-label" for="tag">Section Tag / Badge</label>
-          <input type="text" name="tag" id="tag" value="{{ old('tag', $setting->tag ?? 'Our mission') }}" class="form-control" placeholder="e.g. Our mission" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="title">Headline Content / Description <span style="color: #ef4444;">*</span></label>
-          <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $setting->title) }}" required placeholder="e.g. Creative marketing plans designed to grow brands worldwide">
-          @error('title')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="description">Main Paragraph Text</label>
-          <textarea name="description" id="description" rows="3" class="form-control" placeholder="e.g. From branding and content strategy...">{{ old('description', $setting->description) }}</textarea>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.75rem 0;" />
-
-        <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem;">
-          Call to Action Button
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
-            <div class="form-group mb-0">
-                <label class="form-label">Button Text</label>
-                <input type="text" class="form-control" name="button_text" value="{{ old('button_text', $setting->button_text ?? 'Get started') }}" placeholder="e.g. Get started">
-            </div>
-            <div class="form-group mb-0">
-                <label class="form-label">Button Link URL</label>
-                <input type="text" class="form-control" name="button_link" value="{{ old('button_link', $setting->button_link ?? url('price-one')) }}" placeholder="e.g. https://domain.com/page">
-            </div>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.75rem 0;" />
-
-        <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem;">
-          Bullet Point Quotes (with Icons)
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="quote_1_text">Quote / Bullet 1</label>
-          <input type="text" name="quote_1_text" id="quote_1_text" value="{{ old('quote_1_text', $setting->quote_1_text ?? 'Drive brand growth through creative marketing solutions today') }}" class="form-control" />
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label" for="quote_2_text">Quote / Bullet 2</label>
-          <input type="text" name="quote_2_text" id="quote_2_text" value="{{ old('quote_2_text', $setting->quote_2_text ?? 'Scale through creative marketing and growth strategies that work.') }}" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="quote_3_text">Quote / Bullet 3</label>
-          <input type="text" name="quote_3_text" id="quote_3_text" value="{{ old('quote_3_text', $setting->quote_3_text ?? 'Drive measurable results through growth strategies consistently.') }}" class="form-control" />
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.75rem 0;" />
-
-        <div class="form-group">
-          <label class="form-label">Section Left Image</label>
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
-            <div style="width: 250px; height: 180px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: #f8fafc; position: relative;">
-              <img id="imagePreview" src="{{ $setting->image_url }}" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-            <div style="flex: 1; min-width: 240px;">
-              <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="previewImage(this, 'imagePreview')" />
-              <div class="form-help" style="margin-top: 6px;">Leave empty to keep existing image. Recommended size: 600x600px. Formats: JPG, PNG, WEBP.</div>
-            </div>
-          </div>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.75rem 0;" />
-
-        <!-- Status -->
-        <div class="form-group" style="max-width: 280px;">
-          <label class="form-label" for="status">Section Status</label>
-          <select name="status" id="status" class="form-control form-select">
-            <option value="active" {{ ($setting->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (Show Section)</option>
-            <option value="inactive" {{ ($setting->status ?? 'active') === 'inactive' ? 'selected' : '' }}>Inactive (Hide Section)</option>
-          </select>
-        </div>
-        
-      </div>
-
-      <div style="background: var(--bg-hover); padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 0.75rem;">
-        <button type="submit" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-            <polyline points="7 3 7 8 15 8"></polyline>
-          </svg>
-          <span>Save Content Changes</span>
-        </button>
-      </div>
-    </form>
-  </div>
-
-  @push('scripts')
-  <script>
-    function previewImage(input, previewId) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(previewId).src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  </script>
-  @endpush
+<div style="text-align: right; margin-top: 2rem; margin-bottom: 2rem;">
+    <button type="submit" form="about-mission-form" class="btn btn-primary" style="padding: 0.75rem 2.5rem; font-size: 1rem;">
+        Save All Content
+    </button>
+</div>
 @endsection

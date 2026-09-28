@@ -1,149 +1,125 @@
 @extends('backend.layouts.app')
-
-@section('title', 'Banner Section - About Us')
-@section('page_title', 'About Us Page > Banner Section')
+@section('title', 'About Us - Banner Section')
+@section('page_title', 'About Us - Banner Settings')
 
 @section('content')
-  <div class="admin-card" style="margin-bottom: 1.5rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">About Us Banner Section Management</div>
-        <div class="card-subtitle">Manage the hero banner image, headline, call-to-action button, and brand performance card on the About Us page.</div>
-      </div>
-      <a href="{{ url('/about-us') }}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
+<div class="card">
+    <div class="card-body">
+        <form id="about-banner-form" action="{{ route('admin.about.banner.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Banner Header Settings</h5>
+            
+            <!-- Row 1: Tagline & Title (2 per row) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Tagline</label>
+                    <input type="text" name="tagline" class="form-control" value="{{ $banner->tagline ?? '' }}" placeholder="LUXURY CELEBRATIONS | SCENIC LOVE STORIES">
+                </div>
+                <div>
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ $banner->title ?? '' }}" placeholder="Artfully directed wedding experiences">
+                </div>
+            </div>
+
+            <!-- Row 2: Button Text & Button Link (2 per row) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Button Text</label>
+                    <input type="text" name="button_text" class="form-control" value="{{ $banner->button_text ?? '' }}" placeholder="Let's plan">
+                </div>
+                <div>
+                    <label class="form-label">Button Link</label>
+                    <input type="text" name="button_link" class="form-control" value="{{ $banner->button_link ?? '' }}" placeholder="#">
+                </div>
+            </div>
+
+            <!-- Row 3: Subtitle / Description -->
+            <div style="margin-bottom: 1.5rem;">
+                <label class="form-label">Subtitle / Description</label>
+                <textarea name="subtitle" class="form-control" rows="3" placeholder="A walkthrough of how we translate your personal love story...">{{ $banner->subtitle ?? '' }}</textarea>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Banner 5 Tag Badges / Points (2 per row)</h5>
+
+            <!-- Tag Points 1 & 2 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Tag Badge 1</label>
+                    <input type="text" name="tag_1" class="form-control" value="{{ $banner->tag_1 ?? 'Bespoke' }}" placeholder="e.g. Bespoke">
+                </div>
+                <div>
+                    <label class="form-label">Tag Badge 2</label>
+                    <input type="text" name="tag_2" class="form-control" value="{{ $banner->tag_2 ?? 'Artistry' }}" placeholder="e.g. Artistry">
+                </div>
+            </div>
+
+            <!-- Tag Points 3 & 4 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Tag Badge 3</label>
+                    <input type="text" name="tag_3" class="form-control" value="{{ $banner->tag_3 ?? 'Modern' }}" placeholder="e.g. Modern">
+                </div>
+                <div>
+                    <label class="form-label">Tag Badge 4</label>
+                    <input type="text" name="tag_4" class="form-control" value="{{ $banner->tag_4 ?? 'Design' }}" placeholder="e.g. Design">
+                </div>
+            </div>
+
+            <!-- Tag Point 5 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label class="form-label">Tag Badge 5</label>
+                    <input type="text" name="tag_5" class="form-control" value="{{ $banner->tag_5 ?? 'Elegant' }}" placeholder="e.g. Elegant">
+                </div>
+                <div></div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <h5 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Media & Floating Card (2 per row)</h5>
+
+            <!-- Background Image & Floating Card Image (2 per row) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="border: 1px solid var(--border-color); padding: 1.25rem; border-radius: 8px; background: #fafafa;">
+                    <label class="form-label">Background Image</label>
+                    <input type="file" name="background_image" class="form-control" style="margin-bottom: 0.75rem;">
+                    @if(isset($banner->background_image) && $banner->background_image)
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="{{ asset($banner->background_image) }}" alt="Background" style="max-height: 70px; border-radius: 6px; border: 1px solid var(--border-color);">
+                            <small style="color: var(--text-muted);">Current Background Image</small>
+                        </div>
+                    @else
+                        <small style="color: var(--text-muted);">No background image set</small>
+                    @endif
+                </div>
+
+                <div style="border: 1px solid var(--border-color); padding: 1.25rem; border-radius: 8px; background: #fafafa;">
+                    <label class="form-label">Floating Card Image</label>
+                    <input type="file" name="card_image" class="form-control" style="margin-bottom: 0.75rem;">
+                    @if(isset($banner->card_image) && $banner->card_image)
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="{{ asset($banner->card_image) }}" alt="Card Image" style="max-height: 70px; border-radius: 6px; border: 1px solid var(--border-color);">
+                            <small style="color: var(--text-muted);">Current Card Image</small>
+                        </div>
+                    @else
+                        <small style="color: var(--text-muted);">No card image set</small>
+                    @endif
+                </div>
+            </div>
+
+            <!-- Floating Card Text -->
+            <div style="margin-bottom: 1rem;">
+                <label class="form-label">Floating Card Text</label>
+                <textarea name="card_text" class="form-control" rows="2" placeholder="We craft wedding experiences that bring your love story to life.">{{ $banner->card_text ?? '' }}</textarea>
+            </div>
+        </form>
     </div>
+</div>
 
-    <form action="{{ route('admin.about.banner.update') }}" method="POST" enctype="multipart/form-data">
-      @csrf
-
-      <div style="padding: 1.5rem;">
-        <!-- Banner Title -->
-        <div class="form-group">
-          <label class="form-label" for="title">Banner Title / Main Heading <span style="color: #ef4444;">*</span></label>
-          <textarea name="title" id="title" rows="2" class="form-control" required placeholder="e.g. Smart digital strategies for business growth">{{ old('title', $settings->title) }}</textarea>
-          <div class="form-help">Main hero headline displayed prominently in the banner section.</div>
-          @error('title')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <!-- Banner Short Description -->
-        <div class="form-group">
-          <label class="form-label" for="description">Short Description</label>
-          <textarea name="description" id="description" rows="3" class="form-control" placeholder="e.g. Enter short description to show below the title">{{ old('description', $settings->description) }}</textarea>
-          <div class="form-help">Short text displayed right below the main title.</div>
-          @error('description')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <!-- Banner Background Image -->
-        <div class="form-group">
-          <label class="form-label">Banner Background Image</label>
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
-            <div style="width: 220px; height: 130px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: #000; position: relative;">
-              <img id="bannerImagePreview" src="{{ $settings->banner_image_url }}" alt="Banner Preview" style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-            <div style="flex: 1; min-width: 240px;">
-              <input type="file" name="banner_image" id="banner_image" class="form-control" accept="image/*" onchange="previewImage(this, 'bannerImagePreview')" />
-              <div class="form-help" style="margin-top: 6px;">Recommended resolution: 1920x1080px. Formats: JPG, PNG, WEBP, AVIF. Max: 5MB. Leave empty to keep current image.</div>
-            </div>
-          </div>
-          @error('banner_image')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-          <!-- CTA Button Text -->
-          <div class="form-group">
-            <label class="form-label" for="button_text">Call-to-Action Button Text</label>
-            <input type="text" name="button_text" id="button_text" value="{{ old('button_text', $settings->button_text) }}" class="form-control" placeholder="e.g. Schedule a call" />
-          </div>
-
-          <!-- CTA Button URL -->
-          <div class="form-group">
-            <label class="form-label" for="button_url">Call-to-Action Button URL / Phone</label>
-            <input type="text" name="button_url" id="button_url" value="{{ old('button_url', $settings->button_url) }}" class="form-control" placeholder="e.g. tel:8881234567 or /contact" />
-          </div>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.75rem 0;" />
-
-        <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem;">
-          Performance Badge Card Details
-        </div>
-        <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.25rem;">
-          Floating frosted glass card displayed on the right side of the hero banner.
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-          <!-- Performance Title -->
-          <div class="form-group">
-            <label class="form-label" for="performance_title">Card Title</label>
-            <input type="text" name="performance_title" id="performance_title" value="{{ old('performance_title', $settings->performance_title) }}" class="form-control" placeholder="e.g. Brand performance" />
-          </div>
-
-          <!-- Performance Percentage -->
-          <div class="form-group">
-            <label class="form-label" for="performance_percentage">Percentage Value (%)</label>
-            <input type="text" name="performance_percentage" id="performance_percentage" value="{{ old('performance_percentage', $settings->performance_percentage) }}" class="form-control" placeholder="e.g. 85" />
-            <div class="form-help">Number displayed on the radial gauge counter.</div>
-          </div>
-
-          <!-- Performance Description -->
-          <div class="form-group">
-            <label class="form-label" for="performance_description">Subtitle / Description</label>
-            <input type="text" name="performance_description" id="performance_description" value="{{ old('performance_description', $settings->performance_description) }}" class="form-control" placeholder="e.g. Consistent growth across campaigns" />
-          </div>
-
-          <!-- Performance Badge -->
-          <div class="form-group">
-            <label class="form-label" for="performance_badge">Badge Tag</label>
-            <input type="text" name="performance_badge" id="performance_badge" value="{{ old('performance_badge', $settings->performance_badge) }}" class="form-control" placeholder="e.g. Performance system" />
-          </div>
-        </div>
-
-        <div class="form-group" style="max-width: 280px; margin-top: 1.5rem;">
-          <label class="form-label" for="status">Section Status</label>
-          <select name="status" id="status" class="form-control form-select">
-            <option value="active" {{ ($settings->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (Show Section)</option>
-            <option value="deactive" {{ ($settings->status ?? 'active') === 'deactive' ? 'selected' : '' }}>Deactive (Hide Section)</option>
-          </select>
-        </div>
-      </div>
-
-      <div style="background: var(--bg-hover); padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 0.75rem;">
-        <button type="submit" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-            <polyline points="7 3 7 8 15 8"></polyline>
-          </svg>
-          <span>Save Banner Changes</span>
-        </button>
-      </div>
-    </form>
-  </div>
-
-  @push('scripts')
-  <script>
-    function previewImage(input, previewId) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(previewId).src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  </script>
-  @endpush
+<div style="text-align: right; margin-top: 2rem; margin-bottom: 2rem;">
+    <button type="submit" form="about-banner-form" class="btn btn-primary" style="padding: 0.75rem 2.5rem; font-size: 1rem;">
+        Save All Content
+    </button>
+</div>
 @endsection

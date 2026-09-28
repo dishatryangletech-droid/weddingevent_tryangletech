@@ -105,4 +105,32 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/home/recognitions/item', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'storeItem'])->name('admin.home.recognitions.item.store');
     Route::delete('/home/recognitions/item/{id}', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'deleteItem'])->name('admin.home.recognitions.item.delete');
     Route::post('/home/recognitions/reorder', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'reorderItems'])->name('admin.home.recognitions.reorder');
+
+    // About Us Page Settings
+    Route::get('/about/banner', [\App\Http\Controllers\Backend\AboutBannerController::class, 'index'])->name('admin.about.banner.index');
+    Route::post('/about/banner', [\App\Http\Controllers\Backend\AboutBannerController::class, 'update'])->name('admin.about.banner.update');
+
+    Route::get('/about/story', [\App\Http\Controllers\Backend\AboutStoryController::class, 'index'])->name('admin.about.story.index');
+    Route::post('/about/story', [\App\Http\Controllers\Backend\AboutStoryController::class, 'update'])->name('admin.about.story.update');
+
+    Route::get('/about/mission', [\App\Http\Controllers\Backend\AboutMissionController::class, 'index'])->name('admin.about.mission.index');
+    Route::post('/about/mission', [\App\Http\Controllers\Backend\AboutMissionController::class, 'update'])->name('admin.about.mission.update');
+
+    Route::get('/about/team', [\App\Http\Controllers\Backend\AboutTeamController::class, 'index'])->name('admin.about.team.index');
+    Route::post('/about/team/header', [\App\Http\Controllers\Backend\AboutTeamController::class, 'updateHeader'])->name('admin.about.team.header.update');
+    Route::post('/about/team/member', [\App\Http\Controllers\Backend\AboutTeamController::class, 'storeMember'])->name('admin.about.team.member.store');
+    Route::delete('/about/team/member/{id}', [\App\Http\Controllers\Backend\AboutTeamController::class, 'deleteMember'])->name('admin.about.team.member.delete');
+    Route::post('/about/team/reorder', [\App\Http\Controllers\Backend\AboutTeamController::class, 'reorderMembers'])->name('admin.about.team.reorder');
+
+    Route::get('/about/stats', [\App\Http\Controllers\Backend\AboutStatsController::class, 'index'])->name('admin.about.stats.index');
+    Route::post('/about/stats/header', [\App\Http\Controllers\Backend\AboutStatsController::class, 'updateHeader'])->name('admin.about.stats.header.update');
+    Route::post('/about/stats/item', [\App\Http\Controllers\Backend\AboutStatsController::class, 'storeItem'])->name('admin.about.stats.item.store');
+    Route::delete('/about/stats/item/{id}', [\App\Http\Controllers\Backend\AboutStatsController::class, 'deleteItem'])->name('admin.about.stats.item.delete');
+    Route::post('/about/stats/reorder', [\App\Http\Controllers\Backend\AboutStatsController::class, 'reorderItems'])->name('admin.about.stats.reorder');
+
+    Route::get('/about/expertise', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'index'])->name('admin.about.expertise.index');
+    Route::post('/about/expertise/header', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'updateHeader'])->name('admin.about.expertise.header.update');
+    Route::post('/about/expertise/item', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'storeItem'])->name('admin.about.expertise.item.store');
+    Route::delete('/about/expertise/item/{id}', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'deleteItem'])->name('admin.about.expertise.item.delete');
+    Route::post('/about/expertise/reorder', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'reorderItems'])->name('admin.about.expertise.reorder');
 });
