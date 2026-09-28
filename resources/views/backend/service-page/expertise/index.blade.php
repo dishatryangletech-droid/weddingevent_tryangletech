@@ -60,17 +60,9 @@
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
     <div>
       <h2 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin: 0 0 0.25rem 0;">Our Expertise Section Management</h2>
-      <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Customize the sticky interactive expertise showcases, descriptions, and media images shown on the Services page.</p>
+      <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Customize the section headlines, center portrait showcase image, and expertise feature cards shown on the Services page.</p>
     </div>
     <div style="display: flex; gap: 0.75rem;">
-      <a href="{{ route('services') }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
       <button type="submit" class="btn btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <polyline points="20 6 9 17 4 12"></polyline>
@@ -90,7 +82,7 @@
     <div class="form-row-2">
       <div class="form-group">
         <label for="tag" class="form-label" style="font-weight: 600;">Section Tag / Badge</label>
-        <input type="text" name="tag" id="tag" value="{{ old('tag', $expertise->tag) }}" class="form-control" placeholder="e.g. Our expertise" />
+        <input type="text" name="tag" id="tag" value="{{ old('tag', $expertise->tag) }}" class="form-control" placeholder="e.g. ABOUT US" />
       </div>
 
       <div class="form-group">
@@ -102,13 +94,32 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 1.25rem;">
       <label for="title" class="form-label" style="font-weight: 600;">Main Section Headline <span style="color: #ef4444;">*</span></label>
       <textarea name="title" id="title" rows="2" class="form-control" required>{{ old('title', $expertise->title) }}</textarea>
     </div>
   </div>
 
-  <!-- 2. The 3 Expertise Cards -->
+  <!-- 2. Center Main Showcase Image -->
+  <div class="admin-form-card">
+    <div class="card-head">
+      <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Center Portrait Showcase Image</div>
+      <span class="card-badge">Center Media</span>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 0;">
+      <label for="center_image" class="form-label" style="font-weight: 600;">Center Main Portrait Image</label>
+      <input type="file" name="center_image" id="center_image" class="form-control" accept="image/*" onchange="previewImage(this, 'centerImagePreview')" />
+      <small class="form-text" style="color: #64748b;">Formats: JPG, PNG, WEBP, AVIF. This is the large portrait image displayed in the middle of the About section.</small>
+      
+      <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 1rem;">
+        <img id="centerImagePreview" src="{{ $expertise->center_image_url }}" alt="Center Image Preview" style="max-height: 120px; max-width: 180px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;" />
+        <span style="font-size: 0.82rem; color: #64748b;">Active Center Showcase Image Preview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. The 3 Expertise Cards -->
   <div class="admin-form-card">
     <div class="card-head">
       <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Interactive Expertise Cards (3 Cards)</div>
@@ -127,12 +138,12 @@
       @endphp
       <div class="card-box">
         <div style="font-weight: 700; font-size: 0.95rem; color: #ff5722; margin-bottom: 0.75rem;">
-          Card {{ $i + 1 }}
+          Card {{ $i + 1 }} {{ $i == 0 ? '(Left Card)' : '(Right Card ' . $i . ')' }}
         </div>
 
         <div class="form-group" style="margin-bottom: 1rem;">
           <label class="form-label" style="font-weight: 600;">Card Title <span style="color: #ef4444;">*</span></label>
-          <input type="text" name="cards[{{ $i }}][title]" value="{{ old("cards.{$i}.title", $cardTitle) }}" class="form-control" placeholder="e.g. 3D Projection Mapping & Water Screens" required />
+          <input type="text" name="cards[{{ $i }}][title]" value="{{ old("cards.{$i}.title", $cardTitle) }}" class="form-control" placeholder="e.g. Personalized planning" required />
         </div>
 
         <div class="form-group" style="margin-bottom: 1rem;">

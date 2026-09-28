@@ -53,17 +53,9 @@
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
     <div>
       <h2 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin: 0 0 0.25rem 0;">Services Page Hero Banner Management</h2>
-      <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Customize the main headline, background image, CTA button, and bottom feature highlights for the Services page.</p>
+      <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Customize the main headline, description, background image, right floating card, CTA button, and bottom feature highlights for the Services page.</p>
     </div>
     <div style="display: flex; gap: 0.75rem;">
-      <a href="{{ route('services') }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
       <button type="submit" class="btn btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <polyline points="20 6 9 17 4 12"></polyline>
@@ -76,7 +68,7 @@
   <!-- 1. Hero Content & Media -->
   <div class="admin-form-card">
     <div class="card-head">
-      <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Hero Banner Headline &amp; Background</div>
+      <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Hero Banner Headline, Subtitle &amp; Background</div>
       <span class="card-badge">Main Hero</span>
     </div>
 
@@ -85,6 +77,16 @@
       <label for="title" class="form-label" style="font-weight: 600;">Main Headline <span style="color: #ef4444;">*</span></label>
       <textarea name="title" id="title" rows="2" class="form-control @error('title') is-invalid @enderror" required>{{ old('title', $banner->title) }}</textarea>
       @error('title')
+        <div style="color: #ef4444; font-size: 0.82rem; margin-top: 0.25rem;">{{ $message }}</div>
+      @enderror
+    </div>
+
+    <!-- Subtitle / Description Text -->
+    <div class="form-group" style="margin-bottom: 1.25rem;">
+      <label for="subtitle" class="form-label" style="font-weight: 600;">Subtitle / Hero Description Text</label>
+      <textarea name="subtitle" id="subtitle" rows="2" class="form-control @error('subtitle') is-invalid @enderror" placeholder="e.g. A walkthrough of how we translate your personal love story into a visual language at Knotcraft.">{{ old('subtitle', $banner->subtitle) }}</textarea>
+      <small class="form-text" style="color: #64748b;">Short description paragraph displayed right below the main headline.</small>
+      @error('subtitle')
         <div style="color: #ef4444; font-size: 0.82rem; margin-top: 0.25rem;">{{ $message }}</div>
       @enderror
     </div>
@@ -125,7 +127,42 @@
     </div>
   </div>
 
-  <!-- 2. Bottom Feature Highlights (4 Badges) -->
+  <!-- 2. Right Side Floating Card Settings -->
+  <div class="admin-form-card">
+    <div class="card-head">
+      <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Right Side Floating Card Widget</div>
+      <span class="card-badge">Floating Card</span>
+    </div>
+
+    <div class="form-row-2">
+      <!-- Card Image Upload -->
+      <div class="form-group">
+        <label for="card_image" class="form-label" style="font-weight: 600;">Card Thumbnail Image</label>
+        <input type="file" name="card_image" id="card_image" class="form-control @error('card_image') is-invalid @enderror" accept="image/*" onchange="previewImage(this, 'cardPreview')" />
+        <small class="form-text" style="color: #64748b;">Image displayed on the left side of the right floating card.</small>
+        
+        <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 1rem;">
+          <img id="cardPreview" src="{{ $banner->card_image_url }}" alt="Card Preview" style="max-height: 80px; max-width: 120px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;" />
+          <span style="font-size: 0.82rem; color: #64748b;">Active Card Image Preview</span>
+        </div>
+        @error('card_image')
+          <div style="color: #ef4444; font-size: 0.82rem; margin-top: 0.25rem;">{{ $message }}</div>
+        @enderror
+      </div>
+
+      <!-- Card Text -->
+      <div class="form-group">
+        <label for="card_text" class="form-label" style="font-weight: 600;">Floating Card Statement Text</label>
+        <textarea name="card_text" id="card_text" rows="3" class="form-control @error('card_text') is-invalid @enderror" placeholder="e.g. We craft wedding experiences that bring your love story to life.">{{ old('card_text', $banner->card_text) }}</textarea>
+        <small class="form-text" style="color: #64748b;">Statement displayed inside the floating card box on the right of the hero banner.</small>
+        @error('card_text')
+          <div style="color: #ef4444; font-size: 0.82rem; margin-top: 0.25rem;">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Bottom Feature Highlights (4 Badges) -->
   <div class="admin-form-card">
     <div class="card-head">
       <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Bottom Slider Highlight Badges (4 Features)</div>
@@ -139,13 +176,13 @@
         @endphp
         <div class="form-group">
           <label class="form-label" style="font-weight: 600;">Feature Badge {{ $i + 1 }}</label>
-          <input type="text" name="items[{{ $i }}][title]" value="{{ old("items.{$i}.title", $itemTitle) }}" class="form-control" placeholder="e.g. 3D Projection Mapping" />
+          <input type="text" name="items[{{ $i }}][title]" value="{{ old("items.{$i}.title", $itemTitle) }}" class="form-control" placeholder="e.g. 12+ Years of work experience" />
         </div>
       @endfor
     </div>
   </div>
 
-  <!-- 3. Section Status -->
+  <!-- 4. Section Status -->
   <div class="admin-form-card">
     <div class="card-head">
       <div style="font-weight: 700; font-size: 1rem; color: #0f172a;">Section Display Status</div>

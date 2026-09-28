@@ -20,7 +20,7 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
 // Services
-Route::get('/service', [FrontendController::class, 'serviceThree'])->name('service-three');
+Route::get('/service', [FrontendController::class, 'serviceThree'])->name('service-three')->name('services');
 
 // Booking Inquiry
 Route::get('/booking-inquiry', [FrontendController::class, 'bookingInquiry'])->name('booking-inquiry');
@@ -149,6 +149,26 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/contact/faq/item', [\App\Http\Controllers\Backend\ContactFaqController::class, 'storeItem'])->name('admin.contact.faq.item.store');
     Route::delete('/contact/faq/item/{id}', [\App\Http\Controllers\Backend\ContactFaqController::class, 'deleteItem'])->name('admin.contact.faq.item.delete');
     Route::post('/contact/faq/reorder', [\App\Http\Controllers\Backend\ContactFaqController::class, 'reorderItems'])->name('admin.contact.faq.reorder');
+
+    // Service Page Settings
+    Route::get('/service-page/banner', [\App\Http\Controllers\Backend\ServiceBannerSectionController::class, 'index'])->name('admin.service-page.banner.index');
+    Route::post('/service-page/banner', [\App\Http\Controllers\Backend\ServiceBannerSectionController::class, 'update'])->name('admin.service-page.banner.update');
+
+    Route::get('/service-page/expertise', [\App\Http\Controllers\Backend\ServiceExpertiseSectionController::class, 'index'])->name('admin.service-page.expertise.index');
+    Route::post('/service-page/expertise', [\App\Http\Controllers\Backend\ServiceExpertiseSectionController::class, 'update'])->name('admin.service-page.expertise.update');
+
+    Route::get('/service-page/process', [\App\Http\Controllers\Backend\ServiceProcessSectionController::class, 'index'])->name('admin.service-page.process.index');
+    Route::post('/service-page/process', [\App\Http\Controllers\Backend\ServiceProcessSectionController::class, 'update'])->name('admin.service-page.process.update');
+
+    Route::get('/service-page/faqs', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'index'])->name('admin.service-page.faqs.index');
+    Route::get('/service-page/faqs/create', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'create'])->name('admin.service-page.faqs.create');
+    Route::post('/service-page/faqs', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'store'])->name('admin.service-page.faqs.store');
+    Route::get('/service-page/faqs/{faq}/edit', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'edit'])->name('admin.service-page.faqs.edit');
+    Route::put('/service-page/faqs/{faq}', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'update'])->name('admin.service-page.faqs.update');
+    Route::delete('/service-page/faqs/{faq}', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'destroy'])->name('admin.service-page.faqs.destroy');
+    Route::match(['post', 'patch'], '/service-page/faqs/{faq}/toggle-status', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'toggleStatus'])->name('admin.service-page.faqs.toggle-status');
+    Route::match(['post', 'patch'], '/service-page/faqs/{faq}/toggle', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'toggleStatus'])->name('admin.service-page.faqs.toggle');
+    Route::post('/service-page/faqs/settings', [\App\Http\Controllers\Backend\ServiceFaqController::class, 'updateSettings'])->name('admin.service-page.faqs.settings.update');
 
     // General / Footer Settings
     Route::get('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'index'])->name('admin.footer.index');

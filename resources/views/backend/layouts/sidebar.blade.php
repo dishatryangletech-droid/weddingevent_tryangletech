@@ -107,6 +107,39 @@
       </div>
     </div>
 
+    <!-- Service Page -->
+    <div class="nav-item {{ request()->routeIs('admin.service-page.*') ? 'open' : '' }}">
+      <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.service-page.*') ? 'active' : '' }}">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </span>
+        <span>Service Page</span>
+        <span class="dropdown-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </div>
+      <div class="sidebar-dropdown">
+        <a href="{{ route('admin.service-page.banner.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.banner.*') ? 'active' : '' }}">
+          Banner Section
+        </a>
+        <a href="{{ route('admin.service-page.expertise.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.expertise.*') ? 'active' : '' }}">
+          About Us Section
+        </a>
+        <a href="{{ route('admin.service-page.process.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.process.*') ? 'active' : '' }}">
+          Process Section
+        </a>
+        <a href="{{ route('admin.service-page.faqs.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.faqs.*') ? 'active' : '' }}">
+          FAQ Section
+        </a>
+      </div>
+    </div>
+
     <!-- 4. Contact Us Page -->
     <div class="nav-item {{ request()->routeIs('admin.contact.*') ? 'open' : '' }}">
       <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.contact.*') ? 'active' : '' }}">

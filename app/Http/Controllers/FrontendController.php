@@ -59,7 +59,13 @@ class FrontendController extends Controller
 
     public function serviceThree(): View
     {
-        return view('frontend.service-three');
+        $serviceBanner = \App\Models\ServiceBannerSection::getSettings();
+        $serviceExpertise = \App\Models\ServiceExpertiseSection::getSettings();
+        $serviceProcess = \App\Models\ServiceProcessSection::getSettings();
+        $serviceFaqSection = \App\Models\ServiceFaqSection::getSettings();
+        $serviceFaqs = \App\Models\ServiceFaq::where('status', 'active')->orderBy('order', 'asc')->get();
+
+        return view('frontend.service-three', compact('serviceBanner', 'serviceExpertise', 'serviceProcess', 'serviceFaqSection', 'serviceFaqs'));
     }
 
     /**

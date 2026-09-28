@@ -106,6 +106,8 @@ class ServiceFaqController extends Controller
             'tag' => 'nullable|string|max:255',
             'title' => 'required|string|max:500',
             'subtitle' => 'nullable|string',
+            'image_one' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'image_two' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'contact_title' => 'nullable|string|max:255',
             'contact_subtitle' => 'nullable|string|max:255',
             'contact_button_text' => 'nullable|string|max:255',
@@ -127,8 +129,22 @@ class ServiceFaqController extends Controller
             'status' => $validated['status'],
         ];
 
+        if ($request->hasFile('image_one')) {
+            if ($section->image_one && ! str_starts_with($section->image_one, 'images/') && ! str_starts_with($section->image_one, 'assets/') && Storage::disk('public')->exists($section->image_one)) {
+                Storage::disk('public')->delete($section->image_one);
+            }
+            $data['image_one'] = $request->file('image_one')->store('service-faqs', 'public');
+        }
+
+        if ($request->hasFile('image_two')) {
+            if ($section->image_two && ! str_starts_with($section->image_two, 'images/') && ! str_starts_with($section->image_two, 'assets/') && Storage::disk('public')->exists($section->image_two)) {
+                Storage::disk('public')->delete($section->image_two);
+            }
+            $data['image_two'] = $request->file('image_two')->store('service-faqs', 'public');
+        }
+
         if ($request->hasFile('contact_image')) {
-            if ($section->contact_image && ! str_starts_with($section->contact_image, 'assets/') && Storage::disk('public')->exists($section->contact_image)) {
+            if ($section->contact_image && ! str_starts_with($section->contact_image, 'images/') && ! str_starts_with($section->contact_image, 'assets/') && Storage::disk('public')->exists($section->contact_image)) {
                 Storage::disk('public')->delete($section->contact_image);
             }
             $data['contact_image'] = $request->file('contact_image')->store('service-faqs', 'public');
@@ -137,6 +153,6 @@ class ServiceFaqController extends Controller
         $section->update($data);
 
         return redirect()->route('admin.service-page.faqs.index')
-            ->with('success', 'Services Page FAQ Section header & contact box settings updated.');
+            ->with('success', 'Services Page FAQ Section header, images & contact box settings updated.');
     }
 }

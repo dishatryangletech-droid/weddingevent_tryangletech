@@ -86,6 +86,30 @@
       </div>
 
       <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem; margin-bottom: 1.25rem;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: #ff5722; margin-bottom: 1rem;">FAQ Section Side Images (2 Images)</div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 600;">FAQ Image 1 (Bride / Main Left Portrait)</label>
+            <input type="file" name="image_one" class="form-control" accept="image/*" onchange="previewImage(this, 'faqImg1Prev')" />
+            <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+              <img id="faqImg1Prev" src="{{ $section->image_one_url }}" alt="FAQ Image 1" style="height: 70px; border-radius: 8px; object-fit: cover; border: 1px solid #e2e8f0;" />
+              <span style="font-size: 0.78rem; color: #64748b;">Current Left Main Portrait</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 600;">FAQ Image 2 (Ring / Secondary Top Image)</label>
+            <input type="file" name="image_two" class="form-control" accept="image/*" onchange="previewImage(this, 'faqImg2Prev')" />
+            <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+              <img id="faqImg2Prev" src="{{ $section->image_two_url }}" alt="FAQ Image 2" style="height: 70px; border-radius: 8px; object-fit: cover; border: 1px solid #e2e8f0;" />
+              <span style="font-size: 0.78rem; color: #64748b;">Current Secondary Image</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem; margin-bottom: 1.25rem;">
         <div style="font-weight: 700; font-size: 0.95rem; color: #ff5722; margin-bottom: 1rem;">"Still have questions?" Contact Card Settings</div>
 
         <div class="form-row-2">

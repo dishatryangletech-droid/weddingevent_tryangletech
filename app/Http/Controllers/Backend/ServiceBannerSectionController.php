@@ -22,9 +22,12 @@ class ServiceBannerSectionController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:500',
+            'subtitle' => 'nullable|string',
             'button_text' => 'required|string|max:255',
             'button_url' => 'required|string|max:255',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'card_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'card_text' => 'nullable|string',
             'items' => 'nullable|array',
             'items.*.title' => 'nullable|string|max:255',
             'status' => 'required|in:active,deactive',
@@ -43,17 +46,26 @@ class ServiceBannerSectionController extends Controller
 
         $data = [
             'title' => $validated['title'],
+            'subtitle' => $validated['subtitle'] ?? null,
             'button_text' => $validated['button_text'],
             'button_url' => $validated['button_url'],
+            'card_text' => $validated['card_text'] ?? null,
             'items' => $items,
             'status' => $validated['status'],
         ];
 
         if ($request->hasFile('banner_image')) {
-            if ($banner->banner_image && Storage::disk('public')->exists($banner->banner_image)) {
+            if ($banner->banner_image && ! str_starts_with($banner->banner_image, 'images/') && Storage::disk('public')->exists($banner->banner_image)) {
                 Storage::disk('public')->delete($banner->banner_image);
             }
             $data['banner_image'] = $request->file('banner_image')->store('service-banner', 'public');
+        }
+
+        if ($request->hasFile('card_image')) {
+            if ($banner->card_image && ! str_starts_with($banner->card_image, 'images/') && Storage::disk('public')->exists($banner->card_image)) {
+                Storage::disk('public')->delete($banner->card_image);
+            }
+            $data['card_image'] = $request->file('card_image')->store('service-banner', 'public');
         }
 
         $banner->update($data);

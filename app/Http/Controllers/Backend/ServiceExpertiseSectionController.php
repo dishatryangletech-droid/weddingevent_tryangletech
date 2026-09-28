@@ -23,6 +23,7 @@ class ServiceExpertiseSectionController extends Controller
         $validated = $request->validate([
             'tag' => 'nullable|string|max:255',
             'title' => 'required|string|max:500',
+            'center_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
             'status' => 'required|in:active,deactive',
             'cards' => 'required|array|size:3',
             'cards.*.title' => 'required|string|max:255',
@@ -39,7 +40,7 @@ class ServiceExpertiseSectionController extends Controller
             $cardImage = $existingImage;
 
             if ($request->hasFile("cards.{$index}.image")) {
-                if ($existingImage && ! str_starts_with($existingImage, 'assets/') && ! str_starts_with($existingImage, 'storage/expertise/') && Storage::disk('public')->exists($existingImage)) {
+                if ($existingImage && ! str_starts_with($existingImage, 'images/') && ! str_starts_with($existingImage, 'assets/') && Storage::disk('public')->exists($existingImage)) {
                     Storage::disk('public')->delete($existingImage);
                 }
                 $cardImage = $request->file("cards.{$index}.image")->store('service-expertise', 'public');
@@ -52,14 +53,23 @@ class ServiceExpertiseSectionController extends Controller
             ];
         }
 
-        $expertise->update([
-            'tag' => $validated['tag'] ?? 'Our expertise',
+        $data = [
+            'tag' => $validated['tag'] ?? 'ABOUT US',
             'title' => $validated['title'],
             'cards' => $updatedCards,
             'status' => $validated['status'],
-        ]);
+        ];
+
+        if ($request->hasFile('center_image')) {
+            if ($expertise->center_image && ! str_starts_with($expertise->center_image, 'images/') && Storage::disk('public')->exists($expertise->center_image)) {
+                Storage::disk('public')->delete($expertise->center_image);
+            }
+            $data['center_image'] = $request->file('center_image')->store('service-expertise', 'public');
+        }
+
+        $expertise->update($data);
 
         return redirect()->route('admin.service-page.expertise.index')
-            ->with('success', 'Our Expertise Section updated successfully.');
+            ->with('success', 'Our Expertise / About Us Section updated successfully.');
     }
 }
