@@ -1,12 +1,18 @@
+<style>
+  .fda-menu-font-v1 {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+  }
+</style>
 <div data-wf--fda-navbar--variant="normal" class="fda-navbar-main w-variant-7b561c28-18c3-ecdb-7aaa-a21923b0fa6e">
   </div>
   </div>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease"
     role="banner" class="fda-navbar w-nav">
     <div class="w-layout-blockcontainer fda-container-medium w-container">
-      <div class="fda-navbar-wrapper"><a href="{{ route('home') }}" class="fda-navbar-logo-v1 w-nav-brand"><img
-            width="118" height="34" alt="Site-logo"
-            src="{{ asset('images/6a6305bf5040b777232a17cd_Site-logo.svg') }}" /></a>
+      <div class="fda-navbar-wrapper"><a href="{{ route('home') }}" class="fda-navbar-logo-v1 w-nav-brand" style="max-width: 220px;"><img
+            width="220" style="height: auto; filter: brightness(0.4) contrast(1.2);" alt="Site-logo"
+            src="{{ asset('images/elegant_occasions_logo.png') }}" /></a>
         <nav role="navigation" class="fda-navbar-menu-holder w-nav-menu">
           <div class="w-layout-hflex fda-navbar-v1-menu-holder-inner">
             <div class="w-layout-hflex fda-navbar-inner-wrap">
@@ -790,9 +796,9 @@
           <div from-close="1" class="w-layout-hflex fda-booking-cross-sign"><img
               src="{{ asset('images/6a6305bf5040b777232a1734_Cross.svg') }}" loading="lazy" alt="Cross" /></div>
           <div class="w-layout-vflex fda-booking-top-box fda-text-center">
-            <div class="w-layout-hflex fda-booking-logo"><img
-                src="{{ asset('images/6a6305bf5040b777232a17cd_Site-logo.svg') }}" loading="lazy" width="147"
-                height="24" alt="Site-logo" /></div>
+            <div class="w-layout-hflex fda-booking-logo" style="max-width: 220px; margin: 0 auto;"><img
+                src="{{ asset('images/elegant_occasions_logo.png') }}" loading="lazy" width="220"
+                style="height: auto; filter: brightness(0.4) contrast(1.2);" alt="Site-logo" /></div>
             <div class="fda-color-dark-brown">You'll received a confirmation within 24h</div>
           </div>
           <div id="Booking-Form-V2" class="fda-booking-form-block w-form">

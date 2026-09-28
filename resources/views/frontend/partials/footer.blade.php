@@ -18,6 +18,12 @@
                 </a><a href="{{ route('service-three') }}" class="fda-footer-link w-inline-block">
                   <div class="fda-text-color-light-grey fda-footer-text-link">Service</div>
                   <div class="fda-footer-underline"></div>
+                </a><a href="{{ route('event') }}" class="fda-footer-link w-inline-block">
+                  <div class="fda-text-color-light-grey fda-footer-text-link">Events</div>
+                  <div class="fda-footer-underline"></div>
+                </a><a href="{{ route('portfolio') }}" class="fda-footer-link w-inline-block">
+                  <div class="fda-text-color-light-grey fda-footer-text-link">Portfolio</div>
+                  <div class="fda-footer-underline"></div>
                 </a><a href="{{ route('blog') }}" class="fda-footer-link w-inline-block">
                   <div class="fda-text-color-light-grey fda-footer-text-link">Blog</div>
                   <div class="fda-footer-underline"></div>
@@ -43,7 +49,7 @@
           <div id="w-node-_5d659f15-e3c7-4002-6060-ab8ec5eccede-cfa24d1c"
             class="w-layout-vflex fda-site-details fda-text-center"><a href="{{ route('home') }}"
               class="fda-footer-logo-box w-inline-block"><img
-                src="{{ asset('images/6a6305bf5040b777232a1787_Site-logo-white.svg') }}" loading="lazy"
+                src="{{ asset('images/elegant_occasions_logo_white.png') }}" loading="lazy" width="200" style="height: auto;"
                 alt="Site logo white" /></a>
             <div class="fda-footer-site-paragraph">
               <p class="fda-gap-none fda-color-white">Crafting unforgettable celebrations that tell your story, with
