@@ -61,7 +61,7 @@ class FooterSettingController extends Controller
 
         // Process logo upload
         if ($request->hasFile('logo')) {
-            if ($footerSetting->logo && ! str_starts_with($footerSetting->logo, 'assets/')) {
+            if ($footerSetting->logo && ! str_starts_with($footerSetting->logo, 'assets/') && ! str_starts_with($footerSetting->logo, 'images/')) {
                 Storage::delete($footerSetting->logo);
             }
             $validated['logo'] = $request->file('logo')->store('footer', 'public');

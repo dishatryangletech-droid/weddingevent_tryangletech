@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Footer Settings')
-@section('page_title', 'Website Settings > Footer')
+@section('title', 'General Settings')
+@section('page_title', 'General Settings')
 
 @section('content')
   <div class="admin-card" style="margin-bottom: 1.5rem;">
     <div class="card-header">
       <div>
-        <div class="card-title">Website Footer Management</div>
-        <div class="card-subtitle">Manage company logo, about description, social media links, quick links, services list, contact details, and copyright notices.</div>
+        <div class="card-title">General Settings & Footer Management</div>
+        <div class="card-subtitle">Manage company logo, footer quote text, social links, contact details, quick links, and copyright notices.</div>
       </div>
       <a href="{{ url('/') }}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

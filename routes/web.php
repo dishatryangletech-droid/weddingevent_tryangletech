@@ -149,4 +149,8 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/contact/faq/item', [\App\Http\Controllers\Backend\ContactFaqController::class, 'storeItem'])->name('admin.contact.faq.item.store');
     Route::delete('/contact/faq/item/{id}', [\App\Http\Controllers\Backend\ContactFaqController::class, 'deleteItem'])->name('admin.contact.faq.item.delete');
     Route::post('/contact/faq/reorder', [\App\Http\Controllers\Backend\ContactFaqController::class, 'reorderItems'])->name('admin.contact.faq.reorder');
+
+    // General / Footer Settings
+    Route::get('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'index'])->name('admin.footer.index');
+    Route::post('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'update'])->name('admin.footer.update');
 });
