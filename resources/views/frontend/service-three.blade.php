@@ -43,12 +43,14 @@
     sizes="32x32" media="(prefers-color-scheme: dark)" />
   <link href="{{ asset('images/6a58830862b9f974ddc7bb7d_Favicon-small.png') }}" rel="icon" type="image/png"
     sizes="48x48" />
-  <link href="{{ asset('images/6a5882fd1b2dae9c09e5d13d_favicon-big.png') }}" rel="apple-touch-icon" sizes="180x180" />
+  
   <link href="{{ asset('images/6a5882fc1b2dae9c09e5d122_favicon-big.png') }}" rel="icon" type="image/png"
     sizes="192x192" />
   <link href="{{ asset('images/6a6305bf5040b777232a180f_favicon-big.png') }}" rel="icon" type="image/png"
     sizes="512x512" />
   <link rel="stylesheet" href="{{ asset('css/google-fonts.css') }}">
+<link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />
+<link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
 </head>
 
 <body>

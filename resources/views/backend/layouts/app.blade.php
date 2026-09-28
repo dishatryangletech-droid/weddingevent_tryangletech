@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>@yield('title', 'Admin Dashboard') | Elegant Occasions Admin</title>
   
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/elegant_occasions_logo.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
   
   <!-- Backend Admin Styles -->
   <link rel="stylesheet" href="{{ asset('backend/css/admin.css') }}?v={{ time() }}" />

@@ -60,4 +60,41 @@ Route::prefix("admin")->group(function () {
 Route::prefix("admin")->middleware("auth")->group(function () {
     Route::get("/", function () { return redirect()->route("admin.dashboard"); });
     Route::get("/dashboard", [AdminDashboardController::class, "index"])->name("admin.dashboard");
+    
+    // Home Page Settings
+    Route::get('/home/banner', [\App\Http\Controllers\Backend\HomeBannerController::class, 'index'])->name('admin.home.banner.index');
+    Route::post('/home/banner', [\App\Http\Controllers\Backend\HomeBannerController::class, 'update'])->name('admin.home.banner.update');
+    
+    // Portfolio Section
+    Route::get('/home/portfolio', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'index'])->name('admin.home.portfolio.index');
+    Route::post('/home/portfolio', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'storePortfolio'])->name('admin.home.portfolio.store');
+    Route::delete('/home/portfolio/{id}', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'deletePortfolio'])->name('admin.home.portfolio.delete');
+    Route::post('/home/portfolio/reorder', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'reorderPortfolios'])->name('admin.home.portfolio.reorder');
+    
+    Route::get('/home/about', [\App\Http\Controllers\Backend\HomeAboutController::class, 'index'])->name('admin.home.about.index');
+    Route::post('/home/about', [\App\Http\Controllers\Backend\HomeAboutController::class, 'update'])->name('admin.home.about.update');
+
+    Route::get('/home/promise', [\App\Http\Controllers\Backend\HomePromiseController::class, 'index'])->name('admin.home.promise.index');
+    Route::post('/home/promise', [\App\Http\Controllers\Backend\HomePromiseController::class, 'update'])->name('admin.home.promise.update');
+
+    Route::get('/home/core-promise', [\App\Http\Controllers\Backend\HomeCorePromiseController::class, 'index'])->name('admin.home.core_promise.index');
+    Route::post('/home/core-promise', [\App\Http\Controllers\Backend\HomeCorePromiseController::class, 'update'])->name('admin.home.core_promise.update');
+
+    Route::get('/home/services', [\App\Http\Controllers\Backend\HomeServiceController::class, 'index'])->name('admin.home.services.index');
+    Route::post('/home/services/section', [\App\Http\Controllers\Backend\HomeServiceController::class, 'updateSection'])->name('admin.home.services.section.update');
+    Route::post('/home/services/card', [\App\Http\Controllers\Backend\HomeServiceController::class, 'storeCard'])->name('admin.home.services.card.store');
+    Route::delete('/home/services/card/{id}', [\App\Http\Controllers\Backend\HomeServiceController::class, 'deleteCard'])->name('admin.home.services.card.delete');
+    Route::post('/home/services/reorder', [\App\Http\Controllers\Backend\HomeServiceController::class, 'reorderCards'])->name('admin.home.services.reorder');
+
+    Route::get('/home/philosophy', [\App\Http\Controllers\Backend\HomePhilosophyController::class, 'index'])->name('admin.home.philosophy.index');
+    Route::post('/home/philosophy/section', [\App\Http\Controllers\Backend\HomePhilosophyController::class, 'updateSection'])->name('admin.home.philosophy.section.update');
+    Route::post('/home/philosophy/item', [\App\Http\Controllers\Backend\HomePhilosophyController::class, 'storeItem'])->name('admin.home.philosophy.item.store');
+    Route::delete('/home/philosophy/item/{id}', [\App\Http\Controllers\Backend\HomePhilosophyController::class, 'deleteItem'])->name('admin.home.philosophy.item.delete');
+    Route::post('/home/philosophy/reorder', [\App\Http\Controllers\Backend\HomePhilosophyController::class, 'reorderItems'])->name('admin.home.philosophy.reorder');
+
+    Route::get('/home/recognitions', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'index'])->name('admin.home.recognitions.index');
+    Route::post('/home/recognitions/section', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'updateSection'])->name('admin.home.recognitions.section.update');
+    Route::post('/home/recognitions/item', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'storeItem'])->name('admin.home.recognitions.item.store');
+    Route::delete('/home/recognitions/item/{id}', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'deleteItem'])->name('admin.home.recognitions.item.delete');
+    Route::post('/home/recognitions/reorder', [\App\Http\Controllers\Backend\HomeRecognitionsController::class, 'reorderItems'])->name('admin.home.recognitions.reorder');
 });

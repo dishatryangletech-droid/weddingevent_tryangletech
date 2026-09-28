@@ -13,7 +13,9 @@ class FrontendController extends Controller
     public function home(): View
     {
         $portfolios = $this->getPortfolioData();
-        return view('frontend.home', compact('portfolios'));
+        $banner = \App\Models\HomeBanner::first();
+        $bannerPortfolios = \App\Models\HomeBannerPortfolio::orderBy('sort_order', 'asc')->get();
+        return view('frontend.home', compact('portfolios', 'banner', 'bannerPortfolios'));
     }
 
     /**
@@ -45,7 +47,9 @@ class FrontendController extends Controller
      */
     public function serviceOne(): View
     {
-        return view('frontend.service-one');
+        $recognitionsSection = \App\Models\HomeRecognitionsSection::first();
+        $recognitionItems = \App\Models\HomeRecognitionItem::orderBy('sort_order', 'asc')->get();
+        return view('frontend.service-one', compact('recognitionsSection', 'recognitionItems'));
     }
 
     public function serviceTwo(): View

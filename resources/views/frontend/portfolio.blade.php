@@ -520,6 +520,8 @@
             border-color: #c5a059;
         }
     </style>
+<link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />
+<link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
 </head>
 <body>
     <!-- Navbar Header -->
