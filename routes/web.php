@@ -67,9 +67,17 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     
     // Portfolio Section
     Route::get('/home/portfolio', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'index'])->name('admin.home.portfolio.index');
-    Route::post('/home/portfolio', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'storePortfolio'])->name('admin.home.portfolio.store');
-    Route::delete('/home/portfolio/{id}', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'deletePortfolio'])->name('admin.home.portfolio.delete');
-    Route::post('/home/portfolio/reorder', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'reorderPortfolios'])->name('admin.home.portfolio.reorder');
+    Route::post('/home/portfolio/section', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'updateSection'])->name('admin.home.portfolio.section.update');
+    
+    // Banner Portfolios
+    Route::post('/home/portfolio/banner', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'storeBannerPortfolio'])->name('admin.home.portfolio.banner.store');
+    Route::delete('/home/portfolio/banner/{id}', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'deleteBannerPortfolio'])->name('admin.home.portfolio.banner.delete');
+    Route::post('/home/portfolio/banner/reorder', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'reorderBannerPortfolios'])->name('admin.home.portfolio.banner.reorder');
+
+    // Recommended Portfolios
+    Route::post('/home/portfolio/recommended', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'storeRecommendedPortfolio'])->name('admin.home.portfolio.recommended.store');
+    Route::delete('/home/portfolio/recommended/{id}', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'deleteRecommendedPortfolio'])->name('admin.home.portfolio.recommended.delete');
+    Route::post('/home/portfolio/recommended/reorder', [\App\Http\Controllers\Backend\HomePortfolioController::class, 'reorderRecommendedPortfolios'])->name('admin.home.portfolio.recommended.reorder');
     
     Route::get('/home/about', [\App\Http\Controllers\Backend\HomeAboutController::class, 'index'])->name('admin.home.about.index');
     Route::post('/home/about', [\App\Http\Controllers\Backend\HomeAboutController::class, 'update'])->name('admin.home.about.update');
