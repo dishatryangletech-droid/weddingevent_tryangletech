@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AuthController as AdminAuthController;
+use App\Http\Controllers\Backend\DashboardController as AdminDashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +47,17 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 // Route::get('/changelog', [FrontendController::class, 'changelog'])->name('changelog');
 // Route::get('/instructions', [FrontendController::class, 'instructions'])->name('instructions');
 // Route::get('/401', [FrontendController::class, 'passwordProtected'])->name('password-protected');
+
+
+// Admin Routes
+Route::get("/login", [AdminAuthController::class, "showLoginForm"])->name("login");
+Route::prefix("admin")->group(function () {
+    Route::get("/login", [AdminAuthController::class, "showLoginForm"])->name("admin.login");
+    Route::post("/login", [AdminAuthController::class, "login"])->name("admin.login.submit");
+    Route::post("/logout", [AdminAuthController::class, "logout"])->name("admin.logout");
+});
+
+Route::prefix("admin")->middleware("auth")->group(function () {
+    Route::get("/", function () { return redirect()->route("admin.dashboard"); });
+    Route::get("/dashboard", [AdminDashboardController::class, "index"])->name("admin.dashboard");
+});
