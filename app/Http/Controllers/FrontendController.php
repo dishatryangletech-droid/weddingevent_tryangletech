@@ -436,17 +436,38 @@ class FrontendController extends Controller
      */
     public function blog(): View
     {
-        return view('frontend.blog');
+        $blogBanner = \App\Models\BlogBannerSection::getSettings();
+        $blogs = \App\Models\BlogItem::where('status', 'active')
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('frontend.blog', compact('blogBanner', 'blogs'));
     }
 
     public function blogDetail(string $slug): View
     {
-        $viewName = "frontend.blog-post.{$slug}";
-        if (view()->exists($viewName)) {
-            return view($viewName);
+        $blog = \App\Models\BlogItem::where('slug', $slug)
+            ->where('status', 'active')
+            ->first();
+
+        if (!$blog) {
+            $viewName = "frontend.blog-post.{$slug}";
+            if (view()->exists($viewName)) {
+                return view($viewName);
+            }
+            $blog = \App\Models\BlogItem::where('status', 'active')->first();
+            if (!$blog) {
+                abort(404);
+            }
         }
 
-        abort(404);
+        $recentBlogs = \App\Models\BlogItem::where('status', 'active')
+            ->where('id', '!=', $blog->id)
+            ->take(3)
+            ->get();
+
+        return view('frontend.blog-detail', compact('blog', 'recentBlogs'));
     }
 
     /**
