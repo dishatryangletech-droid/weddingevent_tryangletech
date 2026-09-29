@@ -454,7 +454,19 @@ class FrontendController extends Controller
      */
     public function contact(): View
     {
-        return view('frontend.contact');
+        $contactHeader = \App\Models\ContactPageHeader::first();
+        $contactCards = \App\Models\ContactPageCard::orderBy('sort_order', 'asc')->get();
+        $contactForm = \App\Models\ContactPageForm::first();
+        $contactFaqHeader = \App\Models\ContactPageFaq::first();
+        $contactFaqItems = \App\Models\ContactPageFaqItem::orderBy('sort_order', 'asc')->get();
+
+        return view('frontend.contact', compact(
+            'contactHeader',
+            'contactCards',
+            'contactForm',
+            'contactFaqHeader',
+            'contactFaqItems'
+        ));
     }
 
     /**
