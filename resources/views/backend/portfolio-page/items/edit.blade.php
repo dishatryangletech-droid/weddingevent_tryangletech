@@ -100,6 +100,20 @@
         </div>
       </div>
 
+      <div class="form-row-2" style="margin-bottom: 1.25rem;">
+        <div class="form-group">
+          <label class="form-label" style="font-weight: 600;">Guests Text</label>
+          <input type="text" name="guests_text" value="{{ old('guests_text', $item->guests_text) }}" class="form-control" placeholder="e.g. 220 Guests" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-weight: 600;">Detail Banner Image</label>
+          <input type="file" name="banner_image" class="form-control" accept="image/*" onchange="previewImg(this, 'bannerImgPrev')" />
+          <div class="preview-box">
+            <img id="bannerImgPrev" src="{{ $item->banner_image ? asset('storage/' . $item->banner_image) : asset('backend/images/placeholder.jpg') }}" />
+          </div>
+        </div>
+      </div>
+
       <div class="form-group" style="margin-bottom: 1.25rem;">
         <label class="form-label" style="font-weight: 600;">Detail Headline</label>
         <input type="text" name="detail_headline" value="{{ old('detail_headline', $item->detail_headline) }}" class="form-control" placeholder="e.g. A Magical Evening Under The Stars" />
@@ -110,30 +124,12 @@
         <textarea name="detail_content" id="detail_content" class="form-control">{{ old('detail_content', $item->detail_content) }}</textarea>
       </div>
 
-      <div class="form-row-2">
-        <div class="form-group">
-          <label class="form-label" style="font-weight: 600;">Detail Sub Image (Content Image)</label>
-          <input type="file" name="detail_sub_image" class="form-control" accept="image/*" onchange="previewImg(this, 'subImgPrev')" />
-          <div class="preview-box">
-            <img id="subImgPrev" src="{{ $item->detail_sub_image_url }}" />
-          </div>
-        </div>
-        <div>
-          <div class="form-group">
-            <label class="form-label" style="font-weight: 600;">Highlight Stat 1</label>
-            <input type="text" name="detail_highlight_1" value="{{ old('detail_highlight_1', $item->detail_highlight_1) }}" class="form-control" placeholder="e.g. 250+ Guests" />
-          </div>
-          <div class="form-group" style="margin-top:1rem;">
-            <label class="form-label" style="font-weight: 600;">Highlight Stat 2</label>
-            <input type="text" name="detail_highlight_2" value="{{ old('detail_highlight_2', $item->detail_highlight_2) }}" class="form-control" placeholder="e.g. 3 Days Celebration" />
-          </div>
-        </div>
-      </div>
+      
     </div>
 
     <!-- Gallery Section -->
     <div class="admin-form-card">
-      <div class="form-section-title">3. Photo Gallery (4 Images)</div>
+      <div class="form-section-title">3. Photo Gallery</div>
 
       <div class="form-row-2">
         <div class="form-group">
@@ -146,17 +142,54 @@
         </div>
       </div>
 
-      <div class="form-row-4">
-        @for($i = 1; $i <= 4; $i++)
-          <div class="form-group">
-            <label class="form-label" style="font-weight: 600;">Image {{ $i }}</label>
-            <input type="file" name="gallery_image_{{ $i }}" class="form-control" accept="image/*" onchange="previewImg(this, 'galImgPrev{{ $i }}')" />
-            <div class="preview-box">
-              @php $imgMethod = "gallery_image_{$i}_url"; @endphp
-              <img id="galImgPrev{{ $i }}" src="{{ $item->$imgMethod }}" />
-            </div>
+      <div class="form-group" style="margin-top: 1.25rem;">
+        <label class="form-label" style="font-weight: 600;">Upload Gallery Images (Select Multiple)</label>
+        <input type="file" name="gallery_images[]" id="gallery_images_input" class="form-control" accept="image/*" multiple onchange="previewMultiple(this, 'new_gallery_preview')" />
+        <small style="color: #666; display: block; margin-top: 5px;">Selecting new images will replace the existing gallery.</small>
+        <div id="new_gallery_preview" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;"></div>
+      </div>
+      
+      @if(is_array($item->gallery_images) && count($item->gallery_images) > 0)
+        <div style="margin-top: 1.5rem;">
+          <label class="form-label" style="font-weight: 600; display: block; margin-bottom: 0.75rem;">Currently Attached Gallery Images:</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            @foreach($item->gallery_images as $img)
+              <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; background: #fff;">
+                <img src="{{ asset('storage/' . $img) }}" style="width: 100px; height: 75px; object-fit: cover; display: block;" />
+              </div>
+            @endforeach
           </div>
-        @endfor
+        </div>
+      @endif
+    </div>
+
+    <!-- Video Section -->
+    <div class="admin-form-card">
+      <div class="form-section-title">4. Cinema Wedding Film (Optional)</div>
+      
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="form-label" style="font-weight: 600;">Video MP4</label>
+          <input type="file" name="video_mp4" class="form-control" accept="video/mp4" />
+          @if($item->video_mp4)
+            <div style="margin-top: 5px; font-size: 0.85rem; color: #16a34a;">Currently attached: {{ basename($item->video_mp4) }}</div>
+          @endif
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-weight: 600;">Video WebM</label>
+          <input type="file" name="video_webm" class="form-control" accept="video/webm" />
+          @if($item->video_webm)
+            <div style="margin-top: 5px; font-size: 0.85rem; color: #16a34a;">Currently attached: {{ basename($item->video_webm) }}</div>
+          @endif
+        </div>
+      </div>
+      
+      <div class="form-group" style="margin-top: 1.25rem;">
+        <label class="form-label" style="font-weight: 600;">Video Poster (Cover Image)</label>
+        <input type="file" name="video_poster" class="form-control" accept="image/*" onchange="previewImg(this, 'posterImgPrev')" />
+        <div class="preview-box">
+          <img id="posterImgPrev" src="{{ $item->video_poster ? asset('storage/' . $item->video_poster) : asset('backend/images/placeholder.jpg') }}" />
+        </div>
       </div>
     </div>
 
@@ -173,7 +206,8 @@
   // Initialize CKEditor with full screen config match
   CKEDITOR.replace('detail_content', {
     height: 300,
-    removeButtons: 'PasteFromWord'
+    removeButtons: 'PasteFromWord',
+    versionCheck: false
   });
 
   function previewImg(input, imgId) {
@@ -185,6 +219,77 @@
       }
       reader.readAsDataURL(input.files[0]);
     }
+  }
+
+  let selectedFiles = [];
+
+  function previewMultiple(input, containerId) {
+    if (input.files) {
+      Array.from(input.files).forEach(file => {
+        selectedFiles.push(file);
+      });
+    }
+    renderPreviews(containerId);
+  }
+
+  function renderPreviews(containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    const dataTransfer = new DataTransfer();
+    
+    selectedFiles.forEach((file, index) => {
+      dataTransfer.items.add(file);
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+        wrapper.style.display = 'inline-block';
+        wrapper.style.border = '1px solid #ddd';
+        wrapper.style.padding = '5px';
+        wrapper.style.borderRadius = '4px';
+        wrapper.style.background = '#fff';
+        
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.width = '100px';
+        img.style.height = '75px';
+        img.style.objectFit = 'cover';
+        img.style.display = 'block';
+        
+        const removeBtn = document.createElement('div');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.style.position = 'absolute';
+        removeBtn.style.top = '0px';
+        removeBtn.style.right = '0px';
+        removeBtn.style.background = '#dc3545';
+        removeBtn.style.color = 'white';
+        removeBtn.style.borderRadius = '50%';
+        removeBtn.style.width = '20px';
+        removeBtn.style.height = '20px';
+        removeBtn.style.display = 'flex';
+        removeBtn.style.alignItems = 'center';
+        removeBtn.style.justifyContent = 'center';
+        removeBtn.style.cursor = 'pointer';
+        removeBtn.style.fontSize = '14px';
+        removeBtn.style.fontWeight = 'bold';
+        removeBtn.style.transform = 'translate(50%, -50%)';
+        
+        removeBtn.onclick = function() {
+          selectedFiles.splice(index, 1);
+          renderPreviews(containerId);
+        };
+        
+        wrapper.appendChild(img);
+        wrapper.appendChild(removeBtn);
+        container.appendChild(wrapper);
+      }
+      reader.readAsDataURL(file);
+    });
+    
+    const input = document.getElementById('gallery_images_input');
+    input.files = dataTransfer.files;
   }
 </script>
 @endpush

@@ -59,10 +59,11 @@ class PortfolioItemController extends Controller
             'detail_sub_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'detail_highlight_1' => 'nullable|string',
             'detail_highlight_2' => 'nullable|string',
-            'gallery_image_1' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_2' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_3' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_4' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'gallery_images' => 'nullable|array',
+            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'video_mp4' => 'nullable|file|mimetypes:video/mp4|max:20480',
+            'video_webm' => 'nullable|file|mimetypes:video/webm|max:20480',
+            'video_poster' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_tag'     => 'nullable|string|max:255',
             'gallery_title'   => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
@@ -89,10 +90,18 @@ class PortfolioItemController extends Controller
             'status' => $validated['status'],
         ];
 
-        foreach (['image', 'detail_sub_image', 'gallery_image_1', 'gallery_image_2', 'gallery_image_3', 'gallery_image_4'] as $imgField) {
+        foreach (['image', 'detail_sub_image', 'video_mp4', 'video_webm', 'video_poster'] as $imgField) {
             if ($request->hasFile($imgField)) {
                 $data[$imgField] = $request->file($imgField)->store('portfolio/items', 'public');
             }
+        }
+
+        if ($request->hasFile('gallery_images')) {
+            $paths = [];
+            foreach ($request->file('gallery_images') as $file) {
+                $paths[] = $file->store('portfolio/items', 'public');
+            }
+            $data['gallery_images'] = $paths;
         }
 
         PortfolioItem::create($data);
@@ -117,18 +126,21 @@ class PortfolioItemController extends Controller
             'client_name' => 'nullable|string|max:255',
             'date_text' => 'nullable|string|max:255',
             'time_text' => 'nullable|string|max:255',
+            'guests_text' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'detail_headline' => 'nullable|string',
             'detail_content' => 'nullable|string',
             'detail_sub_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'detail_highlight_1' => 'nullable|string',
             'detail_highlight_2' => 'nullable|string',
-            'gallery_image_1' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_2' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_3' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
-            'gallery_image_4' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'gallery_images' => 'nullable|array',
+            'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'video_mp4' => 'nullable|file|mimetypes:video/mp4|max:20480',
+            'video_webm' => 'nullable|file|mimetypes:video/webm|max:20480',
+            'video_poster' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_tag'     => 'nullable|string|max:255',
             'gallery_title'   => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
@@ -143,6 +155,7 @@ class PortfolioItemController extends Controller
             'client_name' => $validated['client_name'] ?? null,
             'date_text' => $validated['date_text'] ?? null,
             'time_text' => $validated['time_text'] ?? null,
+            'guests_text' => $validated['guests_text'] ?? null,
             'location' => $validated['location'] ?? null,
             'description' => $validated['description'] ?? null,
             'detail_headline' => $validated['detail_headline'] ?? null,
@@ -155,13 +168,28 @@ class PortfolioItemController extends Controller
             'status' => $validated['status'],
         ];
 
-        foreach (['image', 'detail_sub_image', 'gallery_image_1', 'gallery_image_2', 'gallery_image_3', 'gallery_image_4'] as $imgField) {
+        foreach (['image', 'banner_image', 'detail_sub_image', 'video_mp4', 'video_webm', 'video_poster'] as $imgField) {
             if ($request->hasFile($imgField)) {
                 if ($item->$imgField && ! str_starts_with($item->$imgField, 'images/') && ! str_starts_with($item->$imgField, 'assets/') && Storage::disk('public')->exists($item->$imgField)) {
                     Storage::disk('public')->delete($item->$imgField);
                 }
                 $data[$imgField] = $request->file($imgField)->store('portfolio/items', 'public');
             }
+        }
+
+        if ($request->hasFile('gallery_images')) {
+            if (is_array($item->gallery_images)) {
+                foreach ($item->gallery_images as $oldImage) {
+                    if (! str_starts_with($oldImage, 'images/') && ! str_starts_with($oldImage, 'assets/') && Storage::disk('public')->exists($oldImage)) {
+                        Storage::disk('public')->delete($oldImage);
+                    }
+                }
+            }
+            $paths = [];
+            foreach ($request->file('gallery_images') as $file) {
+                $paths[] = $file->store('portfolio/items', 'public');
+            }
+            $data['gallery_images'] = $paths;
         }
 
         $item->update($data);
@@ -172,10 +200,17 @@ class PortfolioItemController extends Controller
 
     public function destroy(PortfolioItem $item): RedirectResponse
     {
-        $imgFields = ['image', 'detail_sub_image', 'gallery_image_1', 'gallery_image_2', 'gallery_image_3', 'gallery_image_4'];
+        $imgFields = ['image', 'banner_image', 'detail_sub_image', 'video_mp4', 'video_webm', 'video_poster'];
         foreach ($imgFields as $imgField) {
             if ($item->$imgField && ! str_starts_with($item->$imgField, 'images/') && ! str_starts_with($item->$imgField, 'assets/') && Storage::disk('public')->exists($item->$imgField)) {
                 Storage::disk('public')->delete($item->$imgField);
+            }
+        }
+        if (is_array($item->gallery_images)) {
+            foreach ($item->gallery_images as $oldImage) {
+                if (! str_starts_with($oldImage, 'images/') && ! str_starts_with($oldImage, 'assets/') && Storage::disk('public')->exists($oldImage)) {
+                    Storage::disk('public')->delete($oldImage);
+                }
             }
         }
 

@@ -20,9 +20,11 @@ class PortfolioItem extends Model
         'client_name',
         'date_text',
         'time_text',
+        'guests_text',
         'location',
         'description',
         'image',
+        'banner_image',
         'detail_headline',
         'detail_content',
         'detail_sub_image',
@@ -30,12 +32,16 @@ class PortfolioItem extends Model
         'detail_highlight_2',
         'gallery_tag',
         'gallery_title',
-        'gallery_image_1',
-        'gallery_image_2',
-        'gallery_image_3',
-        'gallery_image_4',
+        'gallery_images',
+        'video_mp4',
+        'video_webm',
+        'video_poster',
         'sort_order',
         'status',
+    ];
+
+    protected $casts = [
+        'gallery_images' => 'array',
     ];
 
     public function tag()
