@@ -131,13 +131,15 @@ class FrontendController extends Controller
             $item = \App\Models\EventPageItem::first();
         }
 
+        $eventBanner = \App\Models\EventBannerSection::getSettings();
+
         $upcomingEvents = \App\Models\EventPageItem::where('id', '!=', $item?->id)
             ->where('status', 'active')
             ->take(3)
             ->get();
 
         if ($item) {
-            return view('frontend.event-detail', compact('item', 'upcomingEvents'));
+            return view('frontend.event-detail', compact('item', 'upcomingEvents', 'eventBanner'));
         }
 
         abort(404);
