@@ -79,6 +79,8 @@ class EventItemController extends Controller
             'gallery_image_2' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_image_3' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_image_4' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'gallery_tag'     => 'nullable|string|max:255',
+            'gallery_title'   => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'status' => 'required|in:active,deactive',
         ]);
@@ -94,6 +96,8 @@ class EventItemController extends Controller
             'detail_content' => $validated['detail_content'] ?? null,
             'detail_highlight_1' => $validated['detail_highlight_1'] ?? null,
             'detail_highlight_2' => $validated['detail_highlight_2'] ?? null,
+            'gallery_tag'   => $validated['gallery_tag'] ?? 'WEDDING Gallery',
+            'gallery_title' => $validated['gallery_title'] ?? 'Explore our exclusive signature wedding clicks',
             'sort_order' => $validated['sort_order'] ?? 1,
             'status' => $validated['status'],
         ];
@@ -134,6 +138,8 @@ class EventItemController extends Controller
             'gallery_image_2' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_image_3' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'gallery_image_4' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'gallery_tag'     => 'nullable|string|max:255',
+            'gallery_title'   => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'status' => 'required|in:active,deactive',
         ]);
@@ -149,6 +155,8 @@ class EventItemController extends Controller
             'detail_content' => $validated['detail_content'] ?? null,
             'detail_highlight_1' => $validated['detail_highlight_1'] ?? null,
             'detail_highlight_2' => $validated['detail_highlight_2'] ?? null,
+            'gallery_tag'   => $validated['gallery_tag'] ?? 'WEDDING Gallery',
+            'gallery_title' => $validated['gallery_title'] ?? 'Explore our exclusive signature wedding clicks',
             'sort_order' => $validated['sort_order'] ?? 1,
             'status' => $validated['status'],
         ];

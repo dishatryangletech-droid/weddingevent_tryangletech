@@ -29,6 +29,8 @@ class EventPageItem extends Model
         'gallery_image_2',
         'gallery_image_3',
         'gallery_image_4',
+        'gallery_tag',
+        'gallery_title',
         'sort_order',
         'status',
     ];

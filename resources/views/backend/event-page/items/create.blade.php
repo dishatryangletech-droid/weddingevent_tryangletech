@@ -10,8 +10,8 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     border: 1px solid #e2e8f0;
     padding: 1.75rem;
-    max-width: 850px;
-    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 2rem;
   }
   .card-head {
     display: flex;
