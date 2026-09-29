@@ -205,6 +205,23 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     ])->except(['show']);
     Route::match(['post', 'patch'], '/portfolio-page/items/{item}/toggle', [\App\Http\Controllers\Backend\PortfolioItemController::class, 'toggleStatus'])->name('admin.portfolio-page.items.toggle');
 
+    // Blog Page Settings
+    Route::get('/blog-page/banner', [\App\Http\Controllers\Backend\BlogBannerController::class, 'index'])->name('admin.blog-page.banner.index');
+    Route::post('/blog-page/banner', [\App\Http\Controllers\Backend\BlogBannerController::class, 'update'])->name('admin.blog-page.banner.update');
+
+    // Blog Items
+    Route::resource('/blog-page/items', \App\Http\Controllers\Backend\BlogItemController::class, [
+        'names' => [
+            'index'   => 'admin.blog-page.items.index',
+            'create'  => 'admin.blog-page.items.create',
+            'store'   => 'admin.blog-page.items.store',
+            'edit'    => 'admin.blog-page.items.edit',
+            'update'  => 'admin.blog-page.items.update',
+            'destroy' => 'admin.blog-page.items.destroy',
+        ]
+    ])->except(['show']);
+    Route::match(['post', 'patch'], '/blog-page/items/{item}/toggle', [\App\Http\Controllers\Backend\BlogItemController::class, 'toggleStatus'])->name('admin.blog-page.items.toggle');
+
     // General / Footer Settings
     Route::get('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'index'])->name('admin.footer.index');
     Route::post('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'update'])->name('admin.footer.update');

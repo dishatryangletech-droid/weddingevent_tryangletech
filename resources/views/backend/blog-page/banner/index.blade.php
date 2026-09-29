@@ -1,96 +1,113 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Banner Section - Blog Page')
-@section('page_title', 'Blog Page > Banner Section')
+@section('title', 'Blog Page - Banner Section')
+
+@push('styles')
+<style>
+  .admin-form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    padding: 1.75rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .card-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+</style>
+@endpush
 
 @section('content')
-  <div class="admin-card" style="margin-bottom: 1.5rem;">
-    <div class="card-header">
+
+  <div class="admin-form-card">
+    <div class="card-head">
       <div>
-        <div class="card-title">Blog Banner Section Management</div>
-        <div class="card-subtitle">Manage the hero banner image, headline, and subtitle on the Blog page.</div>
+        <div style="font-weight:700;font-size:1.1rem;color:#0f172a;">Blog Page — Banner Section</div>
+        <div style="font-size:0.85rem;color:#64748b;margin-top:2px;">Manage the hero banner tag, title, description, and background image.</div>
       </div>
-      <a href="{{ url('/blog') }}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
+      <span class="card-badge">Hero Banner</span>
     </div>
+
+    @if (session('success'))
+      <div style="padding:12px 16px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:8px;margin-bottom:1.5rem;font-size:.9rem;">
+        {{ session('success') }}
+      </div>
+    @endif
 
     <form action="{{ route('admin.blog-page.banner.update') }}" method="POST" enctype="multipart/form-data">
       @csrf
-
-      <div style="padding: 1.5rem;">
-        <!-- Banner Title -->
+      <div class="form-row-2">
         <div class="form-group">
-          <label class="form-label" for="title">Banner Title / Main Heading</label>
-          <textarea name="title" id="title" rows="2" class="form-control" placeholder="e.g. Expert insights for modern brands worldwide">{{ old('title', $banner->title) }}</textarea>
-          @error('title')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
+          <label class="form-label" style="font-weight:600;">Section Badge / Tag</label>
+          <input type="text" name="tag" value="{{ old('tag', $banner->tag) }}" class="form-control" placeholder="e.g. Our blog" />
         </div>
-
         <div class="form-group">
-          <label class="form-label" for="subtitle">Subtitle / Insight Text</label>
-          <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $banner->subtitle) }}" class="form-control" placeholder="e.g. Marketing insights that inspire growth" />
-          @error('subtitle')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <!-- Banner Background Image -->
-        <div class="form-group" style="margin-top: 1.5rem;">
-          <label class="form-label">Banner Background Image</label>
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
-            <div style="width: 220px; height: 130px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: #000; position: relative;">
-              <img id="bannerImagePreview" src="{{ $banner->banner_image_url }}" alt="Banner Preview" style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-            <div style="flex: 1; min-width: 240px;">
-              <input type="file" name="banner_image" id="banner_image" class="form-control" accept="image/*" onchange="previewImage(this, 'bannerImagePreview')" />
-              <div class="form-help" style="margin-top: 6px;">Recommended resolution: 1920x800px. Formats: JPG, PNG, WEBP, AVIF. Max: 2MB. Leave empty to keep current image.</div>
-            </div>
-          </div>
-          @error('banner_image')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div class="form-group" style="max-width: 280px; margin-top: 2rem;">
-          <label class="form-label" for="status">Section Status</label>
-          <select name="status" id="status" class="form-control form-select">
-            <option value="active" {{ ($banner->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (Show Section)</option>
-            <option value="deactive" {{ ($banner->status ?? 'active') === 'deactive' ? 'selected' : '' }}>Deactive (Hide Section)</option>
+          <label class="form-label" style="font-weight:600;">Section Status</label>
+          <select name="status" class="form-control">
+            <option value="active"   {{ old('status', $banner->status) === 'active'   ? 'selected' : '' }}>Active</option>
+            <option value="deactive" {{ old('status', $banner->status) === 'deactive' ? 'selected' : '' }}>Deactive</option>
           </select>
         </div>
       </div>
 
-      <div style="background: var(--bg-hover); padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 0.75rem;">
-        <button type="submit" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-            <polyline points="7 3 7 8 15 8"></polyline>
-          </svg>
-          <span>Save Banner Changes</span>
-        </button>
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label" style="font-weight:600;">Headline Title <span style="color:#ef4444;">*</span></label>
+        <input type="text" name="title" value="{{ old('title', $banner->title) }}" class="form-control" required placeholder="e.g. Wedding stories journal" />
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label" style="font-weight:600;">Description / Subtitle</label>
+        <textarea name="description" rows="3" class="form-control">{{ old('description', $banner->description) }}</textarea>
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label" style="font-weight:600;">Banner Image</label>
+        <input type="file" name="banner_image" class="form-control" accept="image/*" onchange="previewBannerImg(this)" />
+        <div style="margin-top:1rem;">
+          <img id="bannerImgPrev" src="{{ $banner->banner_image && Storage::disk('public')->exists($banner->banner_image) ? asset('storage/' . $banner->banner_image) : (str_starts_with($banner->banner_image, 'images/') ? asset($banner->banner_image) : asset('backend/images/placeholder.jpg')) }}" style="max-height:160px; border-radius:6px; object-fit:cover; display:{{ $banner->banner_image ? 'block' : 'none' }}; border:1px solid #ddd; padding:4px;" />
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem; font-weight:600;">Save Banner Settings</button>
       </div>
     </form>
   </div>
 
-  @push('scripts')
-  <script>
-    function previewImage(input, previewId) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(previewId).src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  </script>
-  @endpush
 @endsection
+
+@push('scripts')
+<script>
+  function previewBannerImg(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('bannerImgPrev').src = e.target.result;
+        document.getElementById('bannerImgPrev').style.display = 'block';
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+@endpush
