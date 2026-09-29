@@ -158,6 +158,16 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::get('/service-page/expertise', [\App\Http\Controllers\Backend\ServiceExpertiseSectionController::class, 'index'])->name('admin.service-page.expertise.index');
     Route::post('/service-page/expertise', [\App\Http\Controllers\Backend\ServiceExpertiseSectionController::class, 'update'])->name('admin.service-page.expertise.update');
 
+    Route::get('/service-page/offers', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'index'])->name('admin.service-page.offers.index');
+    Route::post('/service-page/offers/header', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'updateHeader'])->name('admin.service-page.offers.header.update');
+    Route::get('/service-page/offers/create', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'create'])->name('admin.service-page.offers.create');
+    Route::post('/service-page/offers', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'store'])->name('admin.service-page.offers.store');
+    Route::get('/service-page/offers/{item}/edit', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'edit'])->name('admin.service-page.offers.edit');
+    Route::put('/service-page/offers/{item}', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'update'])->name('admin.service-page.offers.update');
+    Route::delete('/service-page/offers/{item}', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'destroy'])->name('admin.service-page.offers.destroy');
+    Route::post('/service-page/offers/{item}/toggle-status', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'toggleStatus'])->name('admin.service-page.offers.toggle-status');
+    Route::post('/service-page/offers/reorder', [\App\Http\Controllers\Backend\ServiceOfferItemController::class, 'reorder'])->name('admin.service-page.offers.reorder');
+
     Route::get('/service-page/process', [\App\Http\Controllers\Backend\ServiceProcessSectionController::class, 'index'])->name('admin.service-page.process.index');
     Route::post('/service-page/process', [\App\Http\Controllers\Backend\ServiceProcessSectionController::class, 'update'])->name('admin.service-page.process.update');
 

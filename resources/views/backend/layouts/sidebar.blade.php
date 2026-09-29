@@ -131,6 +131,9 @@
         <a href="{{ route('admin.service-page.expertise.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.expertise.*') ? 'active' : '' }}">
           About Us Section
         </a>
+        <a href="{{ route('admin.service-page.offers.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.offers.*') ? 'active' : '' }}">
+          Offers Section
+        </a>
         <a href="{{ route('admin.service-page.process.index') }}" class="sub-link {{ request()->routeIs('admin.service-page.process.*') ? 'active' : '' }}">
           Process Section
         </a>
