@@ -1,124 +1,315 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Banner Section - Portfolio Page')
-@section('page_title', 'Portfolio Page > Banner Section')
+@section('title', 'Portfolio Page - Banner Section')
+
+@push('styles')
+<style>
+  .admin-form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    padding: 1.75rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .card-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  @media (max-width: 768px) { .form-row-2 { grid-template-columns: 1fr; } }
+
+  /* Tags Table */
+  .tags-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .tags-table th { background: #f8fafc; color: #475569; font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid #e2e8f0; }
+  .tags-table td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  .tags-table tr:last-child td { border-bottom: none; }
+  .badge-active   { background: #dcfce7; color: #166534; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-deactive { background: #fee2e2; color: #991b1b; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+
+  /* Modal */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:1000; align-items:center; justify-content:center; }
+  .modal-overlay.show { display:flex; }
+  .modal-box { background:#fff; border-radius:14px; padding:2rem; width:100%; max-width:440px; box-shadow:0 20px 60px rgba(0,0,0,0.15); }
+  .modal-title { font-weight:700; font-size:1.05rem; color:#0f172a; margin-bottom:1.25rem; }
+  .modal-actions { display:flex; gap:.75rem; margin-top:1.5rem; }
+</style>
+@endpush
 
 @section('content')
-  <div class="admin-card" style="margin-bottom: 1.5rem;">
-    <div class="card-header">
+
+  {{-- ── Banner Form ─────────────────────────────────────── --}}
+  <div class="admin-form-card">
+    <div class="card-head">
       <div>
-        <div class="card-title">Portfolio Banner Section Management</div>
-        <div class="card-subtitle">Manage the hero banner image, headline, call-to-action button, and statistics on the Portfolio page.</div>
+        <div style="font-weight:700;font-size:1.1rem;color:#0f172a;">Portfolio Page — Banner Section</div>
+        <div style="font-size:0.85rem;color:#64748b;margin-top:2px;">Manage the hero banner tag, title, description, and background image.</div>
       </div>
-      <a href="{{ url('/portfolio') }}" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-        <span>View Live Page</span>
-      </a>
+      <span class="card-badge">Hero Banner</span>
     </div>
+
+    @if (session('success'))
+      <div style="padding:12px 16px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:8px;margin-bottom:1.5rem;font-size:.9rem;">
+        {{ session('success') }}
+      </div>
+    @endif
 
     <form action="{{ route('admin.portfolio-page.banner.update') }}" method="POST" enctype="multipart/form-data">
       @csrf
-
-      <div style="padding: 1.5rem;">
-        <!-- Banner Title -->
+      <div class="form-row-2">
         <div class="form-group">
-          <label class="form-label" for="title">Banner Title / Main Heading</label>
-          <textarea name="title" id="title" rows="2" class="form-control" placeholder="e.g. Illuminating India's Heritage with Innovation">{{ old('title', $banner->title) }}</textarea>
-          @error('title')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
+          <label class="form-label" style="font-weight:600;">Section Badge / Tag</label>
+          <input type="text" name="tag" value="{{ old('tag', $banner->tag) }}" class="form-control" placeholder="e.g. Portfolio" />
         </div>
-
-        <!-- Banner Background Image -->
         <div class="form-group">
-          <label class="form-label">Banner Background Image</label>
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
-            <div style="width: 220px; height: 130px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: #000; position: relative;">
-              <img id="bannerImagePreview" src="{{ $banner->banner_image_url }}" alt="Banner Preview" style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-            <div style="flex: 1; min-width: 240px;">
-              <input type="file" name="banner_image" id="banner_image" class="form-control" accept="image/*" onchange="previewImage(this, 'bannerImagePreview')" />
-              <div class="form-help" style="margin-top: 6px;">Recommended resolution: 1920x800px. Formats: JPG, PNG, WEBP, AVIF. Max: 2MB. Leave empty to keep current image.</div>
-            </div>
-          </div>
-          @error('banner_image')
-            <div style="color: #ef4444; font-size: 0.8rem; margin-top: 4px;">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-          <!-- CTA Button Text -->
-          <div class="form-group">
-            <label class="form-label" for="button_text">Call-to-Action Button Text</label>
-            <input type="text" name="button_text" id="button_text" value="{{ old('button_text', $banner->button_text) }}" class="form-control" placeholder="e.g. Get in Touch" />
-          </div>
-
-          <!-- CTA Button URL -->
-          <div class="form-group">
-            <label class="form-label" for="button_url">Button Target URL</label>
-            <input type="text" name="button_url" id="button_url" value="{{ old('button_url', $banner->button_url) }}" class="form-control" placeholder="e.g. /contact" />
-          </div>
-        </div>
-
-        <h6 style="margin-top: 2rem; margin-bottom: 1rem; color: #475569; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">Statistics Card Settings</h6>
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-            <div class="form-group mb-0">
-              <label class="form-label" for="stat_number">Stat Number</label>
-              <input type="text" name="stat_number" id="stat_number" value="{{ old('stat_number', $banner->stat_number) }}" class="form-control" placeholder="e.g. 50+" />
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label" for="stat_title">Stat Title</label>
-              <input type="text" name="stat_title" id="stat_title" value="{{ old('stat_title', $banner->stat_title) }}" class="form-control" placeholder="e.g. Iconic Landmark Projects" />
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label" for="stat_label_left">Stat Label Left</label>
-              <input type="text" name="stat_label_left" id="stat_label_left" value="{{ old('stat_label_left', $banner->stat_label_left) }}" class="form-control" placeholder="e.g. Jan 2021" />
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label" for="stat_label_right">Stat Label Right</label>
-              <input type="text" name="stat_label_right" id="stat_label_right" value="{{ old('stat_label_right', $banner->stat_label_right) }}" class="form-control" placeholder="e.g. Current" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group" style="max-width: 280px; margin-top: 2rem;">
-          <label class="form-label" for="status">Section Status</label>
-          <select name="status" id="status" class="form-control form-select">
-            <option value="active" {{ ($banner->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (Show Section)</option>
-            <option value="deactive" {{ ($banner->status ?? 'active') === 'deactive' ? 'selected' : '' }}>Deactive (Hide Section)</option>
+          <label class="form-label" style="font-weight:600;">Section Status</label>
+          <select name="status" class="form-control">
+            <option value="active"   {{ old('status', $banner->status) === 'active'   ? 'selected' : '' }}>Active</option>
+            <option value="deactive" {{ old('status', $banner->status) === 'deactive' ? 'selected' : '' }}>Deactive</option>
           </select>
         </div>
       </div>
 
-      <div style="background: var(--bg-hover); padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 0.75rem;">
-        <button type="submit" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-            <polyline points="7 3 7 8 15 8"></polyline>
-          </svg>
-          <span>Save Banner Changes</span>
-        </button>
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label" style="font-weight:600;">Headline Title <span style="color:#ef4444;">*</span></label>
+        <input type="text" name="title" value="{{ old('title', $banner->title) }}" class="form-control" required placeholder="e.g. Event design to make your heart skip a beat" />
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label" style="font-weight:600;">Description / Subtitle</label>
+        <textarea name="description" rows="3" class="form-control">{{ old('description', $banner->description) }}</textarea>
+      </div>
+
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1.25rem;margin-bottom:1.5rem;">
+        <div style="font-weight:700;font-size:.95rem;color:#ff5722;margin-bottom:1rem;">Hero Background Image</div>
+        <input type="file" name="banner_image" class="form-control" accept="image/*" onchange="previewImage(this,'bannerPrev')" />
+        <div style="margin-top:.75rem;display:flex;align-items:center;gap:.75rem;">
+          <img id="bannerPrev" src="{{ $banner->banner_image_url }}" alt="Banner Preview" style="max-height:130px;border-radius:8px;object-fit:cover;border:1px solid #cbd5e1;" />
+          <span style="font-size:.78rem;color:#64748b;">Current hero background image</span>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <button type="submit" class="btn btn-primary" style="padding:.6rem 1.5rem;font-weight:600;">Save Changes</button>
       </div>
     </form>
   </div>
 
-  @push('scripts')
-  <script>
-    function previewImage(input, previewId) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(previewId).src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  </script>
-  @endpush
+  {{-- ── Portfolio Tags Table ─────────────────────────────── --}}
+  <div class="admin-form-card">
+    <div class="card-head">
+      <div>
+        <div style="font-weight:700;font-size:1.05rem;color:#0f172a;">Portfolio Filter Tags</div>
+        <div style="font-size:.85rem;color:#64748b;margin-top:2px;">Manage the filter tab buttons shown on the Portfolio page (e.g. Weddings, Destination).</div>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" onclick="openTagModal()" style="font-weight:600;">+ Add Tag</button>
+    </div>
+
+    <div id="tagsTableWrap">
+      <table class="tags-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tag Name</th>
+            <th>Status</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tagsTableBody">
+          @forelse ($tags as $i => $tag)
+            <tr id="tag-row-{{ $tag->id }}">
+              <td style="color:#94a3b8;">{{ $i + 1 }}</td>
+              <td style="font-weight:600;">{{ $tag->name }}</td>
+              <td>
+                @if($tag->status === 'active')
+                  <span class="badge-active">Active</span>
+                @else
+                  <span class="badge-deactive">Deactive</span>
+                @endif
+              </td>
+              <td style="text-align:right;">
+                <button type="button" class="btn btn-light btn-sm" onclick="openEditTagModal({{ $tag->id }}, '{{ addslashes($tag->name) }}', '{{ $tag->status }}')" style="margin-right:.4rem;">Edit</button>
+                <button type="button" class="btn btn-sm" onclick="deleteTag({{ $tag->id }})" style="background:#fee2e2;color:#991b1b;border:none;padding:.3rem .8rem;border-radius:6px;cursor:pointer;">Delete</button>
+              </td>
+            </tr>
+          @empty
+            <tr id="no-tags-row"><td colspan="4" style="text-align:center;color:#94a3b8;padding:1.5rem;">No tags yet. Click "+ Add Tag" to create one.</td></tr>
+          @endforelse
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {{-- ── Add / Edit Modal ─────────────────────────────────── --}}
+  <div class="modal-overlay" id="tagModal">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle">Add Portfolio Tag</div>
+      <div class="form-group" style="margin-bottom:1rem;">
+        <label class="form-label" style="font-weight:600;">Tag Name <span style="color:#ef4444;">*</span></label>
+        <input type="text" id="tagName" class="form-control" placeholder="e.g. Weddings" />
+        <div id="tagNameError" style="color:#ef4444;font-size:.8rem;margin-top:.25rem;display:none;">Name is required.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-weight:600;">Status</label>
+        <select id="tagStatus" class="form-control">
+          <option value="active">Active</option>
+          <option value="deactive">Deactive</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="modalSaveBtn" onclick="saveTag()" style="font-weight:600;">Save Tag</button>
+        <button type="button" class="btn btn-light" onclick="closeTagModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
 @endsection
+
+@push('scripts')
+<script>
+  const STORE_URL  = "{{ route('admin.portfolio-page.tags.store') }}";
+  const UPDATE_URL = "{{ url('admin/portfolio-page/tags') }}";
+  const CSRF       = "{{ csrf_token() }}";
+
+  let editingId = null;
+  let tagCount  = {{ $tags->count() }};
+
+  // ── Modal helpers ──────────────────────────────
+  function openTagModal() {
+    editingId = null;
+    document.getElementById('modalTitle').textContent = 'Add Portfolio Tag';
+    document.getElementById('tagName').value   = '';
+    document.getElementById('tagStatus').value = 'active';
+    document.getElementById('tagNameError').style.display = 'none';
+    document.getElementById('tagModal').classList.add('show');
+  }
+
+  function openEditTagModal(id, name, status) {
+    editingId = id;
+    document.getElementById('modalTitle').textContent = 'Edit Portfolio Tag';
+    document.getElementById('tagName').value   = name;
+    document.getElementById('tagStatus').value = status;
+    document.getElementById('tagNameError').style.display = 'none';
+    document.getElementById('tagModal').classList.add('show');
+  }
+
+  function closeTagModal() {
+    document.getElementById('tagModal').classList.remove('show');
+  }
+
+  // Close on overlay click
+  document.getElementById('tagModal').addEventListener('click', function(e) {
+    if (e.target === this) closeTagModal();
+  });
+
+  // ── Save (Add or Edit) ─────────────────────────
+  function saveTag() {
+    const name   = document.getElementById('tagName').value.trim();
+    const status = document.getElementById('tagStatus').value;
+
+    if (!name) {
+      document.getElementById('tagNameError').style.display = 'block';
+      return;
+    }
+    document.getElementById('tagNameError').style.display = 'none';
+
+    const isEdit = editingId !== null;
+    const url    = isEdit ? UPDATE_URL + '/' + editingId : STORE_URL;
+    const method = isEdit ? 'PUT' : 'POST';
+
+    fetch(url, {
+      method: method,
+      headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': CSRF, 'Accept': 'application/json' },
+      body: JSON.stringify({ name, status })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) { alert('Something went wrong.'); return; }
+
+      const tag = data.tag;
+      const badgeHtml = tag.status === 'active'
+        ? '<span class="badge-active">Active</span>'
+        : '<span class="badge-deactive">Deactive</span>';
+
+      if (isEdit) {
+        // Update existing row
+        const row = document.getElementById('tag-row-' + tag.id);
+        if (row) {
+          row.querySelector('td:nth-child(2)').textContent = tag.name;
+          row.querySelector('td:nth-child(3)').innerHTML   = badgeHtml;
+          row.querySelector('button').setAttribute('onclick',
+            `openEditTagModal(${tag.id}, '${tag.name.replace(/'/g, "\\'")}', '${tag.status}')`);
+        }
+      } else {
+        // Remove empty-row message if present
+        const noRow = document.getElementById('no-tags-row');
+        if (noRow) noRow.remove();
+
+        tagCount++;
+        const tbody = document.getElementById('tagsTableBody');
+        tbody.insertAdjacentHTML('beforeend', `
+          <tr id="tag-row-${tag.id}">
+            <td style="color:#94a3b8;">${tagCount}</td>
+            <td style="font-weight:600;">${tag.name}</td>
+            <td>${badgeHtml}</td>
+            <td style="text-align:right;">
+              <button type="button" class="btn btn-light btn-sm" onclick="openEditTagModal(${tag.id}, '${tag.name.replace(/'/g, "\\'")}', '${tag.status}')" style="margin-right:.4rem;">Edit</button>
+              <button type="button" class="btn btn-sm" onclick="deleteTag(${tag.id})" style="background:#fee2e2;color:#991b1b;border:none;padding:.3rem .8rem;border-radius:6px;cursor:pointer;">Delete</button>
+            </td>
+          </tr>`);
+      }
+
+      closeTagModal();
+    })
+    .catch(() => alert('Request failed. Please try again.'));
+  }
+
+  // ── Delete ─────────────────────────────────────
+  function deleteTag(id) {
+    if (!confirm('Delete this tag? This cannot be undone.')) return;
+
+    fetch(UPDATE_URL + '/' + id, {
+      method: 'DELETE',
+      headers: { 'X-CSRF-TOKEN': CSRF, 'Accept': 'application/json' }
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) { alert('Something went wrong.'); return; }
+      const row = document.getElementById('tag-row-' + id);
+      if (row) row.remove();
+      // Re-number
+      document.querySelectorAll('#tagsTableBody tr').forEach((tr, i) => {
+        tr.querySelector('td:first-child').textContent = i + 1;
+      });
+    })
+    .catch(() => alert('Delete failed. Please try again.'));
+  }
+
+  // ── Image preview ──────────────────────────────
+  function previewImage(input, previewId) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => document.getElementById(previewId).src = e.target.result;
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+@endpush

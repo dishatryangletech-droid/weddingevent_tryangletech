@@ -184,6 +184,27 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::delete('/event-page/items/{item}', [\App\Http\Controllers\Backend\EventItemController::class, 'destroy'])->name('admin.event-page.items.destroy');
     Route::match(['post', 'patch'], '/event-page/items/{item}/toggle', [\App\Http\Controllers\Backend\EventItemController::class, 'toggleStatus'])->name('admin.event-page.items.toggle');
 
+    // Portfolio Page Settings
+    Route::get('/portfolio-page/banner', [\App\Http\Controllers\Backend\PortfolioBannerController::class, 'index'])->name('admin.portfolio-page.banner.index');
+    Route::post('/portfolio-page/banner', [\App\Http\Controllers\Backend\PortfolioBannerController::class, 'update'])->name('admin.portfolio-page.banner.update');
+    // Portfolio Tags
+    Route::post('/portfolio-page/tags', [\App\Http\Controllers\Backend\PortfolioBannerController::class, 'storeTag'])->name('admin.portfolio-page.tags.store');
+    Route::put('/portfolio-page/tags/{tag}', [\App\Http\Controllers\Backend\PortfolioBannerController::class, 'updateTag'])->name('admin.portfolio-page.tags.update');
+    Route::delete('/portfolio-page/tags/{tag}', [\App\Http\Controllers\Backend\PortfolioBannerController::class, 'destroyTag'])->name('admin.portfolio-page.tags.destroy');
+
+    // Portfolio Items
+    Route::resource('/portfolio-page/items', \App\Http\Controllers\Backend\PortfolioItemController::class, [
+        'names' => [
+            'index'   => 'admin.portfolio-page.items.index',
+            'create'  => 'admin.portfolio-page.items.create',
+            'store'   => 'admin.portfolio-page.items.store',
+            'edit'    => 'admin.portfolio-page.items.edit',
+            'update'  => 'admin.portfolio-page.items.update',
+            'destroy' => 'admin.portfolio-page.items.destroy',
+        ]
+    ])->except(['show']);
+    Route::match(['post', 'patch'], '/portfolio-page/items/{item}/toggle', [\App\Http\Controllers\Backend\PortfolioItemController::class, 'toggleStatus'])->name('admin.portfolio-page.items.toggle');
+
     // General / Footer Settings
     Route::get('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'index'])->name('admin.footer.index');
     Route::post('/general-settings', [\App\Http\Controllers\Backend\FooterSettingController::class, 'update'])->name('admin.footer.update');

@@ -168,6 +168,34 @@
       </div>
     </div>
 
+    <!-- Portfolio Page -->
+    <div class="nav-item {{ request()->routeIs('admin.portfolio-page.*') ? 'open' : '' }}">
+      <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.portfolio-page.*') ? 'active' : '' }}">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="5"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="3" y="12" width="7" height="9"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+          </svg>
+        </span>
+        <span>Portfolio Page</span>
+        <span class="dropdown-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </div>
+      <div class="sidebar-dropdown">
+        <a href="{{ route('admin.portfolio-page.banner.index') }}" class="sub-link {{ request()->routeIs('admin.portfolio-page.banner.*') ? 'active' : '' }}">
+          Banner & Tags
+        </a>
+        <a href="{{ route('admin.portfolio-page.items.index') }}" class="sub-link {{ request()->routeIs('admin.portfolio-page.items.*') ? 'active' : '' }}">
+          Portfolio Items
+        </a>
+      </div>
+    </div>
+
     <!-- 4. Contact Us Page -->
     <div class="nav-item {{ request()->routeIs('admin.contact.*') ? 'open' : '' }}">
       <div class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.contact.*') ? 'active' : '' }}">
