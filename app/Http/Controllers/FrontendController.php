@@ -136,13 +136,8 @@ class FrontendController extends Controller
             ->take(3)
             ->get();
 
-        $viewName = "frontend.event.{$slug}";
-        if (view()->exists($viewName)) {
-            return view($viewName, compact('item', 'upcomingEvents'));
-        }
-
         if ($item) {
-            return view('frontend.event.romantic-garden-couple-shoot', compact('item', 'upcomingEvents'));
+            return view('frontend.event-detail', compact('item', 'upcomingEvents'));
         }
 
         abort(404);

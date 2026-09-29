@@ -4311,6 +4311,14 @@ label {
 
 .fda-gero-v9-bottom {
   width: 100%;
+  height: 590px;
+}
+
+.fda-gero-v9-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .fda-hero-v9-overlay {
