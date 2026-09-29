@@ -150,12 +150,16 @@ class FrontendController extends Controller
      */
     public function portfolio(): View
     {
+        $portfolioBanner = \App\Models\PortfolioBannerSection::getSettings();
+        $portfolioTags = \App\Models\PortfolioTag::where('status', 'active')->orderBy('sort_order', 'asc')->get();
         $portfolios = $this->getPortfolioData();
-        return view('frontend.portfolio', compact('portfolios'));
+
+        return view('frontend.portfolio', compact('portfolioBanner', 'portfolioTags', 'portfolios'));
     }
 
     public function portfolioDetail(string $slug): View
     {
+        $portfolioBanner = \App\Models\PortfolioBannerSection::getSettings();
         $portfolios = $this->getPortfolioData();
         $item = collect($portfolios)->firstWhere('slug', $slug);
 
@@ -166,14 +170,67 @@ class FrontendController extends Controller
 
         $relatedPortfolios = collect($portfolios)->where('slug', '!=', $item['slug'])->take(3);
 
-        return view('frontend.portfolio-detail', compact('item', 'relatedPortfolios'));
+        return view('frontend.portfolio-detail', compact('item', 'relatedPortfolios', 'portfolioBanner'));
     }
 
-    /**
-     * Portfolio Dataset
-     */
     private function getPortfolioData(): array
     {
+        $dbItems = \App\Models\PortfolioItem::where('status', 'active')
+            ->orderBy('sort_order', 'asc')
+            ->with('tag')
+            ->get();
+
+        if ($dbItems->count() > 0) {
+            $items = [];
+            foreach ($dbItems as $dbItem) {
+                $tagName = $dbItem->tag?->name ?? 'Wedding';
+                $tagSlug = \Illuminate\Support\Str::slug($tagName);
+
+                // Gallery images formatting
+                $gallery = [];
+                if (!empty($dbItem->gallery_images) && is_array($dbItem->gallery_images)) {
+                    foreach ($dbItem->gallery_images as $gImg) {
+                        if (str_starts_with($gImg, 'http://') || str_starts_with($gImg, 'https://')) {
+                            $gallery[] = $gImg;
+                        } elseif (str_starts_with($gImg, 'images/') || str_starts_with($gImg, 'assets/')) {
+                            $gallery[] = asset($gImg);
+                        } else {
+                            $gallery[] = \Illuminate\Support\Facades\Storage::disk('public')->url($gImg);
+                        }
+                    }
+                }
+                if (empty($gallery)) {
+                    $gallery = [$dbItem->image_url];
+                }
+
+                $items[] = [
+                    'id'              => $dbItem->id,
+                    'slug'            => $dbItem->slug,
+                    'title'           => $dbItem->title,
+                    'subtitle'        => $dbItem->subtitle ?? '',
+                    'category'        => $tagName,
+                    'category_slug'   => $tagSlug,
+                    'location'        => $dbItem->location ?? 'Lakeside Conservatory & Gardens',
+                    'date'            => $dbItem->date_text ?? 'June 18, 2025',
+                    'guests'          => $dbItem->guests_text ?? '220 Guests',
+                    'cover_image'     => $dbItem->image_url,
+                    'video_mp4'       => !empty($dbItem->video_mp4) ? (str_starts_with($dbItem->video_mp4, 'http') ? $dbItem->video_mp4 : (str_starts_with($dbItem->video_mp4, 'videos/') || str_starts_with($dbItem->video_mp4, 'assets/') ? asset($dbItem->video_mp4) : \Illuminate\Support\Facades\Storage::disk('public')->url($dbItem->video_mp4))) : null,
+                    'video_webm'      => !empty($dbItem->video_webm) ? (str_starts_with($dbItem->video_webm, 'http') ? $dbItem->video_webm : (str_starts_with($dbItem->video_webm, 'videos/') || str_starts_with($dbItem->video_webm, 'assets/') ? asset($dbItem->video_webm) : \Illuminate\Support\Facades\Storage::disk('public')->url($dbItem->video_webm))) : null,
+                    'video_poster'    => !empty($dbItem->video_poster) ? (str_starts_with($dbItem->video_poster, 'http') ? $dbItem->video_poster : (str_starts_with($dbItem->video_poster, 'images/') || str_starts_with($dbItem->video_poster, 'assets/') ? asset($dbItem->video_poster) : \Illuminate\Support\Facades\Storage::disk('public')->url($dbItem->video_poster))) : null,
+                    'gallery'         => $gallery,
+                    'description'     => $dbItem->description ?? $dbItem->detail_content ?? $dbItem->subtitle,
+                    'detail_headline' => $dbItem->detail_headline,
+                    'detail_content'  => $dbItem->detail_content,
+                    'detail_sub_image'=> $dbItem->detail_sub_image_url,
+                    'highlights'      => array_values(array_filter([$dbItem->detail_highlight_1, $dbItem->detail_highlight_2])),
+                    'quote'           => !empty($dbItem->detail_headline) ? '"' . $dbItem->detail_headline . '"' : '"' . ($dbItem->subtitle ?? 'We turn dreams into reality.') . '"',
+                    'quote_author'    => $dbItem->client_name ?? $dbItem->title,
+                    'color_palette'   => ['#C5A059', '#F9F6F0', '#4A4036', '#D4C4B3']
+                ];
+            }
+            return $items;
+        }
+
         return [
             [
                 'id' => 1,

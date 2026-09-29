@@ -524,801 +524,59 @@
 <link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
 </head>
 <body>
-    <!-- Navbar Header -->
-    <div data-wf--fda-navbar--variant="bottom-border" class="fda-navbar-main w-variant-5e3fb846-9a84-4014-1993-9ee494f4d91f"></div>
-    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="fda-navbar w-nav">
-        <div class="w-layout-blockcontainer fda-container-medium w-container">
-            <div class="fda-navbar-wrapper"><a href="{{ route('home') }}" class="fda-navbar-logo-v1 w-nav-brand"><img
-            width="118" height="34" alt="Site-logo"
-            src="{{ asset('images/6a6305bf5040b777232a17cd_Site-logo.svg') }}" /></a>
-        <nav role="navigation" class="fda-navbar-menu-holder w-nav-menu">
-          <div class="w-layout-hflex fda-navbar-v1-menu-holder-inner">
-            <div class="w-layout-hflex fda-navbar-inner-wrap">
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('home') }}"
-                    class="fda-menu-font-v1">Home</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}"
-                    class="fda-menu-font-v1">About</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}"
-                    class="fda-menu-font-v1">Services</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}"
-                    class="fda-menu-font-v1">Events</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
-                    class="fda-menu-font-v1">Portfolio</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}"
-                    class="fda-menu-font-v1">Blog</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}"
-                    class="fda-menu-font-v1">Contact</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-            </div>
-            <div class="w-layout-hflex fda-navbar-inner-wrap-v2">
-              <div data-delay="500" data-hover="true" nav-menu-hover="" class="fda-navbar-dropdown-v1 w-dropdown">
-                <div class="fda-navbar-dropdown-toggle w-dropdown-toggle">
-                  <div class="w-layout-hflex fda-mega-menu-text-box">
-                    <div class="fda-menu-font-v1">Home</div>
-                    <div class="fda-nav-menu-arrow-holder"><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a2_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-1" /><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a0_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-2" /></div>
-                  </div>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-                <nav class="fda-navbar-menu-dropdown w-dropdown-list">
-                  <div nav-drop-menu="" class="w-layout-hflex fda-drop-down-menu-wrap">
-                    <div class="w-layout-hflex fda-megamenu-mobile">
-                      <div class="w-layout-hflex fda-megamenu-box-2">
-                        <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                          <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                            <div class="w-layout-hflex fda-megamenu-text-box">
-                              <div class="fda-megamenu-dot"></div><a href="{{ route('home') }}"
-                                class="fda-megamenu-text-wrapper w-inline-block">
-                                <div class="fda-megamenu-page-box">
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home one</div>
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home one</div>
-                                </div>
-                                <div>Elegant wedding planning experience</div>
-                              </a>
-                            </div>
-                            <div class="w-layout-hflex fda-megamenu-text-box">
-                              <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                class="fda-megamenu-text-wrapper w-inline-block">
-                                <div class="fda-megamenu-page-box">
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home two</div>
-                                </div>
-                                <div>Luxury celebrations for couples</div>
-                              </a>
-                            </div>
-                            <div class="w-layout-hflex fda-megamenu-text-box">
-                              <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                class="fda-megamenu-text-wrapper w-inline-block">
-                                <div class="w-layout-vflex fda-megamenu-page-box">
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
-                                  <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home three</div>
-                                </div>
-                                <div>Editorial-inspired wedding showcase</div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-layout-vflex fda-megamenu-desktop">
-                      <div class="w-layout-hflex fda-megamenu-image fda-event-none"><img
-                          src="{{ asset('images/6a6305bf5040b777232a17cc_Navbar-back-image.svg') }}" loading="lazy"
-                          alt="Navbar-back-image" /></div>
-                      <div class="w-layout-hflex fda-megamenu-top-wrapper">
-                        <div class="w-layout-hflex fda-megamenu-box-1-v2">
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d4_Home-icon.svg') }}" loading="lazy"
-                                    alt="Home-icon" /></div>
-                                <div class="fda-tag-text-v1">Home pages</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home one</div>
-                                  </div>
-                                  <div>Elegant wedding planning experience</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home two</div>
-                                  </div>
-                                  <div>Luxury celebrations for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home three</div>
-                                  </div>
-                                  <div>Editorial-inspired wedding showcase</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d1_Contact.svg') }}" loading="lazy"
-                                    alt="Contact" /></div>
-                                <div class="fda-tag-text-v1">SERVICES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service one</div>
-                                  </div>
-                                  <div>Complete wedding planning solutions</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service two</div>
-                                  </div>
-                                  <div>Creative styling and coordination</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-three') }}"
-                                  aria-current="page" class="fda-megamenu-text-wrapper w-inline-block w--current">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service three</div>
-                                  </div>
-                                  <div>Destination and luxury celebrations</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17ca_Package.svg') }}" loading="lazy"
-                                    alt="Package" /></div>
-                                <div class="fda-tag-text-v1">PACKAGES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Classic package</div>
-                                  </div>
-                                  <div>Timeless celebrations with elegance</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Elegance package</div>
-                                  </div>
-                                  <div>Refined details for stylish weddings</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Luxury package</div>
-                                  </div>
-                                  <div>Exclusive experiences for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('booking-inquiry') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Booking inquiry</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Booking inquiry</div>
-                                  </div>
-                                  <div>Start planning your special day</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w-layout-hflex fda-megamenu-bottom-wrapper">
-                        <div class="w-layout-hflex fda-other-page-box">
-                          <div class="fda-other-page-text">
-                            <div class="fda-tag-text-v1">OTHER PAGES</div>
-                          </div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-2">Venue details</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-2">Event</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-1">Event details</a><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-2">Event details</a></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}"
-                    class="fda-menu-font-v1">About</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}"
-                    class="fda-menu-font-v1">Services</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}"
-                    class="fda-menu-font-v1">Events</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
-                    class="fda-menu-font-v1">Portfolio</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-              <div data-delay="500" data-hover="true" nav-menu-hover="" class="fda-navbar-dropdown-v1 w-dropdown">
-                <div class="fda-navbar-dropdown-toggle w-dropdown-toggle">
-                  <div class="w-layout-hflex fda-mega-menu-text-box">
-                    <div class="fda-menu-font-v1">Packages</div>
-                    <div class="fda-nav-menu-arrow-holder"><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a2_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-1" /><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a0_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-2" /></div>
-                  </div>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-                <nav class="fda-navbar-menu-dropdown w-dropdown-list">
-                  <div nav-drop-menu="" class="w-layout-hflex fda-drop-down-menu-wrap">
-                    <div class="w-layout-hflex fda-megamenu-mobile">
-                      <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Classic package</div>
-                            </div>
-                            <div>Timeless celebrations with elegance</div>
-                          </a>
-                        </div>
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Elegance package</div>
-                            </div>
-                            <div>Refined details for stylish weddings</div>
-                          </a>
-                        </div>
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Luxury package</div>
-                            </div>
-                            <div>Exclusive experiences for couples</div>
-                          </a>
-                        </div>
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('booking-inquiry') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Booking inquiry</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Booking inquiry</div>
-                            </div>
-                            <div>Start planning your special day</div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-layout-vflex fda-megamenu-desktop">
-                      <div class="w-layout-hflex fda-megamenu-image fda-event-none"><img
-                          src="{{ asset('images/6a6305bf5040b777232a17cc_Navbar-back-image.svg') }}" loading="lazy"
-                          alt="Navbar-back-image" /></div>
-                      <div class="w-layout-hflex fda-megamenu-top-wrapper">
-                        <div class="w-layout-hflex fda-megamenu-box-1-v2">
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d4_Home-icon.svg') }}" loading="lazy"
-                                    alt="Home-icon" /></div>
-                                <div class="fda-tag-text-v1">Home pages</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home one</div>
-                                  </div>
-                                  <div>Elegant wedding planning experience</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home two</div>
-                                  </div>
-                                  <div>Luxury celebrations for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home three</div>
-                                  </div>
-                                  <div>Editorial-inspired wedding showcase</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d1_Contact.svg') }}" loading="lazy"
-                                    alt="Contact" /></div>
-                                <div class="fda-tag-text-v1">SERVICES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service one</div>
-                                  </div>
-                                  <div>Complete wedding planning solutions</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service two</div>
-                                  </div>
-                                  <div>Creative styling and coordination</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-three') }}"
-                                  aria-current="page" class="fda-megamenu-text-wrapper w-inline-block w--current">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service three</div>
-                                  </div>
-                                  <div>Destination and luxury celebrations</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17ca_Package.svg') }}" loading="lazy"
-                                    alt="Package" /></div>
-                                <div class="fda-tag-text-v1">PACKAGES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Classic package</div>
-                                  </div>
-                                  <div>Timeless celebrations with elegance</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Elegance package</div>
-                                  </div>
-                                  <div>Refined details for stylish weddings</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Luxury package</div>
-                                  </div>
-                                  <div>Exclusive experiences for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('booking-inquiry') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Booking inquiry</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Booking inquiry</div>
-                                  </div>
-                                  <div>Start planning your special day</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w-layout-hflex fda-megamenu-bottom-wrapper">
-                        <div class="w-layout-hflex fda-other-page-box">
-                          <div class="fda-other-page-text">
-                            <div class="fda-tag-text-v1">OTHER PAGES</div>
-                          </div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-2">Venue details</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-2">Event</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-1">Event details</a><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-2">Event details</a></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div data-delay="500" data-hover="true" nav-menu-hover="" class="fda-navbar-dropdown-v1 w-dropdown">
-                <div class="fda-navbar-dropdown-toggle w-dropdown-toggle">
-                  <div class="w-layout-hflex fda-mega-menu-text-box">
-                    <div class="fda-menu-font-v1">Service</div>
-                    <div class="fda-nav-menu-arrow-holder"><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a2_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-1" /><img width="10" height="6" alt="site-nav-arrow-black"
-                        src="{{ asset('images/6a6305be5040b777232a14a0_site-nav-arrow-black.svg') }}" loading="lazy"
-                        class="fda-nav-menu-arrow-2" /></div>
-                  </div>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-                <nav class="fda-navbar-menu-dropdown w-dropdown-list">
-                  <div nav-drop-menu="" class="w-layout-hflex fda-drop-down-menu-wrap">
-                    <div class="w-layout-hflex fda-megamenu-mobile">
-                      <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service one</div>
-                            </div>
-                            <div>Complete wedding planning solutions</div>
-                          </a>
-                        </div>
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                            class="fda-megamenu-text-wrapper w-inline-block">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service two</div>
-                            </div>
-                            <div>Creative styling and coordination</div>
-                          </a>
-                        </div>
-                        <div class="w-layout-hflex fda-megamenu-text-box">
-                          <div class="fda-megamenu-dot"></div><a href="{{ route('service-three') }}" aria-current="page"
-                            class="fda-megamenu-text-wrapper w-inline-block w--current">
-                            <div class="w-layout-vflex fda-megamenu-page-box">
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service three</div>
-                              <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service three</div>
-                            </div>
-                            <div>Destination and luxury celebrations</div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-layout-vflex fda-megamenu-desktop">
-                      <div class="w-layout-hflex fda-megamenu-image fda-event-none"><img
-                          src="{{ asset('images/6a6305bf5040b777232a17cc_Navbar-back-image.svg') }}" loading="lazy"
-                          alt="Navbar-back-image" /></div>
-                      <div class="w-layout-hflex fda-megamenu-top-wrapper">
-                        <div class="w-layout-hflex fda-megamenu-box-1-v2">
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d4_Home-icon.svg') }}" loading="lazy"
-                                    alt="Home-icon" /></div>
-                                <div class="fda-tag-text-v1">Home pages</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('home') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home one</div>
-                                  </div>
-                                  <div>Elegant wedding planning experience</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home two</div>
-                                  </div>
-                                  <div>Luxury celebrations for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Home three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Home three</div>
-                                  </div>
-                                  <div>Editorial-inspired wedding showcase</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17d1_Contact.svg') }}" loading="lazy"
-                                    alt="Contact" /></div>
-                                <div class="fda-tag-text-v1">SERVICES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service one</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service one</div>
-                                  </div>
-                                  <div>Complete wedding planning solutions</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service two</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service two</div>
-                                  </div>
-                                  <div>Creative styling and coordination</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('service-three') }}"
-                                  aria-current="page" class="fda-megamenu-text-wrapper w-inline-block w--current">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Service three</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Service three</div>
-                                  </div>
-                                  <div>Destination and luxury celebrations</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="w-layout-vflex fda-megamenu-inner-box-wrapper">
-                            <div class="w-layout-vflex fda-megamenu-inner-box-1 fda-border-off">
-                              <div class="w-layout-hflex fda-megamenu-title-box">
-                                <div class="w-layout-hflex fda-megamenu-icon-v2"><img
-                                    src="{{ asset('images/6a6305bf5040b777232a17ca_Package.svg') }}" loading="lazy"
-                                    alt="Package" /></div>
-                                <div class="fda-tag-text-v1">PACKAGES</div>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Classic package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Classic package</div>
-                                  </div>
-                                  <div>Timeless celebrations with elegance</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Elegance package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Elegance package</div>
-                                  </div>
-                                  <div>Refined details for stylish weddings</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ url('#') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Luxury package</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Luxury package</div>
-                                  </div>
-                                  <div>Exclusive experiences for couples</div>
-                                </a>
-                              </div>
-                              <div class="w-layout-hflex fda-megamenu-text-box">
-                                <div class="fda-megamenu-dot"></div><a href="{{ route('booking-inquiry') }}"
-                                  class="fda-megamenu-text-wrapper w-inline-block">
-                                  <div class="w-layout-vflex fda-megamenu-page-box">
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-1">Booking inquiry</div>
-                                    <div nav-megamenu-hover="" class="fda-mega-menu-font fda-2">Booking inquiry</div>
-                                  </div>
-                                  <div>Start planning your special day</div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w-layout-hflex fda-megamenu-bottom-wrapper">
-                        <div class="w-layout-hflex fda-other-page-box">
-                          <div class="fda-other-page-text">
-                            <div class="fda-tag-text-v1">OTHER PAGES</div>
-                          </div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-1">Venue</a><a
-                              href="{{ url('#') }}" class="fda-mega-menu-font fda-2">Venue</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-1">Venue details</a><a
-                              href="{{ url('#') }}"
-                              class="fda-mega-menu-font fda-2">Venue details</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-1">Event</a><a
-                              href="{{ route('event') }}" class="fda-mega-menu-font fda-2">Event</a></div>
-                          <div megamenu-nav-text-hover="" class="w-layout-vflex fda-megamenu-page-box"><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-1">Event details</a><a
-                              href="{{ route('event.detail', ['slug' => 'romantic-garden-couple-shoot']) }}"
-                              class="fda-mega-menu-font fda-2">Event details</a></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}"
-                    class="fda-menu-font-v1">Contact</a>
-                  <div class="fda-nav-menu-line"></div>
-                </div>
-              </div>
-            </div>
-            <div class="w-layout-vflex fda-nav-bottom-content">
-              <div class="w-layout-vflex fda-nav-contact-box">
-                <div class="w-layout-hflex fda-contact-box">
-                  <div class="fda-menu-font-v1">Phone - </div><a href="tel:8884567890" class="fda-color-primary">(888)
-                    456 7890</a>
-                </div>
-                <div class="w-layout-hflex fda-contact-box">
-                  <div class="fda-menu-font-v1">Email -</div><a href="mailto:info@example.com"
-                    class="fda-color-primary">info@example.com</a>
-                </div>
-              </div>
-              <div class="w-layout-vflex fda-nav-botton-wrapper"><a data-wf--fda-button-v1--variant="black"
-                  href="{{ route('booking-inquiry') }}"
-                  class="fda-button-v1 w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40 w-inline-block">
-                  <div class="fda-button-overlay w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40"></div>
-                  <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
-                    <div class="fda-button-text w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40 fda-1">Request a quote
-                    </div>
-                    <div class="fda-button-text w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40 fda-2">Request a quote
-                    </div>
-                  </div>
-                </a></div>
-            </div>
-          </div>
-        </nav>
-        <div class="fda-menu-button w-nav-button">
-                    <div class="fda-menu-button-main w-nav-button">
-                        <div class="fda-menu-line fda-top-line"></div>
-                        <div class="fda-menu-line fda-middle-line"></div>
-                        <div class="fda-menu-line fda-bottom-line"></div>
-                    </div>
-                </div>
-                <div class="fda-navbar-button">
-                    <a href="{{ route('booking-inquiry') }}" class="fda-button-v1 w-inline-block" style="background: #1a1918; color: #ffffff; padding: 10px 22px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 600;">
-                        Request a quote
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.partials.header')
 
     <!-- Lovio Webflow Hero Header -->
-    <header class="section-hero-lovio">
+    @if(($portfolioBanner->status ?? 'active') === 'active')
+    <header class="section-hero-lovio" style="background-image: url('{{ $portfolioBanner->banner_image_url }}');">
         <div class="border-top-line"></div>
-        <img src="https://cdn.prod.website-files.com/6109925e44b6ab8a7601f26a/610b3993bc98ff5499b83f82_subtitle.png" alt="Subtitle Icon" class="hero-crest-icon"/>
-        <div class="subtitle-lovio">Portfolio</div>
-        <h1 class="heading-hero-lovio">Event design to make your heart skip a beat</h1>
+        <div class="subtitle-lovio">{{ $portfolioBanner->tag ?? 'Portfolio' }}</div>
+        <h1 class="heading-hero-lovio">{{ $portfolioBanner->title ?? 'Event design to make your heart skip a beat' }}</h1>
+        @if(!empty($portfolioBanner->description))
+        <p style="max-width: 720px; margin: 16px auto 0; font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.6; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">{{ $portfolioBanner->description }}</p>
+        @endif
         <div class="border-down-line"></div>
 
         <!-- Filter Pills Bar -->
+        @if(isset($portfolioTags) && count($portfolioTags) > 0)
+        <div class="portfolio-filters-bar">
+            @php
+                $hasAllTag = $portfolioTags->contains(function($t) {
+                    return in_array(strtolower(trim($t->name)), ['all', 'all celebrations', 'all-celebrations']);
+                });
+                $hasActiveButton = false;
+            @endphp
+
+            @if(!$hasAllTag)
+            <button class="filter-pill-btn active" onclick="filterPortfolio('all', this)">All Celebrations</button>
+            @php $hasActiveButton = true; @endphp
+            @endif
+
+            @foreach($portfolioTags->unique('name') as $index => $ptag)
+                @php
+                    $isAll = in_array(strtolower(trim($ptag->name)), ['all', 'all celebrations', 'all-celebrations']);
+                    $catSlug = $isAll ? 'all' : Str::slug($ptag->name);
+                    $isActive = false;
+                    if ($isAll && !$hasActiveButton) {
+                        $isActive = true;
+                        $hasActiveButton = true;
+                    } elseif (!$hasAllTag && $hasActiveButton) {
+                        $isActive = false;
+                    }
+                @endphp
+                <button class="filter-pill-btn {{ $isActive ? 'active' : '' }}" onclick="filterPortfolio('{{ $catSlug }}', this)">{{ $ptag->name }}</button>
+            @endforeach
+        </div>
+        @else
         <div class="portfolio-filters-bar">
             <button class="filter-pill-btn active" onclick="filterPortfolio('all', this)">All Celebrations</button>
             <button class="filter-pill-btn" onclick="filterPortfolio('wedding', this)">Weddings</button>
             <button class="filter-pill-btn" onclick="filterPortfolio('luxury-weddings', this)">Luxury Weddings</button>
             <button class="filter-pill-btn" onclick="filterPortfolio('destination-weddings', this)">Destination</button>
         </div>
+        @endif
     </header>
+    @endif
 
     <!-- Portfolio 2-Column Collection Grid -->
     <section class="section-portfolio-grid">
@@ -1389,6 +647,8 @@
         </div>
     </section>
 
+    @include('frontend.partials.footer')
+
     <!-- Interactive Lightbox Modal -->
     <div class="portfolio-modal" id="portfolio-modal">
         <div class="modal-box">
@@ -1399,7 +659,7 @@
                 </div>
                 <div class="gallery-thumbs" id="modal-thumbs-bar"></div>
                 <h3 style="font-family: 'Marcellus', serif; font-size: 26px; color: #1a1918; margin-bottom: 8px;" id="modal-title"></h3>
-                <p style="font-size: 14px; color: #66615c; line-height: 1.6; margin-bottom: 20px;" id="modal-desc"></p>
+                <div style="font-size: 14px; color: #66615c; line-height: 1.6; margin-bottom: 20px;" id="modal-desc"></div>
                 <div style="display: flex; justify-content: flex-end;">
                     <a id="modal-full-link" href="#" class="btn-connect-lovio" style="padding: 10px 24px; font-size: 12px;">View Full Details →</a>
                 </div>
@@ -1418,8 +678,19 @@
 
             const cards = document.querySelectorAll('.item-portfolio-lovio');
             cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                if (category === 'all' || cardCat === category) {
+                const cardCat = (card.getAttribute('data-category') || '').toLowerCase();
+                const targetCat = (category || '').toLowerCase();
+                
+                const matches = (
+                    targetCat === 'all' ||
+                    targetCat === 'all-celebrations' ||
+                    cardCat === targetCat ||
+                    (targetCat.startsWith('wedding') && cardCat.startsWith('wedding')) ||
+                    (targetCat.includes('destination') && cardCat.includes('destination')) ||
+                    (targetCat.includes('luxury') && cardCat.includes('luxury'))
+                );
+
+                if (matches) {
                     card.style.display = 'flex';
                     card.style.animation = 'none';
                     card.offsetHeight; // trigger reflow
@@ -1430,10 +701,18 @@
             });
         }
 
+        function formatImageUrl(path) {
+            if (!path) return '';
+            if (path.startsWith('http://') || path.startsWith('https://')) {
+                return path;
+            }
+            return "{{ asset('') }}" + path;
+        }
+
         function openModal(item) {
             currentItem = item;
             document.getElementById('modal-title').innerText = item.title;
-            document.getElementById('modal-desc').innerText = item.description || item.subtitle;
+            document.getElementById('modal-desc').innerHTML = item.description || item.subtitle || '';
             document.getElementById('modal-full-link').href = "{{ url('/portfolio') }}/" + item.slug;
 
             const mainImg = document.getElementById('modal-main-img');
@@ -1442,22 +721,22 @@
             thumbsBar.innerHTML = '';
 
             if (item.gallery && item.gallery.length > 0) {
-                mainImg.src = "{{ asset('') }}" + item.gallery[0];
+                mainImg.src = formatImageUrl(item.gallery[0]);
                 mainImg.style.display = 'block';
 
                 item.gallery.forEach((imgSrc, idx) => {
                     const thumb = document.createElement('img');
-                    thumb.src = "{{ asset('') }}" + imgSrc;
+                    thumb.src = formatImageUrl(imgSrc);
                     thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
                     thumb.onclick = function() {
                         document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
                         thumb.classList.add('active');
-                        mainImg.src = "{{ asset('') }}" + imgSrc;
+                        mainImg.src = formatImageUrl(imgSrc);
                     };
                     thumbsBar.appendChild(thumb);
                 });
             } else {
-                mainImg.src = "{{ asset('') }}" + item.cover_image;
+                mainImg.src = formatImageUrl(item.cover_image);
                 mainImg.style.display = 'block';
             }
 
