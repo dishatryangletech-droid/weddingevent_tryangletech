@@ -142,6 +142,9 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/contact-enquiries/{contactEnquiry}/reply', [\App\Http\Controllers\ContactEnquiryController::class, 'reply'])->name('admin.contact-enquiries.reply');
     Route::delete('/contact-enquiries/{contactEnquiry}', [\App\Http\Controllers\ContactEnquiryController::class, 'destroy'])->name('admin.contact-enquiries.destroy');
 
+    // Testimonials
+    Route::resource('testimonials', \App\Http\Controllers\TestimonialController::class, ['as' => 'admin']);
+
     // Contact Us Page Settings
     Route::get('/contact/header', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'index'])->name('admin.contact.header.index');
     Route::post('/contact/header', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'updateHeader'])->name('admin.contact.header.update');

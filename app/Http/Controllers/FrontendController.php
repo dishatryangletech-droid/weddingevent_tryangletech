@@ -26,6 +26,7 @@ class FrontendController extends Controller
         $homeRecommendedPortfolios = \App\Models\HomeRecommendedPortfolio::orderBy('sort_order', 'asc')->get();
         $homeRecognitionsSection = \App\Models\HomeRecognitionsSection::first();
         $homeRecognitionItems = \App\Models\HomeRecognitionItem::orderBy('sort_order', 'asc')->get();
+        $testimonials = \App\Models\Testimonial::where('status', 'active')->orderBy('sort_order', 'asc')->get();
 
         $bannerPortfoliosIds = $bannerPortfolios->pluck('title')->toArray();
         $bannerPortfoliosData = [];
@@ -60,7 +61,7 @@ class FrontendController extends Controller
         };
 
         return view('frontend.home', compact(
-            'portfolios', 'banner', 'bannerPortfolios',
+            'testimonials', 'portfolios', 'banner', 'bannerPortfolios',
             'homeAbout', 'homePromise', 'homeCorePromise',
             'homeServiceSection', 'homeServiceCards',
             'homePhilosophySection', 'homePhilosophyItems',
