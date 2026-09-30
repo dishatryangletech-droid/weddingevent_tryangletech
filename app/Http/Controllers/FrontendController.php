@@ -601,4 +601,20 @@ class FrontendController extends Controller
     {
         return view('frontend.401');
     }
+
+    public function submitContact(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|digits:10',
+            'budget' => 'nullable|string|max:255',
+            'message' => 'required|string',
+            'terms' => 'accepted'
+        ]);
+
+        \App\Models\ContactEnquiry::create($request->only(['name', 'email', 'phone', 'budget', 'message']));
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully. We will contact you soon!');
+    }
 }

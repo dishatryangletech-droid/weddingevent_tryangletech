@@ -41,7 +41,57 @@
   <div banner-appear="" class="w-layout-vflex fda-contact-data-box"><div class="w-layout-vflex fda-connect-data-inner-box"><div class="w-layout-hflex fda-connect-logo-box"><div class="w-layout-hflex fda-connect-logo"><img src="{{ asset('images/6a6305bf5040b777232a1736_Call-logo.svg') }}" loading="lazy" alt="Call-logo"/></div></div><div class="w-layout-vflex fda-connect-text-wrapper fda-text-center"><a href="tel:8884567890" class="fda-text-style-h5">(888) 456 - 7890</a><p class="fda-gap-none">We’re interested in working together!</p></div></div></div>
   <div banner-appear="" class="w-layout-vflex fda-contact-data-box"><div class="w-layout-vflex fda-connect-data-inner-box"><div class="w-layout-hflex fda-connect-logo-box"><div class="w-layout-hflex fda-connect-logo"><img src="{{ asset('images/6a6305bf5040b777232a1727_Location-logo.svg') }}" loading="lazy" alt="Location-logo"/></div></div><div class="w-layout-vflex fda-connect-text-wrapper fda-text-center"><div class="fda-text-style-h5">123 Riverbend, California 94025, USA</div><p class="fda-gap-none">Join our growing team?</p></div></div></div>
 @endif
-</div></div></section><section class="fda-section-gap-small-bottom"><div class="w-layout-blockcontainer fda-container-medium w-container"><div class="w-layout-hflex fda-contact-form-content"><div appear="" class="w-layout-hflex fda-contact-form-image-box fda-radius"><div class="w-layout-hflex fda-image-padding-box"><div class="w-layout-hflex fda-image-box"><img src="{{ !empty($contactForm->image) ? asset($contactForm->image) : asset('images/6a6305bf5040b777232a1805_Contact-form-image.avif') }}" loading="lazy" alt="Contact form image" class="fda-move-image"/><div class="fda-image-layer"></div></div></div></div><div class="w-layout-vflex fda-contact-form-block"><div text-appear="" class="fda-text-style-h2 fda-mobile-text-center">{{ $contactForm->title ?? 'Send us a message' }}</div><div id="contact-form" class="fda-contact-form-content-v2 w-form"><form id="wf-form-Contact-Form-2" name="wf-form-Contact-Form-2" data-name="Contact Form" method="get" class="fda-contact-form-inner-block" data-wf-page-id="6a6305be5040b777232a1420" data-wf-element-id="75a2e644-1b9d-1f11-8007-87736e41fb6f" data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e"><input class="fda-form-input-item-v3 w-input" maxlength="256" name="Name-V1" data-name="Name-V1" placeholder="Your name*" appear="" type="text" id="Name-V1" required=""/><input class="fda-form-input-item-v3 w-input" maxlength="256" name="Email-V1" data-name="Email-V1" placeholder="Email address*" appear="" type="email" id="Email-V1" required=""/><input class="fda-form-input-item-v3 w-input" maxlength="256" name="Number-V1" data-name="Number-V1" placeholder="Phone number*" appear="" type="tel" id="Number-V1" required=""/><select id="Budget-V1" name="Budget-V1" data-name="Budget-V1" required="" appear="" class="fda-select-form w-select"><option value="Estimated overall budget*">Estimated overall budget*</option><option value="$20kâ€“$50k">$20kâ€“$50k</option><option value="$50kâ€“$100k">$50kâ€“$100k</option><option value="$100kâ€“$250k">$100kâ€“$250k</option><option value="$250k+">$250k+</option></select><textarea class="fda-form-trext-area w-input" maxlength="5000" name="Message-V1" data-name="Message-V1" placeholder="Type message" appear="" id="Message-V1"></textarea><label appear="" class="w-checkbox fda-checkbox-wrap-v2"><div class="w-checkbox-input w-checkbox-input--inputType-custom fda-checkbox"></div><input type="checkbox" id="checkbox-v1" name="checkbox-v1" data-name="checkbox-v1" style="opacity:0;position:absolute;z-index:-1"/><span class="w-form-label" for="checkbox-v1">I agree to the terms and conditions</span></label><div appear="" class="fda-admission-button-wrap-v2"><div submit-button="v1" class="fda-button-wrapper"><a data-wf--fda-button-v1--variant="rose-background" href="#" class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block"><div class="fda-button-overlay"></div><div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden"><div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">Submit</div><div class="fda-button-text fda-2">Submit</div></div></a><input type="submit" data-wait="Please wait..." class="fda-submit w-button" value="Submit"/></div></div></form><div class="fda-succes w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="fda-error w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></section><section class="fda-section-gap-bottom"><div class="w-layout-blockcontainer fda-container-small w-container"><div class="w-layout-vflex fda-contact-faq-wrapper"><div class="w-layout-vflex fda-faq-contact-title-box fda-text-center"><div text-appear="" class="fda-tag-text-v1 fda-tag-gap-h2">{{ $contactFaqHeader->tagline ?? 'FAQ' }}</div><h2 text-appear="" class="fda-gap-none">{{ $contactFaqHeader->title ?? 'Elegant answers for your special celebrations' }}</h2></div><div class="w-layout-vflex fda-faq-question-box-v3">
+</div></div></section><section class="fda-section-gap-small-bottom"><div class="w-layout-blockcontainer fda-container-medium w-container"><div class="w-layout-hflex fda-contact-form-content"><div appear="" class="w-layout-hflex fda-contact-form-image-box fda-radius"><div class="w-layout-hflex fda-image-padding-box"><div class="w-layout-hflex fda-image-box"><img src="{{ !empty($contactForm->image) ? asset($contactForm->image) : asset('images/6a6305bf5040b777232a1805_Contact-form-image.avif') }}" loading="lazy" alt="Contact form image" class="fda-move-image"/><div class="fda-image-layer"></div></div></div></div><div class="w-layout-vflex fda-contact-form-block"><div text-appear="" class="fda-text-style-h2 fda-mobile-text-center">{{ $contactForm->title ?? 'Send us a message' }}</div><div id="contact-form" class="fda-contact-form-content-v2 w-form"><form id="wf-form-Contact-Form-2" name="wf-form-Contact-Form-2" data-name="Contact Form" method="POST" action="{{ route('contact.submit') }}" class="fda-contact-form-inner-block">
+    @csrf
+    
+    @if(session('success'))
+        <div class="alert alert-success" style="padding:15px; margin-bottom:20px; background-color:#d4edda; color:#155724; border-radius:5px;">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if($errors->any())
+        <div class="alert alert-danger" style="padding:15px; margin-bottom:20px; background-color:#f8d7da; color:#721c24; border-radius:5px;">
+            <ul style="margin-bottom:0;">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <input class="fda-form-input-item-v3 w-input" maxlength="256" name="name" placeholder="Your name*" type="text" id="Name-V1" required value="{{ old('name') }}" />
+    <input class="fda-form-input-item-v3 w-input" maxlength="256" name="email" placeholder="Email address*" type="email" id="Email-V1" required value="{{ old('email') }}" />
+    <input class="fda-form-input-item-v3 w-input" maxlength="10" name="phone" placeholder="Phone number (10 digits)*" type="tel" id="Number-V1" required pattern="[0-9]{10}" title="Phone number must be exactly 10 digits" value="{{ old('phone') }}" />
+    
+    <select id="Budget-V1" name="budget" required class="fda-select-form w-select">
+        <option value="">Estimated overall budget*</option>
+        <option value="k - k" {{ old('budget') == 'k - k' ? 'selected' : '' }}>k - k</option>
+        <option value="k - 0k" {{ old('budget') == 'k - 0k' ? 'selected' : '' }}>k - 0k</option>
+        <option value="0k - 0k" {{ old('budget') == '0k - 0k' ? 'selected' : '' }}>0k - 0k</option>
+        <option value="0k+" {{ old('budget') == '0k+' ? 'selected' : '' }}>0k+</option>
+    </select>
+    
+    <textarea class="fda-form-trext-area w-input" maxlength="5000" name="message" placeholder="Type message" id="Message-V1" required>{{ old('message') }}</textarea>
+    
+    <label class="w-checkbox fda-checkbox-wrap-v2">
+        <div class="w-checkbox-input w-checkbox-input--inputType-custom fda-checkbox"></div>
+        <input type="checkbox" id="checkbox-v1" name="terms" style="opacity:0;position:absolute;z-index:-1" required />
+        <span class="w-form-label" for="checkbox-v1">I agree to the terms and conditions</span>
+    </label>
+    
+    <div class="fda-admission-button-wrap-v2">
+        <div submit-button="v1" class="fda-button-wrapper">
+            <a data-wf--fda-button-v1--variant="rose-background" href="#" class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
+                <div class="fda-button-overlay"></div>
+                <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
+                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">Submit</div>
+                    <div class="fda-button-text fda-2">Submit</div>
+                </div>
+            </a>
+            <input type="submit" data-wait="Please wait..." class="fda-submit w-button" value="Submit"/>
+        </div>
+    </div>
+</form><div class="fda-succes w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="fda-error w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></section><section class="fda-section-gap-bottom"><div class="w-layout-blockcontainer fda-container-small w-container"><div class="w-layout-vflex fda-contact-faq-wrapper"><div class="w-layout-vflex fda-faq-contact-title-box fda-text-center"><div text-appear="" class="fda-tag-text-v1 fda-tag-gap-h2">{{ $contactFaqHeader->tagline ?? 'FAQ' }}</div><h2 text-appear="" class="fda-gap-none">{{ $contactFaqHeader->title ?? 'Elegant answers for your special celebrations' }}</h2></div><div class="w-layout-vflex fda-faq-question-box-v3">
 @if(isset($contactFaqItems) && count($contactFaqItems) > 0)
   @foreach($contactFaqItems as $faq)
     <div appear="" faq="" class="w-layout-vflex fda-faq-box-v2">

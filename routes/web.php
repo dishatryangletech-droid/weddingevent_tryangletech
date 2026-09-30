@@ -41,6 +41,7 @@ Route::get('/blog/{slug}', [FrontendController::class, 'blogDetail']);
 
 // Contact
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+Route::post('/contact/submit', [FrontendController::class, 'submitContact'])->name('contact.submit');
 
 // Utility / Template Documentation Pages
 // Route::get('/style-guide', [FrontendController::class, 'styleGuide'])->name('style-guide');
@@ -134,6 +135,12 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::post('/about/expertise/item', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'storeItem'])->name('admin.about.expertise.item.store');
     Route::delete('/about/expertise/item/{id}', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'deleteItem'])->name('admin.about.expertise.item.delete');
     Route::post('/about/expertise/reorder', [\App\Http\Controllers\Backend\AboutExpertiseController::class, 'reorderItems'])->name('admin.about.expertise.reorder');
+
+    // Contact Enquiries
+    Route::get('/contact-enquiries', [\App\Http\Controllers\ContactEnquiryController::class, 'index'])->name('admin.contact-enquiries.index');
+    Route::get('/contact-enquiries/{contactEnquiry}', [\App\Http\Controllers\ContactEnquiryController::class, 'show'])->name('admin.contact-enquiries.show');
+    Route::post('/contact-enquiries/{contactEnquiry}/reply', [\App\Http\Controllers\ContactEnquiryController::class, 'reply'])->name('admin.contact-enquiries.reply');
+    Route::delete('/contact-enquiries/{contactEnquiry}', [\App\Http\Controllers\ContactEnquiryController::class, 'destroy'])->name('admin.contact-enquiries.destroy');
 
     // Contact Us Page Settings
     Route::get('/contact/header', [\App\Http\Controllers\Backend\ContactHeaderController::class, 'index'])->name('admin.contact.header.index');
