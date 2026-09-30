@@ -3748,7 +3748,7 @@ label {
 }
 
 .fda-hero-v10 {
-  padding-top: 13.1875rem;
+  padding-top: 7rem;
 }
 
 .fda-hero-v10-main {
@@ -3817,13 +3817,27 @@ label {
 }
 
 .fda-features-image-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
   grid-column-gap: 1.375rem;
   grid-row-gap: 1.375rem;
+  gap: 1.375rem;
   width: 100%;
+  align-items: stretch;
 }
 
 .fda-features-image {
-  flex: 1;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: calc(50% - 0.6875rem) !important;
+}
+
+.fda-features-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: inherit;
 }
 
 .fda-recent-post {
@@ -3920,7 +3934,7 @@ label {
   grid-column-gap: 1.875rem;
   grid-row-gap: 1.875rem;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
   display: grid;
 }

@@ -11,13 +11,55 @@
     <link rel="stylesheet" href="{{ asset('css/google-fonts.css') }}">
     <link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />
     <link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
+    <style>
+        .fda-details-content p:has(img) {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 20px;
+        }
+        .fda-details-content p:has(img) + p:has(img) {
+            margin-left: 2%;
+        }
+        /* Reset margin-left for every 3rd image if there are multiple rows */
+        .fda-details-content p:has(img):nth-child(2n+1) {
+            margin-left: 0;
+        }
+        .fda-details-content p:has(img) img {
+            width: 100% !important;
+            height: auto;
+            border-radius: 8px; /* Optional polishing */
+        }
+        @media (max-width: 767px) {
+            .fda-details-content p:has(img) {
+                width: 100%;
+                margin-left: 0 !important;
+            }
+        }
+        .fda-details-content li {
+            color: var(--text-color--text-secondary) !important;
+            font-size: var(--_typography---body-text--body-text-size) !important;
+            font-weight: var(--_typography---body-text--body-text-weight) !important;
+            line-height: var(--_typography---body-text--body-text-line-height) !important;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body>
     @include('frontend.partials.header')
 
     @php
-        $heroImage = !empty($blog->banner_image) ? (str_starts_with($blog->banner_image, 'http') ? $blog->banner_image : asset($blog->banner_image)) : (!empty($blog->image) ? (str_starts_with($blog->image, 'http') ? $blog->image : asset($blog->image)) : asset('images/6a6305be5040b777232a1435_Blog-thumbnail-image-one.avif'));
-        $authorImage = !empty($blog->author_image) ? (str_starts_with($blog->author_image, 'http') ? $blog->author_image : asset($blog->author_image)) : asset('images/6a6305bf5040b777232a1848_User-image-one.webp');
+        $getImageUrl = function($path, $default = null) {
+            if (empty($path)) return $default;
+            if (str_starts_with($path, 'http')) return $path;
+            if (str_starts_with($path, 'images/') || str_starts_with($path, 'storage/')) return asset($path);
+            return asset('storage/' . $path);
+        };
+
+        $heroImage = $getImageUrl($blog->banner_image ?? null) 
+                  ?? $getImageUrl($blog->image ?? null) 
+                  ?? asset('images/6a6305be5040b777232a1435_Blog-thumbnail-image-one.avif');
+        $authorImage = $getImageUrl($blog->author_image ?? null, asset('images/6a6305bf5040b777232a1848_User-image-one.webp'));
         $dateText = !empty($blog->publish_date) ? $blog->publish_date : ($blog->created_at ? $blog->created_at->format('d F Y') : '09 January 2026');
     @endphp
 

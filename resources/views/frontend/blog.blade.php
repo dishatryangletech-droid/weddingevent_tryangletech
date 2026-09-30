@@ -13,12 +13,27 @@
 <link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
 </head><body>@include('frontend.partials.header')
   @if(($blogBanner->status ?? 'active') === 'active')
-<section hero-banner-scroll="" class="fda-hero-v11 fda-overflow-hidden"><div class="w-layout-blockcontainer fda-container-small w-container"><div class="w-layout-vflex fda-hero-v11-main fda-z-index-10 fda-text-center"><div class="fda-tag-text-gap-v1"><div banner-text-appear="v1" class="fda-tag-text-v1 fda-text-capitalize fda-color-white">{{ $blogBanner->tag ?? 'Our blog' }}</div></div><h1 banner-text-appear="v1" class="fda-gap-none fda-color-white">{{ $blogBanner->title ?? 'Wedding stories journal' }}</h1></div></div><div class="fda-hero-background-image-wrapper"><img src="{{ !empty($blogBanner->banner_image) ? (str_starts_with($blogBanner->banner_image, 'http') ? $blogBanner->banner_image : asset($blogBanner->banner_image)) : asset('images/6a6305bf5040b777232a17f6_Blog-banner-image.avif') }}" width="1920" alt="Blog-banner-image" loader-banner-image="" banner-image="1" loading="eager" fetchpriority="high"/></div><div class="fda-hero-v11-overlay fda-change"></div></section>
+    @php
+      $blogBannerImg = !empty($blogBanner->banner_image) 
+        ? (str_starts_with($blogBanner->banner_image, 'http') 
+            ? $blogBanner->banner_image 
+            : (str_starts_with($blogBanner->banner_image, 'images/') || str_starts_with($blogBanner->banner_image, 'storage/') 
+                ? asset($blogBanner->banner_image) 
+                : asset('storage/' . $blogBanner->banner_image))) 
+        : asset('images/6a6305bf5040b777232a17f6_Blog-banner-image.avif');
+    @endphp
+<section hero-banner-scroll="" class="fda-hero-v11 fda-overflow-hidden"><div class="w-layout-blockcontainer fda-container-small w-container"><div class="w-layout-vflex fda-hero-v11-main fda-z-index-10 fda-text-center"><div class="fda-tag-text-gap-v1"><div banner-text-appear="v1" class="fda-tag-text-v1 fda-text-capitalize fda-color-white">{{ $blogBanner->tag ?? 'Our blog' }}</div></div><h1 banner-text-appear="v1" class="fda-gap-none fda-color-white">{{ $blogBanner->title ?? 'Wedding stories journal' }}</h1></div></div><div class="fda-hero-background-image-wrapper"><img src="{{ $blogBannerImg }}" width="1920" alt="Blog-banner-image" banner-image="1" loading="eager" fetchpriority="high"/></div><div class="fda-hero-v11-overlay fda-change"></div></section>
 @endif<section class="fda-post fda-section-gap-bottom fda-overflow-hidden"><div class="w-layout-blockcontainer fda-container-medium w-container"><div class="w-layout-vflex fda-post-main"><div class="w-layout-vflex fda-post-top fda-text-center"><h2 text-appear="v1" class="fda-gap-none">{{ $blogBanner->description ?? 'Stories and ideas for wedding inspiration here' }}</h2></div><div class="fda-desktop-full-width w-dyn-list"><div role="list" class="fda-post-bottom w-dyn-items">
 @if(isset($blogs) && count($blogs) > 0)
   @foreach($blogs as $blog)
     @php
-      $blogImg = !empty($blog->image) ? (str_starts_with($blog->image, 'http') ? $blog->image : asset($blog->image)) : asset('images/6a6305be5040b777232a144e_Blog-image-one.webp');
+      $blogImg = !empty($blog->image) 
+        ? (str_starts_with($blog->image, 'http') 
+            ? $blog->image 
+            : (str_starts_with($blog->image, 'images/') || str_starts_with($blog->image, 'storage/') 
+                ? asset($blog->image) 
+                : asset('storage/' . $blog->image))) 
+        : asset('images/6a6305be5040b777232a144e_Blog-image-one.webp');
       $dateText = !empty($blog->publish_date) ? $blog->publish_date : ($blog->created_at ? $blog->created_at->format('d F Y') : '09 January 2026');
     @endphp
     <div role="listitem" class="w-dyn-item"><a appear="" href="{{ route('blog.detail', ['slug' => $blog->slug]) }}" class="fda-post-item fda-radius w-inline-block"><div class="w-layout-hflex fda-post-item-top"><div class="w-layout-vflex fda-post-item-left"><div class="w-layout-hflex fda-publish-date-wrapper"><div class="w-layout-vflex"><img src="{{ asset('images/6a6305be5040b777232a143e_blog-post-calender-icon.svg') }}" loading="lazy" alt="blog-post-calender-icon"/></div><div class="fda-color-primary">{{ $dateText }}</div></div><div class="fda-text-style-h5">{{ $blog->title }}</div></div><div class="w-layout-hflex fda-post-button fda-radius-big"><div class="w-layout-hflex fda-button-arrow-icon-wrapper"><img src="{{ asset('images/6a6305be5040b777232a1441_Post-button-arrow-icon-black.svg') }}" loading="lazy" alt="Post-button-arrow-icon-black" class="fda-post-arrow-icon"/></div></div></div><div class="fda-post-item-image-wrapper fda-overflow-hidden fda-radius"><img src="{{ $blogImg }}" loading="lazy" width="540" alt="{{ $blog->title }}" class="fda-post-item-image"/></div></a></div>
