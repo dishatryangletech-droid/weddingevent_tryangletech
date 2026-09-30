@@ -28,7 +28,7 @@ class ServiceExpertiseSectionController extends Controller
             'cards' => 'required|array|size:3',
             'cards.*.title' => 'required|string|max:255',
             'cards.*.description' => 'required|string',
-            'cards.*.image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'cards.*.image' => 'nullable|file|mimes:jpeg,png,jpg,webp,avif,svg|max:5120',
         ]);
 
         $expertise = ServiceExpertiseSection::getSettings();

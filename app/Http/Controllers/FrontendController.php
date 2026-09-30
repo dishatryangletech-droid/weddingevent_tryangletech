@@ -61,11 +61,21 @@ class FrontendController extends Controller
     {
         $serviceBanner = \App\Models\ServiceBannerSection::getSettings();
         $serviceExpertise = \App\Models\ServiceExpertiseSection::getSettings();
+        $serviceOfferSection = \App\Models\ServiceOfferSection::getSettings();
+        $serviceOfferItems = \App\Models\ServiceOfferItem::where('status', 'active')->orderBy('sort_order', 'asc')->get();
         $serviceProcess = \App\Models\ServiceProcessSection::getSettings();
         $serviceFaqSection = \App\Models\ServiceFaqSection::getSettings();
         $serviceFaqs = \App\Models\ServiceFaq::where('status', 'active')->orderBy('order', 'asc')->get();
 
-        return view('frontend.service-three', compact('serviceBanner', 'serviceExpertise', 'serviceProcess', 'serviceFaqSection', 'serviceFaqs'));
+        return view('frontend.service-three', compact(
+            'serviceBanner', 
+            'serviceExpertise', 
+            'serviceOfferSection', 
+            'serviceOfferItems', 
+            'serviceProcess', 
+            'serviceFaqSection', 
+            'serviceFaqs'
+        ));
     }
 
     /**

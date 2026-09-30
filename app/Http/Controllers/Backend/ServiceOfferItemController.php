@@ -44,7 +44,7 @@ class ServiceOfferItemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'image' => 'required|file|mimes:jpeg,png,jpg,webp,avif,svg|max:5120',
             'status' => 'required|in:active,deactive',
         ]);
 
@@ -69,7 +69,7 @@ class ServiceOfferItemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,webp,avif,svg|max:5120',
             'status' => 'required|in:active,deactive',
         ]);
 

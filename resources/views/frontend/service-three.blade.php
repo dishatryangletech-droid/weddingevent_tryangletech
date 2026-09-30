@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Mon Jul 27 2026 04:27:14 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="knotcraft.webflow.io" data-wf-page="6a6305be5040b777232a140e"
   data-wf-site="6a6305be5040b777232a1422" lang="en">
@@ -43,18 +43,41 @@
     sizes="32x32" media="(prefers-color-scheme: dark)" />
   <link href="{{ asset('images/6a58830862b9f974ddc7bb7d_Favicon-small.png') }}" rel="icon" type="image/png"
     sizes="48x48" />
-  
+
   <link href="{{ asset('images/6a5882fc1b2dae9c09e5d122_favicon-big.png') }}" rel="icon" type="image/png"
     sizes="192x192" />
   <link href="{{ asset('images/6a6305bf5040b777232a180f_favicon-big.png') }}" rel="icon" type="image/png"
     sizes="512x512" />
   <link rel="stylesheet" href="{{ asset('css/google-fonts.css') }}">
-<link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />
-<link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
+  <link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />
+  <link href="{{ asset('images/favicon.png') }}" rel="apple-touch-icon" />
 </head>
 
 <body>
   @include('frontend.partials.header')
+
+  @php
+    $getImageUrl = function ($path, $default = null) {
+      if (empty($path))
+        return $default;
+      if (str_starts_with($path, 'http'))
+        return $path;
+      if (str_starts_with($path, 'images/') || str_starts_with($path, 'storage/'))
+        return asset($path);
+      return asset('storage/' . $path);
+    };
+
+    $parseItem = function ($itemText) {
+      $firstWord = explode(' ', $itemText)[0];
+      $number = preg_replace('/[^0-9]/', '', $firstWord);
+      $symbol = preg_replace('/[0-9]/', '', $firstWord);
+      $text = trim(substr($itemText, strlen($firstWord)));
+      return ['number' => $number, 'symbol' => $symbol, 'text' => $text];
+    };
+    $item1 = isset($serviceBanner->items[0]['title']) ? $parseItem($serviceBanner->items[0]['title']) : ['number' => '12', 'symbol' => '+', 'text' => 'Years of work experience'];
+    $item2 = isset($serviceBanner->items[1]['title']) ? $parseItem($serviceBanner->items[1]['title']) : ['number' => '98', 'symbol' => '%', 'text' => 'Rated 4.9/5 from over 1200 reviews'];
+  @endphp
+
   <main>
     <section hero-banner-scroll="" class="fda-hero-v7 fda-overflow-hidden">
       <div class="w-layout-blockcontainer fda-container-medium w-container">
@@ -62,52 +85,55 @@
           <div class="w-layout-vflex fda-hero-v7-left">
             <div class="w-layout-vflex fda-hero-v7-left-top">
               <div class="fda-gap-medium">
-                <h1 banner-text-appear="" class="fda-gap-none fda-color-white">Making your <br />wedding dreams real
-                </h1>
+                <h1 banner-text-appear="" class="fda-gap-none fda-color-white">
+                  {!! $serviceBanner->title ?? 'Making your <br />wedding dreams real' !!}</h1>
               </div>
               <div class="fda-gap-large fda-hero-v7-description-wrapper">
-                <p banner-text-appear="" class="fda-gap-none fda-color-white">A walkthrough of how we translate your
-                  personal love story into a visual language at Knotcraft.</p>
+                <p banner-text-appear="" class="fda-gap-none fda-color-white">
+                  {{ $serviceBanner->subtitle ?? 'A walkthrough of how we translate your personal love story into a visual language at Knotcraft.' }}
+                </p>
               </div>
-              <div banner-text-appear=""><a data-wf--fda-button-v1--variant="base" href="{{ route('booking-inquiry') }}"
+              <div banner-text-appear=""><a data-wf--fda-button-v1--variant="base"
+                  href="{{ url($serviceBanner->button_url ?? route('booking-inquiry')) }}"
                   class="fda-button-v1 w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
-                    <div class="fda-button-text fda-1">Discover packages</div>
-                    <div class="fda-button-text fda-2">Discover packages</div>
+                    <div class="fda-button-text fda-1">{{ $serviceBanner->button_text ?? 'Discover packages' }}</div>
+                    <div class="fda-button-text fda-2">{{ $serviceBanner->button_text ?? 'Discover packages' }}</div>
                   </div>
                 </a></div>
             </div>
             <div banner-appear="" class="w-layout-hflex fda-hero-v7-left-bottom">
               <div banner-appear="" class="w-layout-hflex fda-hero-v7-left-content">
                 <div class="w-layout-hflex fda-hero-v7-left-counter">
-                  <h2 data-counter="12" class="fda-gap-none fda-color-white">00</h2>
-                  <div class="fda-text-style-h2 fda-color-white">+</div>
+                  <h2 data-counter="{{ $item1['number'] }}" class="fda-gap-none fda-color-white">00</h2>
+                  <div class="fda-text-style-h2 fda-color-white">{{ $item1['symbol'] }}</div>
                 </div>
-                <div class="fda-color-white">Years of work experience</div>
+                <div class="fda-color-white">{{ $item1['text'] }}</div>
               </div>
               <div banner-appear="" class="w-layout-hflex fda-hero-v7-left-content">
                 <div class="w-layout-hflex fda-hero-v7-left-counter">
-                  <h2 data-counter="98" class="fda-gap-none fda-color-white">00</h2>
-                  <div class="fda-text-style-h2 fda-color-white">%</div>
+                  <h2 data-counter="{{ $item2['number'] }}" class="fda-gap-none fda-color-white">00</h2>
+                  <div class="fda-text-style-h2 fda-color-white">{{ $item2['symbol'] }}</div>
                 </div>
-                <div class="fda-color-white">Rated 4.9/5 from over 1200 reviews</div>
+                <div class="fda-color-white">{{ $item2['text'] }}</div>
               </div>
             </div>
           </div>
           <div banner-appear="" class="w-layout-hflex fda-hero-v7-right fda-radius">
             <div class="fda-hero-v7-right-image-wrapper fda-overflow-hidden fda-radius"><img
-                src="{{ asset('images/6a6305be5040b777232a14ba_service-three-right-image.avif') }}" loading="lazy"
-                width="132" alt="service-three-right-image" /></div>
+                src="{{ $getImageUrl($serviceBanner->card_image ?? null, asset('images/6a6305be5040b777232a14ba_service-three-right-image.avif')) }}"
+                loading="lazy" width="132" alt="card image" /></div>
             <div class="fda-hero-v7-right-text-wrapper">
-              <div>We craft wedding experiences that bring your love story to life.</div>
+              <div>{{ $serviceBanner->card_text ?? 'We craft wedding experiences that bring your love story to life.' }}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="fda-hero-background-image-wrapper"><img class="fda-hero-v7-background-image"
-          src="{{ asset('images/6a6305bf5040b777232a17f5_Service-one-banner.avif') }}" width="1920"
-          alt="Service-3-banner-image" loader-banner-image="" banner-image="1" loading="eager" fetchpriority="high" />
+          src="{{ $getImageUrl($serviceBanner->banner_image ?? null, asset('images/6a6305bf5040b777232a17f5_Service-one-banner.avif')) }}"
+          width="1920" alt="Service banner image" banner-image="1" loading="eager" fetchpriority="high" />
         <div class="fda-hero-image-layer"></div>
       </div>
       <div class="fda-hero-v7-linear"></div>
@@ -119,9 +145,11 @@
           <div class="w-layout-vflex fda-about-v5-left">
             <div class="w-layout-vflex fda-about-v5-left-top fda-mobile-text-center change">
               <div class="fda-tag-text-gap-v2">
-                <div text-appear="" class="fda-tag-text-v1 fda-text-capitalize">About us</div>
+                <div text-appear="" class="fda-tag-text-v1 fda-text-capitalize">
+                  {{ $serviceExpertise->tag ?? 'About us' }}</div>
               </div>
-              <h2 text-appear="" class="fda-gap-none">Crafting timeless celebrations</h2>
+              <h2 text-appear="" class="fda-gap-none">
+                {!! $serviceExpertise->title ?? 'Crafting timeless celebrations' !!}</h2>
               <div appear="" class="w-layout-hflex fda-promise-image-box-v4 fda-radius">
                 <div class="w-layout-hflex fda-image-padding-box">
                   <div class="w-layout-hflex fda-image-box"><img
@@ -132,8 +160,9 @@
                 </div>
               </div>
               <div class="w-layout-vflex fda-journey-box-v2">
-                <p text-appear="" class="fda-gap-none fda-color-dark-brown">Our approach transforms romantic visions
-                  into vision realities that define unforgettable life milestones.</p>
+                <p text-appear="" class="fda-gap-none fda-color-dark-brown">
+                  {{ $serviceExpertise->cards[0]['description'] ?? 'Our approach transforms romantic visions into vision realities that define unforgettable life milestones.' }}
+                </p>
                 <div text-appear=""><a data-wf--fda-button-v1--variant="rose-background" href="{{ route('about') }}"
                     class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                     <div class="fda-button-overlay"></div>
@@ -150,8 +179,8 @@
             <div appear="" class="w-layout-vflex fda-about-v5-right-image-wrapper fda-radius">
               <div class="w-layout-hflex fda-image-padding-box">
                 <div class="w-layout-hflex fda-image-box"><img
-                    src="{{ asset('images/6a6305bf5040b777232a15fa_About-home-one-image.avif') }}" loading="lazy"
-                    width="598" alt="About-home-one-image" class="fda-move-image" />
+                    src="{{ $getImageUrl($serviceExpertise->center_image ?? null, asset('images/6a6305bf5040b777232a15fa_About-home-one-image.avif')) }}"
+                    loading="lazy" width="598" alt="center image" class="fda-move-image" />
                   <div class="fda-image-layer"></div>
                 </div>
               </div>
@@ -165,8 +194,10 @@
                       alt="Planning-home-one-icon" /></div>
                 </div>
                 <div class="w-layout-vflex fda-about-v5-right-card-text">
-                  <div class="fda-text-style-h5 fda-color-white">Personalized planning</div>
-                  <div class="fda-color-white">Tailoring every celebration to reflect your all unique story and dreams.
+                  <div class="fda-text-style-h5 fda-color-white">
+                    {{ $serviceExpertise->cards[1]['title'] ?? 'Personalized planning' }}</div>
+                  <div class="fda-color-white">
+                    {{ $serviceExpertise->cards[1]['description'] ?? 'Tailoring every celebration to reflect your all unique story and dreams.' }}
                   </div>
                 </div>
               </div>
@@ -177,8 +208,11 @@
                       loading="lazy" alt="Service-three-about-icon-two" /></div>
                 </div>
                 <div class="w-layout-vflex fda-about-v5-right-card-text">
-                  <div class="fda-text-style-h5">Seamless experience</div>
-                  <div>Ensuring a seamless journey so you can enjoy every moment.</div>
+                  <div class="fda-text-style-h5">{{ $serviceExpertise->cards[2]['title'] ?? 'Seamless experience' }}
+                  </div>
+                  <div>
+                    {{ $serviceExpertise->cards[2]['description'] ?? 'Ensuring a seamless journey so you can enjoy every moment.' }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -437,47 +471,56 @@
         <div class="w-layout-vflex fda-service-v3-main">
           <div class="w-layout-vflex fda-service-v3-top fda-text-center">
             <div class="fda-tag-text-gap-v2">
-              <div text-appear="" class="fda-tag-text-v1 fda-text-capitalize">Services we offer</div>
+              <div text-appear="" class="fda-tag-text-v1 fda-text-capitalize">
+                {{ $serviceOfferSection->tag ?? 'Services we offer' }}</div>
             </div>
-            <h2 text-appear="" class="fda-gap-none">Browse luxury wedding services with curated planning, styling, and
-              ideas for your perfect celebration</h2>
+            <h2 text-appear="" class="fda-gap-none">
+              {!! $serviceOfferSection->title ?? 'Browse luxury wedding services with curated planning, styling, and ideas for your perfect celebration' !!}
+            </h2>
           </div>
           <div class="w-layout-vflex fda-service-box-wrap">
             <div appear="" class="w-layout-hflex fda-service-box fda-radius fda-overflow-hidden">
               <div class="w-layout-hflex fda-service-background-image">
                 <div class="w-layout-hflex fda-image-box"><img
-                    src="{{ asset('images/6a6305bf5040b777232a157c_Bride.avif') }}" loading="lazy" alt="Bride"
-                    class="fda-move-image" /></div>
+                    src="{{ $getImageUrl(isset($serviceOfferItems[0]) ? $serviceOfferItems[0]->image : null, asset('images/6a6305bf5040b777232a157c_Bride.avif')) }}"
+                    loading="lazy" alt="service image" class="fda-move-image" /></div>
               </div>
               <div class="w-layout-vflex fda-service-box-text fda-radius fda-mobile-text-center">
-                <div text-appear="" class="fda-text-style-h5 fda-color-white">Artful floral design</div>
-                <p text-appear="" class="fda-gap-none fda-color-white">Curating organic and elegant arrangements that
-                  transform your venue into a breathtaking sanctuary.</p>
+                <div text-appear="" class="fda-text-style-h5 fda-color-white">
+                  {{ isset($serviceOfferItems[0]) ? $serviceOfferItems[0]->title : 'Artful floral design' }}</div>
+                <p text-appear="" class="fda-gap-none fda-color-white">
+                  {{ isset($serviceOfferItems[0]) ? $serviceOfferItems[0]->description : 'Curating organic and elegant arrangements that transform your venue into a breathtaking sanctuary.' }}
+                </p>
               </div>
             </div>
             <div class="w-layout-hflex fda-service-bottom-box">
               <div appear="" class="w-layout-hflex fda-service-box-v2 fda-radius fda-overflow-hidden">
                 <div class="w-layout-hflex fda-service-background-image">
                   <div class="w-layout-hflex fda-image-box"><img
-                      src="{{ asset('images/6a6305be5040b777232a14eb_Bride-image.avif') }}" loading="lazy"
-                      alt="Bride-image" class="fda-move-image" /></div>
+                      src="{{ $getImageUrl(isset($serviceOfferItems[1]) ? $serviceOfferItems[1]->image : null, asset('images/6a6305be5040b777232a14eb_Bride-image.avif')) }}"
+                      loading="lazy" alt="service image" class="fda-move-image" /></div>
                 </div>
                 <div class="w-layout-vflex fda-service-box-text fda-radius fda-mobile-text-center">
-                  <div text-appear="" class="fda-text-style-h5 fda-color-white">Bespoke wedding planning</div>
-                  <p text-appear="" class="fda-gap-none fda-color-white">We provide comprehensive management to ensure a
-                    nice seamless journey stress-free celebration of your love.</p>
+                  <div text-appear="" class="fda-text-style-h5 fda-color-white">
+                    {{ isset($serviceOfferItems[1]) ? $serviceOfferItems[1]->title : 'Bespoke wedding planning' }}</div>
+                  <p text-appear="" class="fda-gap-none fda-color-white">
+                    {{ isset($serviceOfferItems[1]) ? $serviceOfferItems[1]->description : 'We provide comprehensive management to ensure a nice seamless journey stress-free celebration of your love.' }}
+                  </p>
                 </div>
               </div>
               <div appear="" class="w-layout-hflex fda-service-box-v2 fda-radius fda-overflow-hidden">
                 <div class="w-layout-hflex fda-service-background-image">
                   <div class="w-layout-hflex fda-image-box"><img
-                      src="{{ asset('images/6a6305be5040b777232a14ea_Bride-image.avif') }}" loading="lazy"
-                      alt="Bride-image" class="fda-move-image" /></div>
+                      src="{{ $getImageUrl(isset($serviceOfferItems[2]) ? $serviceOfferItems[2]->image : null, asset('images/6a6305be5040b777232a14ea_Bride-image.avif')) }}"
+                      loading="lazy" alt="Bride-image" class="fda-move-image" /></div>
                 </div>
                 <div class="w-layout-vflex fda-service-box-text fda-radius fda-mobile-text-center">
-                  <div text-appear="" class="fda-text-style-h5 fda-color-white">Serene bridal preparation</div>
-                  <p text-appear="" class="fda-gap-none fda-color-white">Creating a calm space for your morning of
-                    radiant, peaceful, and beautifully effortless preparation.</p>
+                  <div text-appear="" class="fda-text-style-h5 fda-color-white">
+                    {{ isset($serviceOfferItems[2]) ? $serviceOfferItems[2]->title : 'Serene bridal preparation' }}
+                  </div>
+                  <p text-appear="" class="fda-gap-none fda-color-white">
+                    {{ isset($serviceOfferItems[2]) ? $serviceOfferItems[2]->description : 'Creating a calm space for your morning of radiant, peaceful, and beautifully effortless preparation.' }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -494,158 +537,150 @@
           <div class="w-layout-hflex fda-planning-content fda-overflow-hidden">
             <div class="w-layout-blockcontainer fda-container-medium fda-z-index-10 w-container">
               <div class="w-layout-vflex fda-planning-card-wrap fda-mobile-text-center">
-                <div class="w-layout-vflex fda-planning-card">
-                  <div class="w-layout-vflex fda-planniing-top-text">
-                    <div class="fda-text-style-h3">Consultation</div>
-                  </div>
-                  <div class="w-layout-vflex fda-planning-inner-box">
-                    <div class="w-layout-hflex fda-planning-icon-box"><img loading="lazy"
-                        src="{{ asset('images/6a6305bf5040b777232a1525_Vision.svg') }}" alt="Vision"
-                        class="fda-planning-icon" /></div>
-                    <div class="fda-planing-small-title">
-                      <div class="fda-text-style-h5">Vision planning</div>
+                @if(!empty($serviceProcess->steps))
+                  <style>
+                    @media screen and (min-width: 992px) {
+                      .fda-planning-main-block {
+                        height:
+                          {{ (count($serviceProcess->steps) - 1) * 50 + 100 }}
+                          vh !important;
+                      }
+
+                      .fda-planning-card.custom-step {
+                        position: absolute;
+                        visibility: visible !important;
+                      }
+
+                      @foreach($serviceProcess->steps as $index => $step)
+                        .fda-planning-card.custom-step-{{ $index + 1 }} {
+                          z-index:
+                            {{ $index + 1 }}
+                          ;
+                        }
+
+                      @endforeach
+                    }
+
+                    @media screen and (max-width: 991px) {
+                      .fda-planning-card.custom-step {
+                        position: static !important;
+                      }
+                    }
+                  </style>
+                  @foreach($serviceProcess->steps as $index => $step)
+                    <div
+                      class="w-layout-vflex fda-planning-card {{ $index > 0 ? 'custom-step custom-step-' . ($index + 1) : '' }}">
+                      <div class="w-layout-vflex fda-planniing-top-text">
+                        <div class="fda-text-style-h3">Step {{ $step['step_number'] ?? sprintf('%02d', $index + 1) }}</div>
+                      </div>
+                      <div class="w-layout-vflex fda-planning-inner-box">
+                        <div class="w-layout-hflex fda-planning-icon-box"><img loading="lazy"
+                            src="{{ $getImageUrl($step['image'] ?? null, asset('images/6a6305bf5040b777232a1525_Vision.svg')) }}"
+                            alt="icon" class="fda-planning-icon" /></div>
+                        <div class="fda-planing-small-title">
+                          <div class="fda-text-style-h5">{{ $step['title'] ?? '' }}</div>
+                        </div>
+                        <p class="fda-gap-none">{{ $step['description'] ?? '' }}</p>
+                      </div>
                     </div>
-                    <p class="fda-gap-none">We understand your story, style, and dreams to craft a truly personalized
-                      wedding celebration.</p>
-                  </div>
-                </div>
-                <div class="w-layout-vflex fda-planning-card fda-2">
-                  <div class="w-layout-vflex fda-planniing-top-text">
-                    <div class="fda-text-style-h3">Planning</div>
-                  </div>
-                  <div class="w-layout-vflex fda-planning-inner-box">
-                    <div class="w-layout-hflex fda-planning-icon-box"><img loading="lazy"
-                        src="{{ asset('images/6a6305bf5040b777232a1524_Planning-icon.svg') }}" alt="Planning icon"
-                        class="fda-planning-icon" /></div>
-                    <div class="fda-planing-small-title">
-                      <div class="fda-text-style-h5">Design phase</div>
-                    </div>
-                    <p class="fda-gap-none">From themes to timelines, we curate every detail for a seamless, beautifully
-                      organized celebration.</p>
-                  </div>
-                </div>
-                <div class="w-layout-vflex fda-planning-card fda-3">
-                  <div class="w-layout-vflex fda-planniing-top-text">
-                    <div class="fda-text-style-h3">Execution</div>
-                  </div>
-                  <div class="w-layout-vflex fda-planning-inner-box">
-                    <div class="w-layout-hflex fda-planning-icon-box"><img loading="lazy"
-                        src="{{ asset('images/6a6305bf5040b777232a1527_Support.svg') }}" alt="Support"
-                        class="fda-planning-icon" /></div>
-                    <div class="fda-planing-small-title">
-                      <div class="fda-text-style-h5">On-site support</div>
-                    </div>
-                    <p class="fda-gap-none">From arrivals to the final dance, we oversee every single moment to create a
-                      flawless celebration.</p>
-                  </div>
-                </div>
+                  @endforeach
+                @endif
               </div>
             </div>
           </div>
         </section>
       </div>
     </div>
-    
-      <section data-wf--fda-faq--variant="base" class="fda-faq fda-section-gap-bottom fda-overflow-hidden">
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth > 991) {
+          const mainBlock = document.querySelector('.fda-planning-main-block');
+          const cards = document.querySelectorAll('.fda-planning-card.custom-step');
+
+          cards.forEach((card, i) => {
+            gsap.fromTo(card,
+              { y: '120vh', opacity: 1 },
+              {
+                y: '0vh',
+                ease: "none",
+                scrollTrigger: {
+                  trigger: mainBlock,
+                  start: `top+=${i * 80}vh top`,
+                  end: `top+=${(i + 1) * 80}vh top`,
+                  scrub: true,
+                }
+              }
+            );
+          });
+        }
+      });
+    </script>
+
+    <section data-wf--fda-faq--variant="base" class="fda-faq fda-section-gap-bottom fda-overflow-hidden">
       <div class="w-layout-blockcontainer fda-container-medium w-container">
         <div class="w-layout-hflex fda-faq-content">
           <div appear="" class="w-layout-hflex fda-faq-image-box">
             <div class="w-layout-hflex fda-faq-image-one fda-radius fda-overflow-hidden">
               <div class="w-layout-hflex fda-image-box"><img loading="lazy"
-                  src="{{ asset('images/6a6305bf5040b777232a16b0_Faq-image.avif') }}" alt="Faq image"
-                  class="fda-move-image" />
+                  src="{{ $getImageUrl($serviceFaqSection->image_one ?? null, asset('images/6a6305bf5040b777232a16b0_Faq-image.avif')) }}"
+                  alt="Faq image" class="fda-move-image" />
                 <div class="fda-image-layer"></div>
               </div>
             </div>
             <div class="w-layout-vflex fda-faq-image-box-2-content">
               <div class="w-layout-hflex fda-faq-image-two fda-radius fda-overflow-hidden">
                 <div class="w-layout-hflex fda-image-box"><img loading="lazy"
-                    src="{{ asset('images/6a6305bf5040b777232a1575_faq-image.avif') }}" alt="faq-image"
-                    class="fda-move-image" />
+                    src="{{ $getImageUrl($serviceFaqSection->image_two ?? null, asset('images/6a6305bf5040b777232a1575_faq-image.avif')) }}"
+                    alt="faq-image" class="fda-move-image" />
                   <div class="fda-image-layer"></div>
                 </div>
               </div>
               <div class="w-layout-vflex fda-wed-users-box fda-mobile-text-center">
                 <div class="w-layout-hflex fda-user-image"><img loading="lazy"
-                    src="{{ asset('images/6a6305bf5040b777232a15a1_User.avif') }}" alt="User" /></div>
+                    src="{{ $getImageUrl($serviceFaqSection->contact_image ?? null, asset('images/6a6305bf5040b777232a15a1_User.avif')) }}"
+                    alt="User" /></div>
                 <div class="fda-wed-text">
-                  <div class="fda-color-dark-brown">All your questions are always welcome!</div>
-                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ route('contact') }}"
+                  <div class="fda-color-dark-brown">
+                    {{ $serviceFaqSection->contact_title ?? 'All your questions are always welcome!' }}</div>
+                </div><a data-wf--fda-button-v1--variant="rose-background"
+                  href="{{ url($serviceFaqSection->contact_button_url ?? route('contact')) }}"
                   class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
-                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">Contact now</div>
-                    <div class="fda-button-text fda-2">Contact now</div>
+                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">
+                      {{ $serviceFaqSection->contact_button_text ?? 'Contact now' }}</div>
+                    <div class="fda-button-text fda-2">{{ $serviceFaqSection->contact_button_text ?? 'Contact now' }}
+                    </div>
                   </div>
                 </a>
               </div>
             </div>
           </div>
           <div class="w-layout-vflex fda-faq-question-box">
-            <div text-appear="" class="fda-tag-text-v1 fda-tag-gap-h2 fda-color-beidge">FAQ</div>
-            <h2 text-appear="" class="fda-gap-none fda-mobile-text-center">Elegant answers for your special celebrations
-            </h2>
+            <div text-appear="" class="fda-tag-text-v1 fda-tag-gap-h2 fda-color-beidge">
+              {{ $serviceFaqSection->tag ?? 'FAQ' }}</div>
+            <h2 text-appear="" class="fda-gap-none fda-mobile-text-center">
+              {!! $serviceFaqSection->title ?? 'Elegant answers for your special celebrations' !!}</h2>
             <div class="w-layout-vflex fda-faq-question-box-v2">
-              <div appear="" faq="" class="w-layout-vflex fda-faq-box fda-top-gap">
-                <div class="w-layout-hflex fda-question-box">
-                  <div class="fda-text-style-h6">How do you plan our wedding from start to finish?</div>
-                  <div class="w-layout-hflex fda-faq-arrow-box">
-                    <div class="fda-arrow-one"></div>
-                    <div faq-arrow="" class="fda-arrow-two"></div>
+              @if(!empty($serviceFaqs))
+                @foreach($serviceFaqs as $faq)
+                  <div appear="" faq="" class="w-layout-vflex fda-faq-box {{ $loop->first ? 'fda-top-gap' : '' }}">
+                    <div class="w-layout-hflex fda-question-box">
+                      <div class="fda-text-style-h6">{{ $faq->question }}</div>
+                      <div class="w-layout-hflex fda-faq-arrow-box">
+                        <div class="fda-arrow-one"></div>
+                        <div faq-arrow="" class="fda-arrow-two"></div>
+                      </div>
+                    </div>
+                    <div faq-answer="" class="fda-answer-wrapper">
+                      <div class="fda-answer-box">
+                        <p class="fda-gap-none">{{ $faq->answer }}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div faq-answer="" class="fda-answer-wrapper">
-                  <div class="fda-answer-box">
-                    <p class="fda-gap-none">We manage every detail seamlessly, from the initial concept design and venue
-                      scouting to vendor curation, timeline management.</p>
-                  </div>
-                </div>
-              </div>
-              <div appear="" faq="" class="w-layout-vflex fda-faq-box">
-                <div class="w-layout-hflex fda-question-box">
-                  <div class="fda-text-style-h6">Can you customize weddings based on our theme?</div>
-                  <div class="w-layout-hflex fda-faq-arrow-box">
-                    <div class="fda-arrow-one"></div>
-                    <div faq-arrow="" class="fda-arrow-two"></div>
-                  </div>
-                </div>
-                <div faq-answer="" class="fda-answer-wrapper">
-                  <div class="fda-answer-box">
-                    <p class="fda-gap-none">Absolutely. We build bespoke experiences tailored to your vision,
-                      translating unique color palettes, custom decor, and personal styling.</p>
-                  </div>
-                </div>
-              </div>
-              <div appear="" faq="" class="w-layout-vflex fda-faq-box">
-                <div class="w-layout-hflex fda-question-box">
-                  <div class="fda-text-style-h6">Do you offer budget friendly planning options?</div>
-                  <div class="w-layout-hflex fda-faq-arrow-box">
-                    <div class="fda-arrow-one"></div>
-                    <div faq-arrow="" class="fda-arrow-two"></div>
-                  </div>
-                </div>
-                <div faq-answer="" class="fda-answer-wrapper">
-                  <div class="fda-answer-box">
-                    <p class="fda-gap-none">Yes. We offer flexible planning packages and strategic consulting to
-                      optimize your wedding budget without ever compromising on your vision.</p>
-                  </div>
-                </div>
-              </div>
-              <div appear="" faq="" class="w-layout-vflex fda-faq-box">
-                <div class="w-layout-hflex fda-question-box">
-                  <div class="fda-text-style-h6">What is your policy on cancellations or date changes?</div>
-                  <div class="w-layout-hflex fda-faq-arrow-box">
-                    <div class="fda-arrow-one"></div>
-                    <div faq-arrow="" class="fda-arrow-two"></div>
-                  </div>
-                </div>
-                <div faq-answer="" class="fda-answer-wrapper">
-                  <div class="fda-answer-box">
-                    <p class="fda-gap-none">Transfers are available for open dates. Cancellations made ninety days
-                      before the event receive refunds minus the initial non-refundable deposit.</p>
-                  </div>
-                </div>
-              </div>
+                @endforeach
+              @endif
             </div>
           </div>
         </div>
@@ -933,7 +968,7 @@
 
   <!--Webflow custom code: banner-text-appear-->
   <!--Webflow custom code: banner-text-appear-->
-  
+
   <script src="{{ asset('js/SplitText.min.js') }}"></script>
 
   <script>
@@ -995,7 +1030,7 @@
   Matches the panel's target field: [banner-appear]
 -->
 
-  
+
 
   <script>
     window.Webflow ||= [];

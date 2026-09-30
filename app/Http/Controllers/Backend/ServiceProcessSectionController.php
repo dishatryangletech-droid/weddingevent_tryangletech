@@ -28,7 +28,7 @@ class ServiceProcessSectionController extends Controller
             'steps.*.step_number' => 'nullable|string|max:50',
             'steps.*.title' => 'required|string|max:255',
             'steps.*.description' => 'required|string',
-            'steps.*.image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:5120',
+            'steps.*.image' => 'nullable|file|mimes:jpeg,png,jpg,webp,avif,svg|max:5120',
         ]);
 
         $process = ServiceProcessSection::getSettings();
