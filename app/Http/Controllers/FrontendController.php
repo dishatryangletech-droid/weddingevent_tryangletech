@@ -15,7 +15,59 @@ class FrontendController extends Controller
         $portfolios = $this->getPortfolioData();
         $banner = \App\Models\HomeBanner::first();
         $bannerPortfolios = \App\Models\HomeBannerPortfolio::orderBy('sort_order', 'asc')->get();
-        return view('frontend.home', compact('portfolios', 'banner', 'bannerPortfolios'));
+        $homeAbout = \App\Models\HomeAbout::first();
+        $homePromise = \App\Models\HomePromise::first();
+        $homeCorePromise = \App\Models\HomeCorePromise::first();
+        $homeServiceSection = \App\Models\HomeServiceSection::first();
+        $homeServiceCards = \App\Models\HomeServiceCard::orderBy('sort_order', 'asc')->get();
+        $homePhilosophySection = \App\Models\HomePhilosophySection::first();
+        $homePhilosophyItems = \App\Models\HomePhilosophyItem::orderBy('sort_order', 'asc')->get();
+        $homePortfolioSection = \App\Models\HomePortfolioSection::first();
+        $homeRecommendedPortfolios = \App\Models\HomeRecommendedPortfolio::orderBy('sort_order', 'asc')->get();
+        $homeRecognitionsSection = \App\Models\HomeRecognitionsSection::first();
+        $homeRecognitionItems = \App\Models\HomeRecognitionItem::orderBy('sort_order', 'asc')->get();
+
+        $bannerPortfoliosIds = $bannerPortfolios->pluck('title')->toArray();
+        $bannerPortfoliosData = [];
+        foreach ($bannerPortfoliosIds as $t) {
+            $found = collect($portfolios)->firstWhere('title', $t);
+            if ($found) $bannerPortfoliosData[] = $found;
+        }
+
+        $recommendedPortfoliosIds = $homeRecommendedPortfolios->pluck('title')->toArray();
+        $recommendedPortfoliosData = [];
+        foreach ($recommendedPortfoliosIds as $t) {
+            $found = collect($portfolios)->firstWhere('title', $t);
+            if ($found) $recommendedPortfoliosData[] = $found;
+        }
+
+        // Collect all gallery images across all portfolios
+        $homeGalleryImages = [];
+        foreach ($portfolios as $portfolioItem) {
+            if (!empty($portfolioItem['gallery'])) {
+                foreach ($portfolioItem['gallery'] as $img) {
+                    $homeGalleryImages[] = $img;
+                }
+            }
+        }
+
+        $getImageUrl = function ($image, $fallback = null) {
+            if (!$image) return $fallback;
+            if (str_starts_with($image, 'images/') || str_starts_with($image, 'uploads/')) {
+                return asset($image);
+            }
+            return asset('storage/' . $image);
+        };
+
+        return view('frontend.home', compact(
+            'portfolios', 'banner', 'bannerPortfolios',
+            'homeAbout', 'homePromise', 'homeCorePromise',
+            'homeServiceSection', 'homeServiceCards',
+            'homePhilosophySection', 'homePhilosophyItems',
+            'homePortfolioSection', 'homeRecommendedPortfolios', 'recommendedPortfoliosData',
+            'homeRecognitionsSection', 'homeRecognitionItems',
+            'getImageUrl', 'bannerPortfoliosData', 'homeGalleryImages'
+        ));
     }
 
     /**

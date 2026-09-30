@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\HomePortfolioSection;
 use App\Models\HomeBannerPortfolio;
 use App\Models\HomeRecommendedPortfolio;
-use App\Models\PortfolioMaster;
+use App\Models\PortfolioItem;
 
 class HomePortfolioController extends Controller
 {
@@ -21,7 +21,7 @@ class HomePortfolioController extends Controller
         $recommendedPortfolios = HomeRecommendedPortfolio::orderBy('sort_order', 'asc')->get();
         $recommendedAddedTitles = $recommendedPortfolios->pluck('title')->toArray();
 
-        $masterPortfolios = PortfolioMaster::all();
+        $masterPortfolios = PortfolioItem::all();
 
         return view('backend.home.portfolio.index', compact(
             'section',
@@ -49,10 +49,10 @@ class HomePortfolioController extends Controller
     public function storeBannerPortfolio(Request $request)
     {
         $request->validate([
-            'portfolio_master_id' => 'required|exists:portfolio_masters,id',
+            'portfolio_master_id' => 'required|exists:portfolio_items,id',
         ]);
 
-        $master = PortfolioMaster::findOrFail($request->portfolio_master_id);
+        $master = PortfolioItem::findOrFail($request->portfolio_master_id);
 
         $portfolio = new HomeBannerPortfolio();
         $portfolio->title = $master->title;
@@ -89,10 +89,10 @@ class HomePortfolioController extends Controller
     public function storeRecommendedPortfolio(Request $request)
     {
         $request->validate([
-            'portfolio_master_id' => 'required|exists:portfolio_masters,id',
+            'portfolio_master_id' => 'required|exists:portfolio_items,id',
         ]);
 
-        $master = PortfolioMaster::findOrFail($request->portfolio_master_id);
+        $master = PortfolioItem::findOrFail($request->portfolio_master_id);
 
         $portfolio = new HomeRecommendedPortfolio();
         $portfolio->title = $master->title;

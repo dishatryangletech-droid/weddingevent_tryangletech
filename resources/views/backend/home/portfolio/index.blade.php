@@ -60,7 +60,7 @@
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <span style="font-size: 1.2rem; color: #999;">☰</span>
                     @if($portfolio->icon)
-                        <img src="{{ asset($portfolio->icon) }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                        <img src="{{ str_starts_with($portfolio->icon, 'images/') || str_starts_with($portfolio->icon, 'uploads/') ? asset($portfolio->icon) : asset('storage/' . $portfolio->icon) }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                     @else
                         <div style="width: 50px; height: 50px; background: #eee; border-radius: 4px;"></div>
                     @endif
@@ -118,7 +118,7 @@
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <span style="font-size: 1.2rem; color: #999;">☰</span>
                     @if($portfolio->icon)
-                        <img src="{{ asset($portfolio->icon) }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                        <img src="{{ str_starts_with($portfolio->icon, 'images/') || str_starts_with($portfolio->icon, 'uploads/') ? asset($portfolio->icon) : asset('storage/' . $portfolio->icon) }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                     @else
                         <div style="width: 50px; height: 50px; background: #eee; border-radius: 4px;"></div>
                     @endif

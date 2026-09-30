@@ -13,7 +13,7 @@ class HomeServiceController extends Controller
     {
         $section = HomeServiceSection::first();
         $cards = HomeServiceCard::orderBy('sort_order', 'asc')->get();
-        $masterServices = \App\Models\ServiceMaster::all();
+        $masterServices = \App\Models\ServiceOfferItem::all();
         $addedTitles = $cards->pluck('title')->toArray();
         return view('backend.home.services.index', compact('section', 'cards', 'masterServices', 'addedTitles'));
     }
@@ -33,10 +33,10 @@ class HomeServiceController extends Controller
     public function storeCard(Request $request)
     {
         $request->validate([
-            'service_master_id' => 'required|exists:service_masters,id',
+            'service_master_id' => 'required|exists:service_offer_items,id',
         ]);
 
-        $master = \App\Models\ServiceMaster::findOrFail($request->service_master_id);
+        $master = \App\Models\ServiceOfferItem::findOrFail($request->service_master_id);
 
         $card = new HomeServiceCard();
         $card->title = $master->title;
