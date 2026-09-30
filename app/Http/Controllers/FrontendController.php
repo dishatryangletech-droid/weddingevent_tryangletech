@@ -39,7 +39,29 @@ class FrontendController extends Controller
      */
     public function about(): View
     {
-        return view('frontend.about');
+        $aboutBanner = \App\Models\AboutPageBanner::first();
+        $aboutStory = \App\Models\AboutPageStory::first();
+        $aboutMission = \App\Models\AboutPageMission::first();
+        $aboutTeam = \App\Models\AboutPageTeam::first();
+        $aboutTeamItems = \App\Models\AboutPageTeamItem::orderBy('sort_order', 'asc')->get();
+        $aboutStat = \App\Models\AboutPageStat::first();
+        $aboutStatItems = \App\Models\AboutPageStatItem::orderBy('sort_order', 'asc')->get();
+        $aboutExpertise = \App\Models\AboutPageExpertise::first();
+        $aboutExpertiseItems = \App\Models\AboutPageExpertiseItem::orderBy('sort_order', 'asc')->get();
+
+        $getImageUrl = function ($image, $fallback = null) {
+            if (!$image) return $fallback;
+            if (str_starts_with($image, 'images/') || str_starts_with($image, 'uploads/')) {
+                return asset($image);
+            }
+            return asset('storage/' . $image);
+        };
+
+        return view('frontend.about', compact(
+            'aboutBanner', 'aboutStory', 'aboutMission', 'aboutTeam', 'aboutTeamItems',
+            'aboutStat', 'aboutStatItems', 'aboutExpertise', 'aboutExpertiseItems',
+            'getImageUrl'
+        ));
     }
 
     /**
