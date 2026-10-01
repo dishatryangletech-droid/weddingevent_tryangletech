@@ -13,14 +13,16 @@ class DashboardController extends Controller
     public function index()
     {
         $stats = [
-            'total_slides' => 0,
-            'active_slides' => 0,
             'total_users' => User::count(),
-            'total_services' => 0,
+            'total_services' => \App\Models\ServiceOfferItem::count(),
+            'total_portfolios' => \App\Models\PortfolioItem::count(),
+            'total_events' => \App\Models\EventPageItem::count(),
+            'total_blogs' => \App\Models\BlogItem::count(),
+            'total_testimonials' => \App\Models\Testimonial::count(),
+            'total_contact_enquiries' => \App\Models\ContactEnquiry::count(),
+            'total_quote_requests' => \App\Models\Quote::count(),
         ];
 
-        $recentSliders = collect([]);
-
-        return view('backend.dashboard', compact('stats', 'recentSliders'));
+        return view('backend.dashboard', compact('stats'));
     }
 }

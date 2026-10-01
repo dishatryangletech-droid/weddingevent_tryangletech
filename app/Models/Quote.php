@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     protected $fillable = [
-        'name', 'email', 'guests', 'package', 'venue', 'wedding_date', 'message', 'status', 'is_replied', 'reply_message'
+        'name', 'email', 'mobileno', 'guests', 'package', 'venue', 'wedding_date', 'event_date', 'message', 'status', 'is_replied', 'reply_message'
     ];
 }

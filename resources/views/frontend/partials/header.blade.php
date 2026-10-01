@@ -14,7 +14,7 @@
     role="banner" class="fda-navbar w-nav">
     <div class="w-layout-blockcontainer fda-container-medium w-container">
       <div class="fda-navbar-wrapper"><a href="{{ route('home') }}" class="fda-navbar-logo-v1 w-nav-brand" style="max-width: 220px;"><img
-            width="220" style="height: auto; filter: brightness(0.4) contrast(1.2);" alt="Site-logo"
+            width="220" style="height: 110px;width: 165px;filter: brightness(0.4) contrast(1.2);" alt="Site-logo"
             src="{{ asset('images/elegant_occasions_logo.png') }}" /></a>
         <nav role="navigation" class="fda-navbar-menu-holder w-nav-menu">
           <div class="w-layout-hflex fda-navbar-v1-menu-holder-inner">
@@ -189,13 +189,13 @@
                     <option value="Third">50 to 80 guests</option>
                     <option value="Another option">100+ guests</option>
                   </select></div>
-                <div class="w-layout-vflex fda-form-field"><label for="Package-Select-V3" id="boat-text-v6"
-                    aria-label="" class="fda-form-v6-label">Package*</label><select id="Package-Select-V3" name="package" data-name="Package-Select-V3" required="" class="fda-select-field-v2 w-select"><option value="">Select package</option>@foreach(\App\Models\ServiceMaster::all() as $service)<option value="{{ $service->title }}">{{ $service->title }}</option>@endforeach</select></div>
+                <div class="w-layout-vflex fda-form-field"><label for="MobileNo-V3" id="mobile-text-v6"
+                    aria-label="" class="fda-form-v6-label">Mobile No.*</label><input class="fda-text-field w-input" maxlength="10" minlength="10" pattern="\d{10}" title="Please enter exactly 10 digits" name="mobileno" data-name="mobileno" placeholder="10-digit Mobile No." type="tel" id="MobileNo-V3" required="" oninput="this.value = this.value.replace(/[^0-9]/g, '');" /></div>
               </div>
-              <div class="w-layout-vflex fda-form-field"><label for="Select-Venue-V3" id="rental-text-v6" aria-label=""
-                  class="fda-form-v6-label">Venue*</label><select id="Select-Venue-V3" name="venue" data-name="Select-Venue-V3" required="" class="fda-select-field-v2 w-select"><option value="">Select venue</option>@foreach(\App\Models\PortfolioMaster::all() as $portfolio)<option value="{{ $portfolio->title }}">{{ $portfolio->title }}</option>@endforeach</select></div>
+              <!-- <div class="w-layout-vflex fda-form-field"><label for="Select-Venue-V3" id="rental-text-v6" aria-label=""
+                  class="fda-form-v6-label">Venue*</label><select id="Select-Venue-V3" name="venue" data-name="Select-Venue-V3" required="" class="fda-select-field-v2 w-select"><option value="">Select venue</option>@foreach(\App\Models\PortfolioMaster::all() as $portfolio)<option value="{{ $portfolio->title }}">{{ $portfolio->title }}</option>@endforeach</select></div> -->
               <div class="w-layout-vflex fda-form-field"><label for="boat-select-v6" id="booking-text-v6" aria-label=""
-                  class="fda-form-v6-label">Wedding date*</label><input type="date" name="wedding_date" required="" aria-label="date"
+                  class="fda-form-v6-label">Event date*</label><input type="date" name="event_date" required="" aria-label="date"
                   class="fda-select-field-v2" /></div>
               <div class="w-layout-vflex fda-form-field fda-last"><label for="Message-V3" id="message-text-v6"
                   aria-label="" class="fda-form-v6-label">Special message</label><textarea class="fda-text-area w-input"

@@ -728,42 +728,56 @@
               src="{{ $getImageUrl($aboutStat->background_image ?? null, asset('images/6a6305bf5040b777232a1754_about-rating-background-image.avif')) }}" loading="lazy"
               alt="about-rating-background-image" /></div>
           <div class="w-layout-vflex fda-rating-content fda-overflow-hidden">
-            <div rating-box-1="" class="w-layout-vflex fda-rating-box fda-1">
-              <div class="w-layout-hflex fda-rating-top-text">
-                <div class="w-layout-hflex fda-rating-text">
-                  <div class="fda-text-style-h3">{!! isset($aboutStatItems[0]) ? $aboutStatItems[0]->title : 'Since 2014' !!}</div>
+            @if(isset($aboutStatItems) && count($aboutStatItems) > 0)
+              @foreach($aboutStatItems as $index => $item)
+              <div rating-box-{{ $index + 1 }}="" class="w-layout-vflex fda-rating-box {{ $index === 0 ? 'fda-1' : 'fda-2' }}">
+                <div class="w-layout-hflex fda-rating-top-text">
+                  <div class="w-layout-hflex fda-rating-text" style="gap: 15px; align-items: baseline;">
+                    <div class="fda-text-style-h6">{{ $item->item_number }}</div>
+                    <div class="fda-text-style-h3">{!! $item->number_title !!}</div>
+                  </div>
                 </div>
-                <div class="fda-text-style-h6">01.</div>
+                <p class="fda-gap-none">{{ $item->description }}</p>
               </div>
-              <p class="fda-gap-none">{{ isset($aboutStatItems[0]) ? $aboutStatItems[0]->description : 'Couples routinely praise our team for providing flawless coordination, bespoke design, and magical celebrations that thrill everyone involved.' }}</p>
-            </div>
-            <div rating-box-2="" class="w-layout-vflex fda-rating-box fda-2">
-              <div class="w-layout-hflex fda-rating-top-text">
-                <div class="w-layout-hflex fda-rating-text">
-                  <div class="fda-text-style-h3">{!! isset($aboutStatItems[1]) ? $aboutStatItems[1]->title : '120+ weddings' !!}</div>
+              @endforeach
+            @else
+              <div rating-box-1="" class="w-layout-vflex fda-rating-box fda-1">
+                <div class="w-layout-hflex fda-rating-top-text">
+                  <div class="w-layout-hflex fda-rating-text" style="gap: 15px; align-items: baseline;">
+                    <div class="fda-text-style-h6">01.</div>
+                    <div class="fda-text-style-h3">Since 2014</div>
+                  </div>
                 </div>
-                <div class="fda-text-style-h6">02.</div>
+                <p class="fda-gap-none">Couples routinely praise our team for providing flawless coordination, bespoke design, and magical celebrations that thrill everyone involved.</p>
               </div>
-              <p class="fda-gap-none">{{ isset($aboutStatItems[1]) ? $aboutStatItems[1]->description : 'Clients frequently applaud our brand for offering premium guidance, detailed curation, and stunning events that delight couples without fail.' }}</p>
-            </div>
-            <div rating-box-3="" class="w-layout-vflex fda-rating-box fda-2">
-              <div class="w-layout-hflex fda-rating-top-text">
-                <div class="w-layout-hflex fda-rating-text">
-                  <div class="fda-text-style-h3">{!! isset($aboutStatItems[2]) ? $aboutStatItems[2]->title : '1500+ guests / yr' !!}</div>
+              <div rating-box-2="" class="w-layout-vflex fda-rating-box fda-2">
+                <div class="w-layout-hflex fda-rating-top-text">
+                  <div class="w-layout-hflex fda-rating-text" style="gap: 15px; align-items: baseline;">
+                    <div class="fda-text-style-h6">02.</div>
+                    <div class="fda-text-style-h3">120+ weddings</div>
+                  </div>
                 </div>
-                <div class="fda-text-style-h6">03.</div>
+                <p class="fda-gap-none">Clients frequently applaud our brand for offering premium guidance, detailed curation, and stunning events that delight couples without fail.</p>
               </div>
-              <p class="fda-gap-none">{{ isset($aboutStatItems[2]) ? $aboutStatItems[2]->description : 'Families regularly award us top marks for providing custom attention, intentional styling, and memorable events that amaze guests every time.' }}</p>
-            </div>
-            <div rating-box-4="" class="w-layout-vflex fda-rating-box fda-2">
-              <div class="w-layout-hflex fda-rating-top-text">
-                <div class="w-layout-hflex fda-rating-text">
-                  <div class="fda-text-style-h3">{!! isset($aboutStatItems[3]) ? $aboutStatItems[3]->title : '4.9 <div class="w-layout-hflex fda-rating-star" style="display:inline-flex;margin: 0 5px;"><img src="'.asset('images/6a6305bf5040b777232a15f0_Star.svg').'" loading="lazy" alt="Star" /></div> rating' !!}</div>
+              <div rating-box-3="" class="w-layout-vflex fda-rating-box fda-2">
+                <div class="w-layout-hflex fda-rating-top-text">
+                  <div class="w-layout-hflex fda-rating-text" style="gap: 15px; align-items: baseline;">
+                    <div class="fda-text-style-h6">03.</div>
+                    <div class="fda-text-style-h3">1500+ guests / yr</div>
+                  </div>
                 </div>
-                <div class="fda-text-style-h6">04.</div>
+                <p class="fda-gap-none">Families regularly award us top marks for providing custom attention, intentional styling, and memorable events that amaze guests every time.</p>
               </div>
-              <p class="fda-gap-none">{{ isset($aboutStatItems[3]) ? $aboutStatItems[3]->description : 'Our clients consistently rate us highly for delivering exceptional service, thoughtful planning, and beautifully executed weddings that exceed expectations every time' }}</p>
-            </div>
+              <div rating-box-4="" class="w-layout-vflex fda-rating-box fda-2">
+                <div class="w-layout-hflex fda-rating-top-text">
+                  <div class="w-layout-hflex fda-rating-text" style="gap: 15px; align-items: baseline;">
+                    <div class="fda-text-style-h6">04.</div>
+                    <div class="fda-text-style-h3">4.9 <div class="w-layout-hflex fda-rating-star" style="display:inline-flex;margin: 0 5px;"><img src="{{ asset('images/6a6305bf5040b777232a15f0_Star.svg') }}" loading="lazy" alt="Star" /></div> rating</div>
+                  </div>
+                </div>
+                <p class="fda-gap-none">Our clients consistently rate us highly for delivering exceptional service, thoughtful planning, and beautifully executed weddings that exceed expectations every time</p>
+              </div>
+            @endif
           </div>
         </section>
 

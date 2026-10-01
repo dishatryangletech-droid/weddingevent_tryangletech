@@ -19,7 +19,7 @@
           <tr>
             <th style="width: 140px;">Date</th>
             <th>Name & Email</th>
-            <th>Package & Venue</th>
+            <th>Mobil No</th>
             <th style="width: 120px;">Status</th>
             <th style="width: 140px; text-align: right;">Actions</th>
           </tr>
@@ -38,9 +38,8 @@
                 </div>
               </td>
               <td>
-                <div style="font-size: 0.85rem; color: var(--text-main);">
-                  <strong>Pkg:</strong> {{ $quote->package ?? 'N/A' }}<br>
-                  <strong>Venue:</strong> {{ $quote->venue ?? 'N/A' }}
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+                  <a href="tel:{{ $quote->mobileno }}" style="color: var(--primary-main); text-decoration: none;">{{ $quote->mobileno }}</a>
                 </div>
               </td>
               <td>

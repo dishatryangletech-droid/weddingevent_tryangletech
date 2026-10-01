@@ -46,6 +46,28 @@ Route::post('/contact/submit', [FrontendController::class, 'submitContact'])->na
 // Quotes (Frontend)
 Route::post('/quotes/store', [\App\Http\Controllers\QuoteController::class, 'store'])->name('quotes.store');
 
+// Clear / Storage commands
+Route::get('/storage-link', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        return empty($output) ? 'Storage linked successfully!' : $output;
+    } catch (\Exception $e) {
+        // If symlink is disabled on shared hosting, try raw PHP symlink as fallback
+        try {
+            $target = storage_path('app/public');
+            $link = public_path('storage');
+            if (!file_exists($link)) {
+                symlink($target, $link);
+                return 'Storage linked via raw PHP symlink!';
+            }
+            return 'Storage link already exists.';
+        } catch (\Exception $fallbackErr) {
+            return 'Failed to create symlink. Error: ' . $e->getMessage() . ' | Fallback Error: ' . $fallbackErr->getMessage() . '<br><br><b>Note:</b> Your shared hosting provider likely has the <code>symlink()</code> function disabled for security reasons.';
+        }
+    }
+});
+
 // Utility / Template Documentation Pages
 // Route::get('/style-guide', [FrontendController::class, 'styleGuide'])->name('style-guide');
 // Route::get('/licenses', [FrontendController::class, 'licenses'])->name('licenses');

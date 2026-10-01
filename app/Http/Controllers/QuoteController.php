@@ -13,10 +13,12 @@ class QuoteController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'mobileno' => 'nullable|string|max:20',
             'guests' => 'nullable|string|max:255',
             'package' => 'nullable|string|max:255',
             'venue' => 'nullable|string|max:255',
             'wedding_date' => 'nullable|date',
+            'event_date' => 'nullable|date',
             'message' => 'nullable|string'
         ]);
 
@@ -44,10 +46,12 @@ class QuoteController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'mobileno' => 'nullable|string|max:20',
             'guests' => 'nullable|string|max:255',
             'package' => 'nullable|string|max:255',
             'venue' => 'nullable|string|max:255',
             'wedding_date' => 'nullable|date',
+            'event_date' => 'nullable|date',
             'message' => 'nullable|string',
             'status' => 'required|string'
         ]);

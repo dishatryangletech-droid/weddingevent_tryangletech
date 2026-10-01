@@ -1,7 +1,8 @@
 <aside class="admin-sidebar">
   <div class="sidebar-header">
     <a href="{{ route('admin.dashboard') }}" class="sidebar-brand" style="width: 100%; display: block; text-align: center;">
-      <img src="{{ asset('images/elegant_occasions_logo.png') }}" alt="Elegant Occasions" style="height: auto; width: 100%; max-width: 200px; object-fit: contain;">
+      <img src="{{ asset('images/elegant_occasions_logo.png') }}" alt="Elegant Occasions" style="    height: 110px;
+    width: 165px; object-fit: contain;">
       <span class="brand-badge" style="display: none;">Admin</span>
     </a>
   </div>
