@@ -131,7 +131,7 @@
             </div>
           </div>
         </nav>
-        <div class="fda-menu-button w-nav-button">
+        <div class="fda-menu-button">
           <div data-w-id="820364d7-294d-69f1-f70c-02c9ac828211" class="fda-menu-button-main w-nav-button">
             <div class="fda-menu-line fda-top-line"></div>
             <div class="fda-menu-line fda-middle-line"></div>

@@ -758,5 +758,9 @@
             }
         };
     </script>
+    <script src="{{ asset('js/jquery-3.5.1.min.dc5e7f18c8.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/webflow.schunk.eed72d374c7ba9a2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/webflow.schunk.408c304bedb55afc.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/webflow.9bde18d1.437080bf3326686e.js') }}" type="text/javascript"></script>
 </body>
 </html>
