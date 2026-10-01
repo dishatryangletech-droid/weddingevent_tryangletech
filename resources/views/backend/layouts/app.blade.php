@@ -101,5 +101,65 @@
   <!-- Backend Admin JS -->
   <script src="{{ asset('backend/js/admin.js') }}?v={{ time() }}"></script>
   @stack('scripts')
+
+  <!-- Scroll to Top Button -->
+  <style>
+    #backendScrollToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      background-color: var(--primary-main, #1e293b);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #backendScrollToTopBtn.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #backendScrollToTopBtn:hover {
+      background-color: var(--primary-hover, #0f172a);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+  </style>
+
+  <button id="backendScrollToTopBtn" title="Go to top" onclick="document.querySelector('.admin-main').scrollTo({top: 0, behavior: 'smooth'}); window.scrollTo({top: 0, behavior: 'smooth'});">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script>
+    window.addEventListener('load', function() {
+      const scrollBtn = document.getElementById("backendScrollToTopBtn");
+      const adminMain = document.querySelector('.admin-main');
+      
+      const scrollHandler = function() {
+        let scrollPos = window.scrollY || (adminMain ? adminMain.scrollTop : 0);
+        if (scrollPos > 300) {
+          scrollBtn.classList.add("show");
+        } else {
+          scrollBtn.classList.remove("show");
+        }
+      };
+
+      window.addEventListener('scroll', scrollHandler);
+      if(adminMain) {
+        adminMain.addEventListener('scroll', scrollHandler);
+      }
+    });
+  </script>
 </body>
 </html>
