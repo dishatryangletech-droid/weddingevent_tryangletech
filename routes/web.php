@@ -43,6 +43,9 @@ Route::get('/blog/{slug}', [FrontendController::class, 'blogDetail']);
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/submit', [FrontendController::class, 'submitContact'])->name('contact.submit');
 
+// Quotes (Frontend)
+Route::post('/quotes/store', [\App\Http\Controllers\QuoteController::class, 'store'])->name('quotes.store');
+
 // Utility / Template Documentation Pages
 // Route::get('/style-guide', [FrontendController::class, 'styleGuide'])->name('style-guide');
 // Route::get('/licenses', [FrontendController::class, 'licenses'])->name('licenses');
@@ -141,6 +144,14 @@ Route::prefix("admin")->middleware("auth")->group(function () {
     Route::get('/contact-enquiries/{contactEnquiry}', [\App\Http\Controllers\ContactEnquiryController::class, 'show'])->name('admin.contact-enquiries.show');
     Route::post('/contact-enquiries/{contactEnquiry}/reply', [\App\Http\Controllers\ContactEnquiryController::class, 'reply'])->name('admin.contact-enquiries.reply');
     Route::delete('/contact-enquiries/{contactEnquiry}', [\App\Http\Controllers\ContactEnquiryController::class, 'destroy'])->name('admin.contact-enquiries.destroy');
+
+    // Quotes
+    Route::get('/quotes', [\App\Http\Controllers\QuoteController::class, 'index'])->name('admin.quotes.index');
+    Route::get('/quotes/{quote}/edit', [\App\Http\Controllers\QuoteController::class, 'edit'])->name('admin.quotes.edit');
+    Route::put('/quotes/{quote}', [\App\Http\Controllers\QuoteController::class, 'update'])->name('admin.quotes.update');
+    Route::post('/quotes/{quote}/reply', [\App\Http\Controllers\QuoteController::class, 'reply'])->name('admin.quotes.reply');
+    Route::post('/quotes/{quote}/approve', [\App\Http\Controllers\QuoteController::class, 'approve'])->name('admin.quotes.approve');
+    Route::delete('/quotes/{quote}', [\App\Http\Controllers\QuoteController::class, 'destroy'])->name('admin.quotes.destroy');
 
     // Testimonials
     Route::resource('testimonials', \App\Http\Controllers\TestimonialController::class, ['as' => 'admin']);

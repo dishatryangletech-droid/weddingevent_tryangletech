@@ -164,24 +164,25 @@
             <div class="fda-color-dark-brown">You'll received a confirmation within 24h</div>
           </div>
           <div id="Booking-Form-V2" class="fda-booking-form-block w-form">
-            <form id="wf-form-Booking-Form-V2-2" name="wf-form-Booking-Form-V2-2" data-name="Booking Form V2"
-              method="get" class="fda-booking-form" data-wf-page-id="6a6305be5040b777232a140e"
+            <form id="wf-form-Booking-Form-V2-2" action="{{ route('quotes.store') }}" name="wf-form-Booking-Form-V2-2" data-name="Booking Form V2"
+              method="post" class="fda-booking-form" data-wf-page-id="6a6305be5040b777232a140e"
               data-wf-element-id="888f69a4-80d0-22f2-c1d4-db6374c3c354"
               data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e">
+              @csrf
               <div class="w-layout-hflex fda-form-field-wrap-v3">
                 <div class="w-layout-vflex fda-form-field"><label for="Name-V3" id="name-text-v6" aria-label=""
                     class="fda-form-v6-label">Name*</label><input class="fda-text-field w-input" maxlength="256"
-                    name="Name-V3" data-name="Name-V3" aria-label="" placeholder="Your name" type="text" id="Name-V3"
+                    name="name" data-name="name" aria-label="" placeholder="Your name" type="text" id="Name-V3"
                     required="" /></div>
                 <div class="w-layout-vflex fda-form-field"><label for="Email-V3" id="email-text-v6" aria-label=""
                     class="fda-form-v6-label">Email*</label><input class="fda-text-field w-input" maxlength="256"
-                    name="Email-V3" data-name="Email-V3" placeholder="Email address" type="email" id="Email-V3"
+                    name="email" data-name="email" placeholder="Email address" type="email" id="Email-V3"
                     required="" /></div>
               </div>
               <div class="w-layout-hflex fda-form-field-wrap-v3">
                 <div class="w-layout-vflex fda-form-field"><label for="Guest-V3" id="guest-text-v6" aria-label=""
-                    class="fda-form-v6-label">Number of guests*</label><select id="Guest-V3" name="Guest-V3"
-                    data-name="Guest-V3" required="" class="fda-select-field-v2 w-select">
+                    class="fda-form-v6-label">Number of guests*</label><select id="Guest-V3" name="guests"
+                    data-name="guests" required="" class="fda-select-field-v2 w-select">
                     <option value="">Total guests</option>
                     <option value="First">1 to 10 guests</option>
                     <option value="Second">20 to 50 guests</option>
@@ -189,31 +190,16 @@
                     <option value="Another option">100+ guests</option>
                   </select></div>
                 <div class="w-layout-vflex fda-form-field"><label for="Package-Select-V3" id="boat-text-v6"
-                    aria-label="" class="fda-form-v6-label">Package*</label><select id="Package-Select-V3"
-                    name="Package-Select-V3" data-name="Package-Select-V3" required=""
-                    class="fda-select-field-v2 w-select">
-                    <option value="">Select package</option>
-                    <option value="First">Elegance package</option>
-                    <option value="Second">Classic package</option>
-                    <option value="Third">Luxury package</option>
-                  </select></div>
+                    aria-label="" class="fda-form-v6-label">Package*</label><select id="Package-Select-V3" name="package" data-name="Package-Select-V3" required="" class="fda-select-field-v2 w-select"><option value="">Select package</option>@foreach(\App\Models\ServiceMaster::all() as $service)<option value="{{ $service->title }}">{{ $service->title }}</option>@endforeach</select></div>
               </div>
               <div class="w-layout-vflex fda-form-field"><label for="Select-Venue-V3" id="rental-text-v6" aria-label=""
-                  class="fda-form-v6-label">Venue*</label><select id="Select-Venue-V3" name="Select-Venue-V3"
-                  data-name="Select-Venue-V3" required="" class="fda-select-field-v2 w-select">
-                  <option value="Select venue">Select venue</option>
-                  <option value="First">Olive grove banquet grounds</option>
-                  <option value="Second">Terraced garden stone steps</option>
-                  <option value="Third">Heritage oak banquet suite</option>
-                  <option value="Another option">Roman ruins open sanctuary</option>
-                  <option value="Another option v2">Lake como sunset terrace 50a</option>
-                </select></div>
+                  class="fda-form-v6-label">Venue*</label><select id="Select-Venue-V3" name="venue" data-name="Select-Venue-V3" required="" class="fda-select-field-v2 w-select"><option value="">Select venue</option>@foreach(\App\Models\PortfolioMaster::all() as $portfolio)<option value="{{ $portfolio->title }}">{{ $portfolio->title }}</option>@endforeach</select></div>
               <div class="w-layout-vflex fda-form-field"><label for="boat-select-v6" id="booking-text-v6" aria-label=""
-                  class="fda-form-v6-label">Wedding date*</label><input type="date" required="" aria-label="date"
+                  class="fda-form-v6-label">Wedding date*</label><input type="date" name="wedding_date" required="" aria-label="date"
                   class="fda-select-field-v2" /></div>
               <div class="w-layout-vflex fda-form-field fda-last"><label for="Message-V3" id="message-text-v6"
                   aria-label="" class="fda-form-v6-label">Special message</label><textarea class="fda-text-area w-input"
-                  maxlength="5000" name="Message-V3" data-name="Message-V3" aria-label="" placeholder="Message"
+                  maxlength="5000" name="message" data-name="message" aria-label="" placeholder="Message"
                   id="Message-V3"></textarea></div>
               <div submit-button="v1" aria-label="" class="w-layout-vflex fda-submit-button-wrapper"><a
                   data-wf--fda-button-v1--variant="black" href="#"
@@ -240,3 +226,7 @@
     </div>
   </div>
   </div>
+
+
+
+

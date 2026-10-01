@@ -130,29 +130,35 @@
                 <div class="fda-text-style-h6">{{ $aboutStory->feature_1_title ?? 'Beautifully curated' }}</div>
                 <div class="fda-story-paragraph">
                   <p class="fda-gap-none">{{ $aboutStory->feature_1_desc ?? 'Part of the wedding journey begins with understanding your unique story.' }}</p>
-                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ url($aboutStory->feature_1_button_link ?? '#') }}"
+                </div>
+                @if(!empty($aboutStory->feature_1_button_text))
+                <a data-wf--fda-button-v1--variant="rose-background" href="{{ url($aboutStory->feature_1_button_link ?? '#') }}"
                   class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
-                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">{{ $aboutStory->feature_1_button_text ?? 'View packages' }}
+                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">{{ $aboutStory->feature_1_button_text  }}
                     </div>
-                    <div class="fda-button-text fda-2">{{ $aboutStory->feature_1_button_text ?? 'View packages' }}</div>
+                    <div class="fda-button-text fda-2">{{ $aboutStory->feature_1_button_text}}</div>
                   </div>
                 </a>
+                @endif
               </div>
               <div appear="" class="w-layout-vflex fda-story-small-box fda-radius fda-box-shadow-v2">
                 <div class="fda-text-style-h6">{{ $aboutStory->feature_2_title ?? 'Seamless celebrations' }}</div>
                 <div class="fda-story-paragraph">
                   <p class="fda-gap-none">{{ $aboutStory->feature_2_desc ?? 'A beautiful marriage launch begins with honoring your personal romance.' }}</p>
-                </div><a data-wf--fda-button-v1--variant="rose-background" href="{{ url($aboutStory->feature_2_button_link ?? '#') }}"
+                </div>
+                @if(!empty($aboutStory->feature_2_button_text))
+                <a data-wf--fda-button-v1--variant="rose-background" href="{{ url($aboutStory->feature_2_button_link ?? '#') }}"
                   class="fda-button-v1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb w-inline-block">
                   <div class="fda-button-overlay"></div>
                   <div class="w-layout-hflex fda-button-text-wrapper-v1 fda-overflow-hidden">
-                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">{{ $aboutStory->feature_2_button_text ?? 'View packages' }}
+                    <div class="fda-button-text fda-1 w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb">{{ $aboutStory->feature_2_button_text }}
                     </div>
-                    <div class="fda-button-text fda-2">{{ $aboutStory->feature_2_button_text ?? 'View packages' }}</div>
+                    <div class="fda-button-text fda-2">{{ $aboutStory->feature_2_button_text }}</div>
                   </div>
                 </a>
+                @endif
               </div>
             </div>
           </div>
