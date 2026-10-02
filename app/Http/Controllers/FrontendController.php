@@ -288,6 +288,19 @@ class FrontendController extends Controller
                     $gallery = [$dbItem->image_url];
                 }
 
+                $bannerGallery = [];
+                if (!empty($dbItem->banner_images) && is_array($dbItem->banner_images)) {
+                    foreach ($dbItem->banner_images as $gImg) {
+                        if (str_starts_with($gImg, 'http://') || str_starts_with($gImg, 'https://')) {
+                            $bannerGallery[] = $gImg;
+                        } elseif (str_starts_with($gImg, 'images/') || str_starts_with($gImg, 'assets/')) {
+                            $bannerGallery[] = asset($gImg);
+                        } else {
+                            $bannerGallery[] = \Illuminate\Support\Facades\Storage::disk('public')->url($gImg);
+                        }
+                    }
+                }
+                
                 $items[] = [
                     'id'              => $dbItem->id,
                     'slug'            => $dbItem->slug,
@@ -303,6 +316,7 @@ class FrontendController extends Controller
                     'video_webm'      => !empty($dbItem->video_webm) ? (str_starts_with($dbItem->video_webm, 'http') ? $dbItem->video_webm : (str_starts_with($dbItem->video_webm, 'videos/') || str_starts_with($dbItem->video_webm, 'assets/') ? asset($dbItem->video_webm) : \Illuminate\Support\Facades\Storage::disk('public')->url($dbItem->video_webm))) : null,
                     'video_poster'    => !empty($dbItem->video_poster) ? (str_starts_with($dbItem->video_poster, 'http') ? $dbItem->video_poster : (str_starts_with($dbItem->video_poster, 'images/') || str_starts_with($dbItem->video_poster, 'assets/') ? asset($dbItem->video_poster) : \Illuminate\Support\Facades\Storage::disk('public')->url($dbItem->video_poster))) : null,
                     'gallery'         => $gallery,
+                    'banner_gallery'  => $bannerGallery,
                     'description'     => $dbItem->description ?? $dbItem->detail_content ?? $dbItem->subtitle,
                     'detail_headline' => $dbItem->detail_headline,
                     'detail_content'  => $dbItem->detail_content,

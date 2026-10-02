@@ -106,11 +106,36 @@
           <input type="text" name="guests_text" value="{{ old('guests_text', $item->guests_text) }}" class="form-control" placeholder="e.g. 220 Guests" />
         </div>
         <div class="form-group">
-          <label class="form-label" style="font-weight: 600;">Detail Banner Image</label>
-          <input type="file" name="banner_image" class="form-control" accept="image/*" onchange="previewImg(this, 'bannerImgPrev')" />
-          <div class="preview-box">
-            <img id="bannerImgPrev" src="{{ $item->banner_image ? asset('storage/' . $item->banner_image) : asset('backend/images/placeholder.jpg') }}" />
-          </div>
+          <label class="form-label" style="font-weight: 600;">Detail Banner Images (Slider)</label>
+          <input type="file" name="banner_images[]" id="banner_images_input" class="form-control" accept="image/*" multiple onchange="previewMultipleBanner(this, 'new_banner_preview')" />
+          <small style="color: #666; display: block; margin-top: 5px;">Selecting new images will add them to the existing slider gallery.</small>
+          <div id="new_banner_preview" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;"></div>
+          
+          @if(is_array($item->banner_images) && count($item->banner_images) > 0)
+            <div style="margin-top: 1.5rem;">
+              <label class="form-label" style="font-weight: 600; display: block; margin-bottom: 0.75rem;">Currently Attached Banner Images:</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="current-banner-container">
+                @foreach($item->banner_images as $index => $img)
+                  <div class="existing-banner-item" id="existing_banner_img_{{ $index }}" style="position: relative; border: 1px solid #ddd; padding: 5px; border-radius: 4px; background: #fff; display: inline-block;">
+                    <img src="{{ asset('storage/' . $img) }}" style="width: 100px; height: 75px; object-fit: cover; display: block;" />
+                    <div onclick="removeExistingBannerImage('{{ $img }}', 'existing_banner_img_{{ $index }}')" style="position: absolute; top: 0px; right: 0px; background: #dc3545; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; font-weight: bold; transform: translate(50%, -50%);">
+                      &times;
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+              <div id="removed-banner-images-inputs"></div>
+            </div>
+          @else
+            @if($item->banner_image)
+              <div style="margin-top: 1rem;">
+                <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Old single banner image:</label>
+                <div class="preview-box">
+                  <img src="{{ asset('storage/' . $item->banner_image) }}" />
+                </div>
+              </div>
+            @endif
+          @endif
         </div>
       </div>
 
@@ -145,20 +170,24 @@
       <div class="form-group" style="margin-top: 1.25rem;">
         <label class="form-label" style="font-weight: 600;">Upload Gallery Images (Select Multiple)</label>
         <input type="file" name="gallery_images[]" id="gallery_images_input" class="form-control" accept="image/*" multiple onchange="previewMultiple(this, 'new_gallery_preview')" />
-        <small style="color: #666; display: block; margin-top: 5px;">Selecting new images will replace the existing gallery.</small>
+        <small style="color: #666; display: block; margin-top: 5px;">Selecting new images will add them to the existing gallery.</small>
         <div id="new_gallery_preview" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;"></div>
       </div>
       
       @if(is_array($item->gallery_images) && count($item->gallery_images) > 0)
         <div style="margin-top: 1.5rem;">
           <label class="form-label" style="font-weight: 600; display: block; margin-bottom: 0.75rem;">Currently Attached Gallery Images:</label>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-            @foreach($item->gallery_images as $img)
-              <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; background: #fff;">
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="current-gallery-container">
+            @foreach($item->gallery_images as $index => $img)
+              <div class="existing-gallery-item" id="existing_img_{{ $index }}" style="position: relative; border: 1px solid #ddd; padding: 5px; border-radius: 4px; background: #fff; display: inline-block;">
                 <img src="{{ asset('storage/' . $img) }}" style="width: 100px; height: 75px; object-fit: cover; display: block;" />
+                <div onclick="removeExistingImage('{{ $img }}', 'existing_img_{{ $index }}')" style="position: absolute; top: 0px; right: 0px; background: #dc3545; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; font-weight: bold; transform: translate(50%, -50%);">
+                  &times;
+                </div>
               </div>
             @endforeach
           </div>
+          <div id="removed-images-inputs"></div>
         </div>
       @endif
     </div>
@@ -218,6 +247,17 @@
         document.getElementById(imgId).style.display = 'block';
       }
       reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function removeExistingImage(imgPath, elemId) {
+    if(confirm('Are you sure you want to remove this image? It will be deleted upon updating.')) {
+      document.getElementById(elemId).style.display = 'none';
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'remove_gallery_images[]';
+      input.value = imgPath;
+      document.getElementById('removed-images-inputs').appendChild(input);
     }
   }
 
@@ -289,6 +329,89 @@
     });
     
     const input = document.getElementById('gallery_images_input');
+    input.files = dataTransfer.files;
+  }
+
+  // Banner Images preview logic
+  function removeExistingBannerImage(imgPath, elemId) {
+    if(confirm('Are you sure you want to remove this banner image? It will be deleted upon updating.')) {
+      document.getElementById(elemId).style.display = 'none';
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'remove_banner_images[]';
+      input.value = imgPath;
+      document.getElementById('removed-banner-images-inputs').appendChild(input);
+    }
+  }
+
+  let selectedBannerFiles = [];
+
+  function previewMultipleBanner(input, containerId) {
+    if (input.files) {
+      Array.from(input.files).forEach(file => {
+        selectedBannerFiles.push(file);
+      });
+    }
+    renderBannerPreviews(containerId);
+  }
+
+  function renderBannerPreviews(containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    const dataTransfer = new DataTransfer();
+    
+    selectedBannerFiles.forEach((file, index) => {
+      dataTransfer.items.add(file);
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+        wrapper.style.display = 'inline-block';
+        wrapper.style.border = '1px solid #ddd';
+        wrapper.style.padding = '5px';
+        wrapper.style.borderRadius = '4px';
+        wrapper.style.background = '#fff';
+        
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.width = '100px';
+        img.style.height = '75px';
+        img.style.objectFit = 'cover';
+        img.style.display = 'block';
+        
+        const removeBtn = document.createElement('div');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.style.position = 'absolute';
+        removeBtn.style.top = '0px';
+        removeBtn.style.right = '0px';
+        removeBtn.style.background = '#dc3545';
+        removeBtn.style.color = 'white';
+        removeBtn.style.borderRadius = '50%';
+        removeBtn.style.width = '20px';
+        removeBtn.style.height = '20px';
+        removeBtn.style.display = 'flex';
+        removeBtn.style.alignItems = 'center';
+        removeBtn.style.justifyContent = 'center';
+        removeBtn.style.cursor = 'pointer';
+        removeBtn.style.fontSize = '14px';
+        removeBtn.style.fontWeight = 'bold';
+        removeBtn.style.transform = 'translate(50%, -50%)';
+        
+        removeBtn.onclick = function() {
+          selectedBannerFiles.splice(index, 1);
+          renderBannerPreviews(containerId);
+        };
+        
+        wrapper.appendChild(img);
+        wrapper.appendChild(removeBtn);
+        container.appendChild(wrapper);
+      }
+      reader.readAsDataURL(file);
+    });
+    
+    const input = document.getElementById('banner_images_input');
     input.files = dataTransfer.files;
   }
 </script>

@@ -478,7 +478,11 @@
     <!-- Lovio Detail Hero Header with Slider -->
     <header class="section-hero-slider">
         <div class="hero-slider-bg">
-            @if(isset($item['gallery']) && count($item['gallery']) > 0)
+            @if(isset($item['banner_gallery']) && count($item['banner_gallery']) > 0)
+                @foreach($item['banner_gallery'] as $index => $img)
+                    <div class="hero-slide {{ $index === 0 ? 'active' : '' }}" style="background-image: url('{{ asset($img) }}');"></div>
+                @endforeach
+            @elseif(isset($item['gallery']) && count($item['gallery']) > 0)
                 @foreach($item['gallery'] as $index => $img)
                     <div class="hero-slide {{ $index === 0 ? 'active' : '' }}" style="background-image: url('{{ asset($img) }}');"></div>
                 @endforeach

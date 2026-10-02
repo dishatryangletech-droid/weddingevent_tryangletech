@@ -33,6 +33,7 @@ class PortfolioItem extends Model
         'gallery_tag',
         'gallery_title',
         'gallery_images',
+        'banner_images',
         'video_mp4',
         'video_webm',
         'video_poster',
@@ -42,6 +43,7 @@ class PortfolioItem extends Model
 
     protected $casts = [
         'gallery_images' => 'array',
+        'banner_images' => 'array',
     ];
 
     public function tag()

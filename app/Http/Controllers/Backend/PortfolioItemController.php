@@ -61,6 +61,8 @@ class PortfolioItemController extends Controller
             'detail_highlight_2' => 'nullable|string',
             'gallery_images' => 'nullable|array',
             'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'banner_images' => 'nullable|array',
+            'banner_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'video_mp4' => 'nullable|file|mimetypes:video/mp4|max:20480',
             'video_webm' => 'nullable|file|mimetypes:video/webm|max:20480',
             'video_poster' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
@@ -104,6 +106,14 @@ class PortfolioItemController extends Controller
             $data['gallery_images'] = $paths;
         }
 
+        if ($request->hasFile('banner_images')) {
+            $paths = [];
+            foreach ($request->file('banner_images') as $file) {
+                $paths[] = $file->store('portfolio/items', 'public');
+            }
+            $data['banner_images'] = $paths;
+        }
+
         PortfolioItem::create($data);
 
         return redirect()->route('admin.portfolio-page.items.index')
@@ -138,6 +148,8 @@ class PortfolioItemController extends Controller
             'detail_highlight_2' => 'nullable|string',
             'gallery_images' => 'nullable|array',
             'gallery_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'banner_images' => 'nullable|array',
+            'banner_images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'video_mp4' => 'nullable|file|mimetypes:video/mp4|max:20480',
             'video_webm' => 'nullable|file|mimetypes:video/webm|max:20480',
             'video_poster' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
@@ -177,19 +189,54 @@ class PortfolioItemController extends Controller
             }
         }
 
-        if ($request->hasFile('gallery_images')) {
-            if (is_array($item->gallery_images)) {
-                foreach ($item->gallery_images as $oldImage) {
-                    if (! str_starts_with($oldImage, 'images/') && ! str_starts_with($oldImage, 'assets/') && Storage::disk('public')->exists($oldImage)) {
-                        Storage::disk('public')->delete($oldImage);
-                    }
+        $currentGallery = is_array($item->gallery_images) ? $item->gallery_images : [];
+
+        if ($request->has('remove_gallery_images') && is_array($request->remove_gallery_images)) {
+            foreach ($request->remove_gallery_images as $removeImg) {
+                if (! str_starts_with($removeImg, 'images/') && ! str_starts_with($removeImg, 'assets/') && Storage::disk('public')->exists($removeImg)) {
+                    Storage::disk('public')->delete($removeImg);
+                }
+                if (($key = array_search($removeImg, $currentGallery)) !== false) {
+                    unset($currentGallery[$key]);
                 }
             }
+            $currentGallery = array_values($currentGallery);
+            $data['gallery_images'] = $currentGallery;
+        }
+
+        if ($request->hasFile('gallery_images')) {
             $paths = [];
             foreach ($request->file('gallery_images') as $file) {
                 $paths[] = $file->store('portfolio/items', 'public');
             }
-            $data['gallery_images'] = $paths;
+            $data['gallery_images'] = array_merge($currentGallery, $paths);
+        } else if ($request->has('remove_gallery_images')) {
+            $data['gallery_images'] = $currentGallery;
+        }
+
+        $currentBannerGallery = is_array($item->banner_images) ? $item->banner_images : [];
+
+        if ($request->has('remove_banner_images') && is_array($request->remove_banner_images)) {
+            foreach ($request->remove_banner_images as $removeImg) {
+                if (! str_starts_with($removeImg, 'images/') && ! str_starts_with($removeImg, 'assets/') && Storage::disk('public')->exists($removeImg)) {
+                    Storage::disk('public')->delete($removeImg);
+                }
+                if (($key = array_search($removeImg, $currentBannerGallery)) !== false) {
+                    unset($currentBannerGallery[$key]);
+                }
+            }
+            $currentBannerGallery = array_values($currentBannerGallery);
+            $data['banner_images'] = $currentBannerGallery;
+        }
+
+        if ($request->hasFile('banner_images')) {
+            $paths = [];
+            foreach ($request->file('banner_images') as $file) {
+                $paths[] = $file->store('portfolio/items', 'public');
+            }
+            $data['banner_images'] = array_merge($currentBannerGallery, $paths);
+        } else if ($request->has('remove_banner_images')) {
+            $data['banner_images'] = $currentBannerGallery;
         }
 
         $item->update($data);
@@ -208,6 +255,14 @@ class PortfolioItemController extends Controller
         }
         if (is_array($item->gallery_images)) {
             foreach ($item->gallery_images as $oldImage) {
+                if (! str_starts_with($oldImage, 'images/') && ! str_starts_with($oldImage, 'assets/') && Storage::disk('public')->exists($oldImage)) {
+                    Storage::disk('public')->delete($oldImage);
+                }
+            }
+        }
+        
+        if (is_array($item->banner_images)) {
+            foreach ($item->banner_images as $oldImage) {
                 if (! str_starts_with($oldImage, 'images/') && ! str_starts_with($oldImage, 'assets/') && Storage::disk('public')->exists($oldImage)) {
                     Storage::disk('public')->delete($oldImage);
                 }

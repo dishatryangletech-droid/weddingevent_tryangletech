@@ -97,8 +97,7 @@
       <div class="w-layout-blockcontainer fda-container-medium w-container">
         <div class="w-layout-hflex fda-footer-bottom-inner">
           <div class="fda-color-white fda-mobile-text-center">{{ $fs->copyright_text ?? 'Designed by :' }} <a href="{{ $fs->copyright_link_url ?? 'https://www.flowdesignagency.com/' }}"
-              target="_blank" class="fda-color-peach fda-hover">{{ $fs->copyright_link_text ?? 'Flow Design Agency' }}</a>, Powered by : <a href="https://webflow.com/" target="_blank"
-              class="fda-color-peach fda-hover">Webflow</a></div>
+              target="_blank" class="fda-color-peach fda-hover">{{ $fs->copyright_link_text ?? 'Flow Design Agency' }}</a></div>
           <div class="w-layout-hflex fda-footer-bottom-right">
             @if(!empty($fs->style_guide_text))
             <a href="{{ url($fs->style_guide_url ?? '#') }}" class="fda-color-white fda-link-text-hover">{{ $fs->style_guide_text }}</a>
