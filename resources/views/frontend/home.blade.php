@@ -529,29 +529,38 @@
 
     <script>
         let homeCurrentItem = null;
+
+        function formatHomeUrl(path) {
+            if (!path) return '';
+            if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('/')) {
+                return path;
+            }
+            return "{{ asset('') }}" + path;
+        }
+
         function openHomeModal(item) {
             homeCurrentItem = item;
             document.getElementById('home-modal-title').innerText = item.title;
-            document.getElementById('home-modal-desc').innerText = item.description;
+            document.getElementById('home-modal-desc').innerHTML = item.description || item.subtitle || '';
             document.getElementById('home-modal-link').href = `/portfolio/${item.slug}`;
 
             const thumbsBar = document.getElementById('home-modal-thumbs');
             thumbsBar.innerHTML = '';
             item.gallery.forEach((imgUrl, index) => {
                 const img = document.createElement('img');
-                img.src = `/${imgUrl}`;
+                img.src = formatHomeUrl(imgUrl);
                 img.style.cssText = 'width: 80px; height: 55px; border-radius: 6px; object-fit: cover; cursor: pointer; opacity: ' + (index === 0 ? '1' : '0.6') + '; border: 2px solid ' + (index === 0 ? '#d4af37' : 'transparent');
                 img.onclick = () => {
                     document.querySelectorAll('#home-modal-thumbs img').forEach(t => { t.style.opacity = '0.6'; t.style.borderColor = 'transparent'; });
                     img.style.opacity = '1';
                     img.style.borderColor = '#d4af37';
-                    setHomeImage(`/${imgUrl}`);
+                    setHomeImage(formatHomeUrl(imgUrl));
                 };
                 thumbsBar.appendChild(img);
             });
 
             switchHomeTab('gallery');
-            if(item.gallery.length > 0) setHomeImage(`/${item.gallery[0]}`);
+            if(item.gallery.length > 0) setHomeImage(formatHomeUrl(item.gallery[0]));
             document.getElementById('home-portfolio-modal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -575,11 +584,11 @@
             document.getElementById('home-tab-video').style.color = (tab === 'video' ? '#b48c25' : '#78716c');
             if(tab === 'gallery') {
                 video.pause(); video.style.display = 'none'; img.style.display = 'block'; thumbs.style.display = 'flex';
-                if(homeCurrentItem && homeCurrentItem.gallery.length > 0) img.src = `/${homeCurrentItem.gallery[0]}`;
+                if(homeCurrentItem && homeCurrentItem.gallery.length > 0) img.src = formatHomeUrl(homeCurrentItem.gallery[0]);
             } else {
                 img.style.display = 'none'; thumbs.style.display = 'none'; video.style.display = 'block';
-                document.getElementById('home-mp4').src = `/${homeCurrentItem.video_mp4}`;
-                document.getElementById('home-webm').src = `/${homeCurrentItem.video_webm}`;
+                document.getElementById('home-mp4').src = homeCurrentItem.video_mp4 ? formatHomeUrl(homeCurrentItem.video_mp4) : '';
+                document.getElementById('home-webm').src = homeCurrentItem.video_webm ? formatHomeUrl(homeCurrentItem.video_webm) : '';
                 video.load(); video.play();
             }
         }
