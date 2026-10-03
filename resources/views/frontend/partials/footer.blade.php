@@ -152,7 +152,7 @@
   <!-- Scroll to Top Button -->
   <style>
     #scrollToTopBtn {
-      background-color: #d89679; /* Soft peach/rose color */
+      background-color: #8f6e2c; /* Theme logo color */
       color: white;
       border: none;
       border-radius: 50%;
@@ -170,7 +170,7 @@
       display: flex;
     }
     #scrollToTopBtn:hover {
-      background-color: #c07b5e;
+      background-color: #6e521c;
       transform: translateY(-3px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }

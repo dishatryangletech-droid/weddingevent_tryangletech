@@ -88,7 +88,7 @@
         }
         .section-hero-lovio .border-top-line,
         .section-hero-lovio .border-down-line {
-            background-color: #c5a059 !important;
+            background-color: #8f6e2c !important;
         }
         .filter-pill-btn {
             background: rgba(255, 255, 255, 0.18) !important;
@@ -98,9 +98,9 @@
         }
         .filter-pill-btn:hover,
         .filter-pill-btn.active {
-            background: #c5a059 !important;
+            background: #8f6e2c !important;
             color: #ffffff !important;
-            border-color: #c5a059 !important;
+            border-color: #8f6e2c !important;
             box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
         }
         .hero-crest-icon {
@@ -112,7 +112,7 @@
         .border-top-line, .border-down-line {
             width: 80px;
             height: 1px;
-            background-color: #c5a059;
+            background-color: #8f6e2c;
             margin: 0 auto;
         }
         .border-top-line {
@@ -127,7 +127,7 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             font-weight: 600;
-            color: #c5a059;
+            color: #8f6e2c;
             margin-bottom: 16px;
         }
         .heading-hero-lovio {
@@ -167,9 +167,9 @@
             transition: all 0.3s ease;
         }
         .filter-pill-btn:hover, .filter-pill-btn.active {
-            background: #c5a059;
+            background: #8f6e2c;
             color: #ffffff;
-            border-color: #c5a059;
+            border-color: #8f6e2c;
             box-shadow: 0 4px 18px rgba(197, 160, 89, 0.3);
             transform: translateY(-2px);
         }
@@ -263,7 +263,7 @@
             width: 58px;
             height: 58px;
             border-radius: 50%;
-            background: #c5a059;
+            background: #8f6e2c;
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -289,7 +289,7 @@
             line-height: 1.25;
         }
         .heading-portfolio:hover {
-            color: #c5a059;
+            color: #8f6e2c;
         }
         .portfolio-item-sub {
             font-size: 14px;
@@ -303,7 +303,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
-            color: #c5a059;
+            color: #8f6e2c;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -327,9 +327,9 @@
             transition: all 0.3s ease;
         }
         .btn-quick-preview:hover {
-            background: #1a1918;
+            background: #8f6e2c;
             color: #ffffff;
-            border-color: #1a1918;
+            border-color: #8f6e2c;
         }
 
         /* Extra Banner Callout Section - Lovio Webflow */
@@ -366,7 +366,7 @@
         }
         .btn-connect-lovio {
             display: inline-block;
-            background: #c5a059;
+            background: #8f6e2c;
             color: #ffffff;
             padding: 14px 38px;
             border-radius: 30px;
@@ -517,7 +517,7 @@
         }
         .gallery-thumb:hover, .gallery-thumb.active {
             opacity: 1;
-            border-color: #c5a059;
+            border-color: #8f6e2c;
         }
     </style>
 <link href="{{ asset('images/favicon.png') }}" rel="icon" type="image/png" sizes="32x32" />

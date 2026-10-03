@@ -52,8 +52,8 @@ h1 {
 }
 
 mark {
-  color: #000;
-  background: #ff0;
+  color: #fff !important;
+  background: #8f6e2c !important;
 }
 
 small {
@@ -427,7 +427,7 @@ p {
 }
 
 blockquote {
-  border-left: 5px solid #e2e2e2;
+  border-left: 5px solid #8f6e2c !important;
   margin: 0 0 10px;
   padding: 10px 20px;
   font-size: 18px;
@@ -1398,7 +1398,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .w-dropdown-link.w--current {
-  color: #0082f3;
+  color: #8f6e2c;
 }
 
 .w-dropdown-link:focus {
@@ -1831,7 +1831,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .w-nav-link.w--current {
-  color: #0082f3;
+  color: #8f6e2c;
 }
 
 .w-nav-menu {
@@ -2093,7 +2093,7 @@ textarea.w-input, textarea.w-select {
   --_typography---tag-text-v1--tag-text-line-height: 150%;
   --_typography---tag-text-v1--tag-text-weight: var(--_typography---font-weight--medium);
   --_typography---tag-text-v1--tag-text-letter-specing: .22rem;
-  --accent--accent-200: #e48993;
+  --accent--accent-200: #8f6e2c;
   --_typography---tag-text-v2--tag-text-v2-size: .875rem;
   --_typography---tag-text-v2--tag-text-v2-line-height: 150%;
   --_typography---tag-text-v2--tag-text-v2-weight: var(--_typography---font-weight--medium);
@@ -2109,7 +2109,7 @@ textarea.w-input, textarea.w-select {
   --background-color--bg-secondary: var(--accent--accent-500);
   --_sizes---gap--tag-gap-h1: 1.0625rem;
   --_sizes---border--small: .0625rem;
-  --accent--accent-100: #85696c;
+  --accent--accent-100: #8f6e2c;
   --_sizes---gap--section-gap-small: 7.75rem;
   --_sizes---gap--section-inner-gap: 3.75rem;
   --_sizes---gap--h2-gap: 1.9375rem;
@@ -2249,13 +2249,13 @@ body {
   --accent--accent-400: #332920;
   --text-color--text-secondary-accent: var(--neutral-500);
   --accent--accent-300: #6e521c;
-  --accent--accent-200: #e48993;
+  --accent--accent-200: #8f6e2c;
   --neutral-200: #e9e2d7;
   --neutral-700: #332920cc;
   --neutral-300: #f3eeef;
   --accent--accent-500: #302627;
   --background-color--bg-secondary: var(--accent--accent-500);
-  --accent--accent-100: #85696c;
+  --accent--accent-100: #8f6e2c;
   --neutral-100: #3329204d;
   --neutral-600: #eadddf;
   --accent--accent-600: #282830;
@@ -3055,8 +3055,9 @@ label {
 }
 
 .fda-button-v1 {
-  border: 1px solid var(--neutral-500);
-  background-color: var(--neutral-500);
+  border: 1px solid #8f6e2c;
+  background-color: #8f6e2c;
+  color: white;
   border-radius: 2.5rem;
   flex-flow: row;
   flex: none;
@@ -3074,8 +3075,8 @@ label {
 }
 
 .fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b) {
-  border: .0625rem solid var(--accent--accent-400);
-  background-color: var(--accent--accent-400);
+  border: .0625rem solid #8f6e2c !important;
+  background-color: #8f6e2c !important;
   border-radius: .5rem;
 }
 
@@ -3443,7 +3444,7 @@ label {
 }
 
 .fda-footer-big-text {
-  background-image: linear-gradient(0deg, var(--accent--accent-500) 8%, #85696c);
+  background-image: linear-gradient(0deg, var(--accent--accent-500) 8%, #8f6e2c);
   font-family: var(--_typography---playfair-display);
   color: var(--neutral-500);
   font-size: clamp(100px, 14vw, 283px);
@@ -4287,7 +4288,7 @@ label {
 
 .fda-button-overlay {
   z-index: 1;
-  background-color: var(--accent--accent-500);
+  background-color: #6e521c;
   height: 100%;
   position: absolute;
   inset: auto 0% 0%;
@@ -4612,7 +4613,7 @@ label {
 }
 
 .fda-post-item-button.fda-bg-color-white.fda-radius-big {
-  border: 1px solid var(--neutral-100);
+  border: 1px solid #8f6e2c;
 }
 
 .fda-post-item-button-icon-wrapper {
@@ -4819,7 +4820,7 @@ label {
 }
 
 .fda-menu-font-v1.w--current {
-  color: var(--accent--accent-400);
+  color: #8f6e2c;
 }
 
 .fda-nav-bottom-content {
@@ -5359,8 +5360,8 @@ label {
 }
 
 .fda-site-details {
-  border-left: 1px solid #e4899366;
-  border-right: 1px solid #e4899366;
+  border-left: 1px solid #8f6e2c66;
+  border-right: 1px solid #8f6e2c66;
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -10997,7 +10998,7 @@ label {
 }
 
 .fda-megamenu-inne-box.w--current {
-  color: var(--accent--accent-300);
+  color: #8f6e2c;
 }
 
 .fda-megamenu-iocn {
@@ -11740,7 +11741,7 @@ label {
 }
 
 .fda-bg-color-chocolate {
-  background-color: var(--accent--accent-500);
+  background-color: #8f6e2c !important;
 }
 
 .fda-bg-color-soft-cream {
@@ -13144,13 +13145,13 @@ label {
     --accent--accent-400: #332920;
     --text-color--text-secondary-accent: var(--neutral-500);
     --accent--accent-300: #6e521c;
-    --accent--accent-200: #e48993;
+    --accent--accent-200: #8f6e2c;
     --neutral-200: #e9e2d7;
     --neutral-700: #332920cc;
     --neutral-300: #f3eeef;
     --accent--accent-500: #302627;
     --background-color--bg-secondary: var(--accent--accent-500);
-    --accent--accent-100: #85696c;
+    --accent--accent-100: #8f6e2c;
     --neutral-100: #3329204d;
     --neutral-600\<deleted\|variable-1216087b-d6ed-950d-a850-5d18c75a8ffb\>: #71745d;
     --neutral-600: #eadddf;
@@ -15557,13 +15558,13 @@ label {
     --accent--accent-400: #332920;
     --text-color--text-secondary-accent: var(--neutral-500);
     --accent--accent-300: #6e521c;
-    --accent--accent-200: #e48993;
+    --accent--accent-200: #8f6e2c;
     --neutral-200: #e9e2d7;
     --neutral-700: #332920cc;
     --neutral-300: #f3eeef;
     --accent--accent-500: #302627;
     --background-color--bg-secondary: var(--accent--accent-500);
-    --accent--accent-100: #85696c;
+    --accent--accent-100: #8f6e2c;
     --neutral-100: #3329204d;
     --neutral-600\<deleted\|variable-1216087b-d6ed-950d-a850-5d18c75a8ffb\>: #71745d;
     --neutral-600: #eadddf;
@@ -17580,13 +17581,13 @@ label {
     --accent--accent-400: #332920;
     --text-color--text-secondary-accent: var(--neutral-500);
     --accent--accent-300: #6e521c;
-    --accent--accent-200: #e48993;
+    --accent--accent-200: #8f6e2c;
     --neutral-200: #e9e2d7;
     --neutral-700: #332920cc;
     --neutral-300: #f3eeef;
     --accent--accent-500: #302627;
     --background-color--bg-secondary: var(--accent--accent-500);
-    --accent--accent-100: #85696c;
+    --accent--accent-100: #8f6e2c;
     --neutral-100: #3329204d;
     --neutral-600\<deleted\|variable-1216087b-d6ed-950d-a850-5d18c75a8ffb\>: #71745d;
     --neutral-600: #eadddf;
@@ -18906,4 +18907,47 @@ a.w-webflow-badge,
 [appear], [text-appear], .fda-service-v3-card, .fda-service-v3-col-2, .fda-service-v3-col-3, .fda-service-v3-col-4, .fda-planning-card, .fda-monitor-box, .fda-catalog-card {
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+.fda-post-title-wrapper .fda-text-style-h5 {
+  color: #8f6e2c !important;
+}
+
+.fda-post-item-button.fda-bg-color-white.fda-radius-big {
+  background-color: #8f6e2c !important;
+  border-color: #8f6e2c !important;
+}
+
+.fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b):hover .fda-button-text.fda-2 {
+  color: #8f6e2c !important;
+}
+
+.fda-button-text.fda-1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b) {
+  color: #ffffff !important;
+}
+
+.fda-post-button {
+  background-color: #8f6e2c !important;
+  border-color: #8f6e2c !important;
+}
+
+.fda-details-content blockquote {
+  border-left-color: #8f6e2c !important;
+}
+
+.fda-details-content mark {
+  background-color: rgba(143, 110, 44, 0.2) !important;
+  color: inherit !important;
+}
+
+::selection {
+  background-color: #8f6e2c !important;
+  color: #ffffff !important;
+}
+::-moz-selection {
+  background-color: #8f6e2c !important;
+  color: #ffffff !important;
+}
+.fda-hero-v10-top h1 {
+  color: #8f6e2c !important;
 }

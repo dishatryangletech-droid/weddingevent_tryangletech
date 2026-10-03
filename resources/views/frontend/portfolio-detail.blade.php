@@ -7,6 +7,7 @@
     <meta content="{{ $item['description'] }}" name="description"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="{{ asset('css/google-fonts.css') }}">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -60,7 +61,7 @@
         .border-top-line, .border-down-line {
             width: 80px;
             height: 1px;
-            background-color: #c5a059;
+            background-color: #8f6e2c;
             margin: 0 auto;
         }
         .border-top-line {
@@ -75,7 +76,7 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             font-weight: 600;
-            color: #c5a059;
+            color: #8f6e2c;
             margin-bottom: 16px;
         }
         .heading-hero-detail {
@@ -172,7 +173,7 @@
         
         .section-hero-slider .border-top-line, 
         .section-hero-slider .border-down-line {
-            background-color: #c5a059;
+            background-color: #8f6e2c;
         }
         
         .section-hero-slider .meta-strip-lovio {
@@ -284,7 +285,7 @@
             width: 52px;
             height: 52px;
             border-radius: 50%;
-            background: #c5a059;
+            background: #8f6e2c;
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -319,7 +320,7 @@
             margin: 0 auto 75px;
             padding: 40px 30px;
             background: #ffffff;
-            border-left: 4px solid #c5a059;
+            border-left: 4px solid #8f6e2c;
             border-radius: 6px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.03);
             text-align: center;
@@ -337,7 +338,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #c5a059;
+            color: #8f6e2c;
         }
 
         /* Extra Banner Callout Section - Lovio Webflow */
@@ -374,7 +375,7 @@
         }
         .btn-connect-lovio {
             display: inline-block;
-            background: #c5a059;
+            background: #8f6e2c;
             color: #ffffff;
             padding: 14px 38px;
             border-radius: 30px;
@@ -543,24 +544,24 @@
         <div class="grid-portfolio-posts">
             @if(isset($item['gallery']) && count($item['gallery']) > 0)
                 @foreach($item['gallery'] as $img)
-                    <div class="lightbox-card-wrap" onclick="openLightbox('{{ asset($img) }}')">
+                    <a href="{{ asset($img) }}" data-fancybox="gallery" class="lightbox-card-wrap" style="display: block; text-decoration: none;">
                         <img src="{{ asset($img) }}" alt="{{ $item['title'] }}" class="image-lightbox" loading="lazy">
                         <div class="lightbox-zoom-overlay">
                             <div class="zoom-icon-circle">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m-3-3h6"/></svg>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             @else
-                <div class="lightbox-card-wrap" onclick="openLightbox('{{ asset($item['cover_image']) }}')">
+                <a href="{{ asset($item['cover_image']) }}" data-fancybox="gallery" class="lightbox-card-wrap" style="display: block; text-decoration: none;">
                     <img src="{{ asset($item['cover_image']) }}" alt="{{ $item['title'] }}" class="image-lightbox" loading="lazy">
                     <div class="lightbox-zoom-overlay">
                         <div class="zoom-icon-circle">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m-3-3h6"/></svg>
                         </div>
                     </div>
-                </div>
+                </a>
             @endif
         </div>
     </section>
@@ -637,16 +638,7 @@
 
     <!-- JavaScript Lightbox & Slider -->
     <script>
-        function openLightbox(imgSrc) {
-            document.getElementById('lightbox-full-img').src = imgSrc;
-            document.getElementById('lightbox-modal-full').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox-modal-full').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        
         
         document.addEventListener("DOMContentLoaded", function() {
             let slides = document.querySelectorAll('.hero-slide');
@@ -662,6 +654,7 @@
         });
     </script>
     <script src="{{ asset('js/jquery-3.5.1.min.dc5e7f18c8.js') }}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="{{ asset('js/webflow.schunk.eed72d374c7ba9a2.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/webflow.schunk.408c304bedb55afc.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/webflow.9bde18d1.437080bf3326686e.js') }}" type="text/javascript"></script>

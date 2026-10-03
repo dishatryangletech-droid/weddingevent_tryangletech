@@ -20,88 +20,74 @@
           <div class="w-layout-hflex fda-navbar-v1-menu-holder-inner">
             <div class="w-layout-hflex fda-navbar-inner-wrap">
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('home') }}"
-                    class="fda-menu-font-v1">Home</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('home') }}" class="fda-menu-font-v1 {{ request()->routeIs('home') ? 'w--current' : '' }}">Home</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}"
-                    class="fda-menu-font-v1">About</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}" class="fda-menu-font-v1 {{ request()->routeIs('about') ? 'w--current' : '' }}">About</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}"
-                    class="fda-menu-font-v1">Services</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}" class="fda-menu-font-v1 {{ request()->is('*service*') ? 'w--current' : '' }}">Services</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}"
-                    class="fda-menu-font-v1">Events</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}" class="fda-menu-font-v1 {{ request()->is('*event*') ? 'w--current' : '' }}">Events</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
-                    class="fda-menu-font-v1">Portfolio</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}" class="fda-menu-font-v1 {{ request()->is('*portfolio*') ? 'w--current' : '' }}">Portfolio</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}"
-                    class="fda-menu-font-v1">Blog</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}" class="fda-menu-font-v1 {{ request()->is('*blog*') ? 'w--current' : '' }}">Blog</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}"
-                    class="fda-menu-font-v1">Contact</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}" class="fda-menu-font-v1 {{ request()->routeIs('contact') ? 'w--current' : '' }}">Contact</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
             </div>
             <div class="w-layout-hflex fda-navbar-inner-wrap-v2">
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('home') }}"
-                    class="fda-menu-font-v1">Home</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('home') }}" class="fda-menu-font-v1 {{ request()->routeIs('home') ? 'w--current' : '' }}">Home</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}"
-                    class="fda-menu-font-v1">About</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('about') }}" class="fda-menu-font-v1 {{ request()->routeIs('about') ? 'w--current' : '' }}">About</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}"
-                    class="fda-menu-font-v1">Services</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('service-three') }}" class="fda-menu-font-v1 {{ request()->is('*service*') ? 'w--current' : '' }}">Services</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}"
-                    class="fda-menu-font-v1">Events</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('event') }}" class="fda-menu-font-v1 {{ request()->is('*event*') ? 'w--current' : '' }}">Events</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}"
-                    class="fda-menu-font-v1">Portfolio</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('portfolio') }}" class="fda-menu-font-v1 {{ request()->is('*portfolio*') ? 'w--current' : '' }}">Portfolio</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}"
-                    class="fda-menu-font-v1">Blog</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('blog') }}" class="fda-menu-font-v1 {{ request()->is('*blog*') ? 'w--current' : '' }}">Blog</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>
               <div class="w-layout-hflex fda-navbar-dropdown-toggle">
-                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}"
-                    class="fda-menu-font-v1">Contact</a>
+                <div nav-menu-hover="" class="w-layout-vflex"><a href="{{ route('contact') }}" class="fda-menu-font-v1 {{ request()->routeIs('contact') ? 'w--current' : '' }}">Contact</a>
                   <div class="fda-nav-menu-line"></div>
                 </div>
               </div>

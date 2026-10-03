@@ -28,7 +28,7 @@
 .home-border-top-line, .home-border-down-line {
     width: 80px;
     height: 1px;
-    background-color: #c5a059;
+    background-color: #8f6e2c;
     margin: 0 auto;
 }
 .home-border-top-line {
@@ -43,7 +43,7 @@
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: 600;
-    color: #c5a059;
+    color: #8f6e2c;
     margin-bottom: 14px;
 }
 .home-heading-hero-lovio {
@@ -149,7 +149,7 @@
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background: #c5a059;
+    background: #8f6e2c;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -175,7 +175,7 @@
     line-height: 1.25;
 }
 .home-heading-portfolio:hover {
-    color: #c5a059;
+    color: #8f6e2c;
 }
 .home-portfolio-item-sub {
     font-size: 13px;
@@ -189,7 +189,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
-    color: #c5a059;
+    color: #8f6e2c;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -212,13 +212,13 @@
     transition: all 0.3s ease;
 }
 .home-btn-quick-preview:hover {
-    background: #1a1918;
-    color: #ffffff;
-    border-color: #1a1918;
-}
+            background: #8f6e2c;
+            color: #ffffff;
+            border-color: #8f6e2c;
+        }
 .btn-explore-entire {
     display: inline-block;
-    background: #c5a059;
+    background: #8f6e2c;
     color: #ffffff;
     padding: 13px 36px;
     border-radius: 30px;
@@ -508,7 +508,7 @@
         <div style="background: #ffffff; border-radius: 20px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; padding: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.4);">
             <button onclick="closeHomeModal()" style="position: absolute; top: 16px; right: 20px; background: rgba(28,25,23,0.1); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; color: #1c1917;">&times;</button>
             <div style="display: flex; gap: 16px; border-bottom: 2px solid #f5f5f4; margin-bottom: 20px; padding-bottom: 8px;">
-                <button id="home-tab-gallery" onclick="switchHomeTab('gallery')" style="background: none; border: none; font-size: 15px; font-weight: 700; color: #b48c25; cursor: pointer; padding: 8px 12px;">📷 Photo Gallery</button>
+                <button id="home-tab-gallery" onclick="switchHomeTab('gallery')" style="background: none; border: none; font-size: 15px; font-weight: 700; color: #8f6e2c; cursor: pointer; padding: 8px 12px;">📷 Photo Gallery</button>
                 <button id="home-tab-video" onclick="switchHomeTab('video')" style="background: none; border: none; font-size: 15px; font-weight: 700; color: #78716c; cursor: pointer; padding: 8px 12px;">🎬 Cinema Film Video</button>
             </div>
             <div style="width: 100%; height: 360px; background: #1c1917; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
@@ -522,7 +522,7 @@
             <h3 id="home-modal-title" style="font-family: 'Playfair Display', serif; font-size: 26px; color: #1c1917; margin-bottom: 8px;"></h3>
             <p id="home-modal-desc" style="font-size: 15px; color: #57534e; line-height: 1.6; margin-bottom: 20px;"></p>
             <div style="display: flex; justify-content: flex-end;">
-                <a id="home-modal-link" href="#" style="background: #d4af37; color: #1c1917; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none;">View Full Details Page →</a>
+                <a id="home-modal-link" href="#" style="background: #8f6e2c; color: #1c1917; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none;">View Full Details Page →</a>
             </div>
         </div>
     </div>
@@ -549,11 +549,11 @@
             item.gallery.forEach((imgUrl, index) => {
                 const img = document.createElement('img');
                 img.src = formatHomeUrl(imgUrl);
-                img.style.cssText = 'width: 80px; height: 55px; border-radius: 6px; object-fit: cover; cursor: pointer; opacity: ' + (index === 0 ? '1' : '0.6') + '; border: 2px solid ' + (index === 0 ? '#d4af37' : 'transparent');
+                img.style.cssText = 'width: 80px; height: 55px; border-radius: 6px; object-fit: cover; cursor: pointer; opacity: ' + (index === 0 ? '1' : '0.6') + '; border: 2px solid ' + (index === 0 ? '#8f6e2c' : 'transparent');
                 img.onclick = () => {
                     document.querySelectorAll('#home-modal-thumbs img').forEach(t => { t.style.opacity = '0.6'; t.style.borderColor = 'transparent'; });
                     img.style.opacity = '1';
-                    img.style.borderColor = '#d4af37';
+                    img.style.borderColor = '#8f6e2c';
                     setHomeImage(formatHomeUrl(imgUrl));
                 };
                 thumbsBar.appendChild(img);
@@ -580,8 +580,8 @@
             const img = document.getElementById('home-modal-img');
             const video = document.getElementById('home-modal-video');
             const thumbs = document.getElementById('home-modal-thumbs');
-            document.getElementById('home-tab-gallery').style.color = (tab === 'gallery' ? '#b48c25' : '#78716c');
-            document.getElementById('home-tab-video').style.color = (tab === 'video' ? '#b48c25' : '#78716c');
+            document.getElementById('home-tab-gallery').style.color = (tab === 'gallery' ? '#8f6e2c' : '#78716c');
+            document.getElementById('home-tab-video').style.color = (tab === 'video' ? '#8f6e2c' : '#78716c');
             if(tab === 'gallery') {
                 video.pause(); video.style.display = 'none'; img.style.display = 'block'; thumbs.style.display = 'flex';
                 if(homeCurrentItem && homeCurrentItem.gallery.length > 0) img.src = formatHomeUrl(homeCurrentItem.gallery[0]);
