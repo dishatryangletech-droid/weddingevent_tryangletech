@@ -5616,7 +5616,7 @@ label {
   grid-row-gap: 1.875rem;
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
-  background-color: #3a3838d4;
+  background-color: #244340;
   max-width: 34.125rem;
   padding: 2.5rem;
   position: relative;
@@ -18950,4 +18950,8 @@ a.w-webflow-badge,
 }
 .fda-hero-v10-top h1 {
   color: #8f6e2c !important;
+}
+
+.fda-post-arrow-icon {
+  filter: invert(100%) !important;
 }

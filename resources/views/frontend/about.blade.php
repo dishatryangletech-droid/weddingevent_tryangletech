@@ -185,7 +185,7 @@
       </div>
     </section>
 
-     <section class="fda-bg-color-secondary fda-section-gap fda-overflow-hidden">
+     <section class="fda-bg-color-secondary fda-section-gap fda-overflow-hidden" style="background-color: #244340;">
       <div class="w-layout-blockcontainer fda-container-medium w-container">
         <div class="w-layout-vflex fda-mission-content">
           <div class="w-layout-hflex fda-mission-box-1">
@@ -305,7 +305,7 @@
             </div>
           </div>
           <div class="w-layout-hflex fda-mission-big-text-box">
-            <div text-appear="" class="fda-big-text fda-mobile-text-center fda-change">Elegant celebrations</div>
+            <div text-appear="" class="fda-big-text fda-mobile-text-center fda-change" style="color:#8f6e2c">Elegant celebrations</div>
           </div>
         </div>
       </div>
@@ -516,7 +516,7 @@
               </span></button></div>
         </div>
       </div>
-      <section class="fda-team fda-overflow-hidden">
+      <section class="fda-team fda-overflow-hidden" style="background-color:#244340;">
         <div class="w-layout-blockcontainer fda-container-medium w-container">
           <div class="w-layout-vflex fda-team-content">
             <div class="w-layout-vflex fda-team-title fda-text-center">

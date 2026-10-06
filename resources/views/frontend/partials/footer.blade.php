@@ -57,7 +57,7 @@
             class="w-layout-vflex fda-site-details fda-text-center"><a href="{{ route('home') }}"
               class="fda-footer-logo-box w-inline-block"><img
                 src="{{ $fs->logo_url ?? asset('images/elegant_occasions_logo_white.png') }}" loading="lazy" width="200"
-                style="height: auto;" alt="Site logo white" /></a>
+                style="height: auto; width:300px;" alt="Site logo white" /></a>
             <div class="fda-footer-site-paragraph">
               <p class="fda-gap-none fda-color-white">
                 {{ $fs->about_text ?? 'Crafting unforgettable celebrations that tell your story, with artistry, precision, and heart.' }}
@@ -148,7 +148,7 @@
     }
 
     #whatsappBtn:hover {
-      background-color: #128c7e;
+      background-color: #0c2e2b;
       transform: translateY(-3px);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
@@ -186,7 +186,7 @@
     }
 
     #scrollToTopBtn:hover {
-      background-color: #6e521c;
+      background-color: #0c2e2b;
       transform: translateY(-3px);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
@@ -464,8 +464,15 @@
   }
 
   .wa-btn:hover {
-    background: #128c7e;
+    background: #0c2e2b;
     color: white;
+  }
+</style>
+
+<style>
+  /* Override main site button hover color to match new theme */
+  .fda-button-overlay {
+    background-color: #0c2e2b !important;
   }
 </style>
 

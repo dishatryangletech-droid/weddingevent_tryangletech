@@ -231,9 +231,9 @@
     box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
 }
 .btn-explore-entire:hover {
-    background: #1a1918;
+    background: #0c2e2b;
     color: #ffffff;
-    box-shadow: 0 6px 20px rgba(26, 25, 24, 0.3);
+    box-shadow: 0 6px 20px rgba(12, 46, 43, 0.3);
     transform: translateY(-2px);
 }
 </style>
