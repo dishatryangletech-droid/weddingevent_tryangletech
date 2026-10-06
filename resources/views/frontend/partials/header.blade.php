@@ -14,7 +14,7 @@
     role="banner" class="fda-navbar w-nav">
     <div class="w-layout-blockcontainer fda-container-medium w-container">
       <div class="fda-navbar-wrapper"><a href="{{ route('home') }}" class="fda-navbar-logo-v1 w-nav-brand" style="max-width: 220px;"><img
-            width="220" style="height: 110px;width: 165px;filter: brightness(0.4) contrast(1.2);" alt="Site-logo"
+            width="220" style="height: auto; max-width: 165px; width: 100%; object-fit: contain;" alt="Site-logo"
             src="{{ asset('images/elegant_occasions_logo.png') }}" /></a>
         <nav role="navigation" class="fda-navbar-menu-holder w-nav-menu">
           <div class="w-layout-hflex fda-navbar-v1-menu-holder-inner">
@@ -146,7 +146,7 @@
           <div class="w-layout-vflex fda-booking-top-box fda-text-center">
             <div class="w-layout-hflex fda-booking-logo" style="max-width: 220px; margin: 0 auto;"><img
                 src="{{ asset('images/elegant_occasions_logo.png') }}" loading="lazy" width="220"
-                style="height: auto; filter: brightness(0.4) contrast(1.2);" alt="Site-logo" /></div>
+                style="height: auto;" alt="Site-logo" /></div>
             <div class="fda-color-dark-brown">You'll received a confirmation within 24h</div>
           </div>
           <div id="Booking-Form-V2" class="fda-booking-form-block w-form">
