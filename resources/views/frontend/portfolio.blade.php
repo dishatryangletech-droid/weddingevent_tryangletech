@@ -201,6 +201,8 @@
         }
 
         .overflow-portfolio-img {
+            display: block;
+            text-decoration: none;
             position: relative;
             width: 100%;
             height: 490px;
@@ -316,9 +318,11 @@
         }
 
         .btn-quick-preview {
-            background: #ffffff;
-            border: 1px solid #e2dad0;
-            color: #3a3735;
+            display: inline-block;
+            text-decoration: none;
+            background: #8f6e2c;
+            border: 1px solid #8f6e2c;
+            color: #ffffff;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
@@ -326,10 +330,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .btn-quick-preview:hover {
-            background: #8f6e2c;
-            color: #ffffff;
-            border-color: #8f6e2c;
+        .btn-quick-preview:hover,
+        .btn-quick-preview:focus,
+        .btn-quick-preview:active {
+            background: #0c2e2b !important;
+            color: #ffffff !important;
+            border-color: #0c2e2b !important;
         }
 
         /* Extra Banner Callout Section - Lovio Webflow */
@@ -364,7 +370,8 @@
             line-height: 1.7;
             margin-bottom: 32px;
         }
-        .btn-connect-lovio {
+        .btn-connect-lovio,
+        #modal-full-link {
             display: inline-block;
             background: #8f6e2c;
             color: #ffffff;
@@ -378,9 +385,15 @@
             transition: all 0.35s ease;
             box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
         }
-        .btn-connect-lovio:hover {
-            background: #244340;
-            color: #ffffff;
+        .btn-connect-lovio:hover,
+        .btn-connect-lovio:focus,
+        .btn-connect-lovio:active,
+        #modal-full-link:hover,
+        #modal-full-link:focus,
+        #modal-full-link:active {
+            background: #0c2e2b !important;
+            color: #ffffff !important;
+            border-color: #0c2e2b !important;
             box-shadow: 0 6px 20px rgba(36, 67, 64, 0.3);
             transform: translateY(-2px);
         }
@@ -435,7 +448,7 @@
             height: 100%;
             background: rgba(15, 13, 12, 0.88);
             backdrop-filter: blur(10px);
-            z-index: 9999;
+            z-index: 999999;
             display: none;
             justify-content: center;
             align-items: center;
@@ -456,6 +469,8 @@
             overflow-y: auto;
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
             position: relative;
+            z-index: 1000000;
+            pointer-events: auto;
         }
         .modal-close {
             position: absolute;
@@ -583,7 +598,7 @@
         <div class="grid-portfolio-lovio" id="portfolio-grid-container">
             @foreach($portfolios as $index => $item)
                 <div class="item-portfolio-lovio" data-category="{{ $item['category_slug'] }}" style="animation-delay: {{ 0.12 + ($index * 0.15) }}s;">
-                    <div class="overflow-portfolio-img" onclick='openModal({{ json_encode($item) }})'>
+                    <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="overflow-portfolio-img">
                         <img src="{{ asset($item['cover_image']) }}" alt="{{ $item['title'] }}" class="image-portfolio-page" loading="lazy">
                         <div class="badge-category-tag">{{ $item['category'] }}</div>
                         <div class="card-hover-overlay-lovio">
@@ -591,7 +606,7 @@
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="block-portfolio-page">
                         <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="heading-portfolio">
                             {{ $item['title'] }}
@@ -601,7 +616,7 @@
                             <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="link-learn-more">
                                 learn more →
                             </a>
-                            <button class="btn-quick-preview" onclick='openModal({{ json_encode($item) }})'>
+                            <button class="btn-quick-preview" onclick="openModalByIndex({{ $index }})">
                                 Quick View
                             </button>
                         </div>
@@ -661,7 +676,7 @@
                 <h3 style="font-family: 'Marcellus', serif; font-size: 26px; color: #1a1918; margin-bottom: 8px;" id="modal-title"></h3>
                 <div style="font-size: 14px; color: #66615c; line-height: 1.6; margin-bottom: 20px;" id="modal-desc"></div>
                 <div style="display: flex; justify-content: flex-end;">
-                    <a id="modal-full-link" href="#" class="btn-connect-lovio" style="padding: 10px 24px; font-size: 12px;">View Full Details →</a>
+                    <a id="modal-full-link" href="{{ url('/portfolio/jennifer-oliver') }}" class="btn-connect-lovio" style="display: inline-block; padding: 12px 28px; font-size: 12px; cursor: pointer; text-decoration: none; position: relative; z-index: 10000; pointer-events: auto !important;">View Full Details →</a>
                 </div>
             </div>
         </div>
@@ -669,7 +684,14 @@
 
     <!-- JavaScript Filter & Modal Logic -->
     <script>
+        const portfolioItems = @json($portfolios);
         let currentItem = null;
+
+        function openModalByIndex(index) {
+            const item = portfolioItems[index];
+            if (!item) return;
+            openModal(item);
+        }
 
         function filterPortfolio(category, btnElement) {
             const buttons = document.querySelectorAll('.filter-pill-btn');
@@ -693,7 +715,7 @@
                 if (matches) {
                     card.style.display = 'flex';
                     card.style.animation = 'none';
-                    card.offsetHeight; // trigger reflow
+                    card.offsetHeight;
                     card.style.animation = 'staggerUpDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards';
                 } else {
                     card.style.display = 'none';
@@ -709,11 +731,33 @@
             return "{{ asset('') }}" + path;
         }
 
-        function openModal(item) {
+        document.addEventListener("DOMContentLoaded", function() {
+            var fullLink = document.getElementById("modal-full-link");
+            if (fullLink) {
+                fullLink.onclick = function(e) {
+                    if (e && typeof e.stopPropagation === "function") {
+                        e.stopPropagation();
+                    }
+                    var targetUrl = this.href;
+                    if (currentItem && currentItem.slug) {
+                        targetUrl = "{{ url('/portfolio') }}/" + currentItem.slug;
+                    }
+                    if (targetUrl && targetUrl !== "#" && !targetUrl.endsWith("#")) {
+                        window.location.href = targetUrl;
+                    }
+                };
+            }
+        });
+function openModal(item) {
             currentItem = item;
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-desc').innerHTML = item.description || item.subtitle || '';
-            document.getElementById('modal-full-link').href = "{{ url('/portfolio') }}/" + item.slug;
+            const fullUrl = "{{ url('/portfolio') }}/" + item.slug;
+            const fullLink = document.getElementById("modal-full-link");
+            if (fullLink) {
+                fullLink.href = fullUrl;
+                fullLink.setAttribute("data-url", fullUrl);
+            }
 
             const mainImg = document.getElementById('modal-main-img');
             const thumbsBar = document.getElementById('modal-thumbs-bar');
@@ -751,16 +795,17 @@
             document.body.style.overflow = 'auto';
         }
 
-        window.onclick = function(event) {
+        window.addEventListener('click', function(event) {
             const modal = document.getElementById('portfolio-modal');
             if (event.target === modal) {
                 closeModal();
             }
-        };
+        });
     </script>
     <script src="{{ asset('js/jquery-3.5.1.min.dc5e7f18c8.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/webflow.schunk.eed72d374c7ba9a2.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/webflow.schunk.408c304bedb55afc.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/webflow.9bde18d1.437080bf3326686e.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-animations.js') }}"></script>
 </body>
 </html>

@@ -211,8 +211,167 @@
       </div>
     </div>
   </div>
-  </div>
 
+  <style>
+    /* Booking Quote Modal Popup Standalone Styling */
+    .fda-booking-form-box {
+      position: fixed !important;
+      inset: 0% !important;
+      width: 100% !important;
+      height: 100vh !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: flex-start !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      z-index: 999999 !important;
+      transform: translateY(-200%) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      background-color: transparent !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease !important;
+    }
 
+    .fda-booking-form-box.modal-active {
+      transform: translateY(0%) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
 
+    .fda-booking-form-box.modal-active .fda-bookng-form,
+    .fda-booking-form-box.modal-active .fda-booking-form-lapping {
+      visibility: visible !important;
+      opacity: 1 !important;
+      display: flex !important;
+    }
 
+    .fda-booking-form-box .fda-booking-form-inner-box {
+      background-color: #f7f4ef !important;
+      border: 1px solid #e8e2d5 !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      position: relative !important;
+      z-index: 1000000 !important;
+    }
+
+    .fda-booking-cross-sign {
+      cursor: pointer !important;
+      position: absolute !important;
+      top: 1.25rem !important;
+      right: 1.25rem !important;
+      width: 24px !important;
+      height: 24px !important;
+      z-index: 1000001 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      opacity: 0.75;
+      transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .fda-booking-cross-sign:hover {
+      opacity: 1 !important;
+      transform: scale(1.1) !important;
+    }
+    .fda-booking-form-box .fda-booking-form-lapping {
+      background-color: transparent !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      backdrop-filter: blur(6px) !important;
+    }
+
+    .fda-booking-form-box .fda-bookng-form {
+      background-color: #ffffff !important;
+      border-radius: 0.3125rem !important;
+      padding: 0.9375rem !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .fda-booking-form-box .fda-submit-button-wrapper .fda-button-v1,
+    .fda-booking-form-box .fda-submit-button-wrapper .fda-button-overlay {
+      background-color: #2b2725 !important;
+      border-color: #2b2725 !important;
+      border-radius: 9999px !important;
+    }
+
+    .fda-booking-form-box .fda-submit-button-wrapper .fda-button-text {
+      color: #ffffff !important;
+    }
+
+    .fda-booking-form-box .fda-submit-button-wrapper:hover .fda-button-v1,
+    .fda-booking-form-box .fda-submit-button-wrapper:hover .fda-button-overlay {
+      background-color: #1a1716 !important;
+      border-color: #1a1716 !important;
+    }
+  </style>
+
+  <script>
+    (function() {
+      function openQuoteModal(e) {
+        if (e && typeof e.preventDefault === 'function') {
+          e.preventDefault();
+        }
+        if (e && typeof e.stopPropagation === 'function') {
+          e.stopPropagation();
+        }
+        var modal = document.querySelector('[booking-form="1"], .fda-booking-form-box');
+        if (modal) {
+          modal.classList.add('modal-active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeQuoteModal(e) {
+        if (e && typeof e.preventDefault === 'function') {
+          e.preventDefault();
+        }
+        if (e && typeof e.stopPropagation === 'function') {
+          e.stopPropagation();
+        }
+        var modal = document.querySelector('[booking-form="1"], .fda-booking-form-box');
+        if (modal) {
+          modal.classList.remove('modal-active');
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Global click delegation for opening and closing quote modal
+      document.addEventListener('click', function(e) {
+        // 1. Open Button Click (.fda-navbar-button or [form-open-button])
+        var openBtn = e.target.closest('.fda-navbar-button, [form-open-button]');
+        if (openBtn) {
+          openQuoteModal(e);
+          return;
+        }
+
+        // 2. Close Button Click ([from-close="1"] or .fda-booking-cross-sign)
+        var closeBtn = e.target.closest('[from-close="1"], .fda-booking-cross-sign');
+        if (closeBtn) {
+          closeQuoteModal(e);
+          return;
+        }
+
+        // 3. Click outside on backdrop
+        var modal = document.querySelector('[booking-form="1"].modal-active, .fda-booking-form-box.modal-active');
+        if (modal) {
+          var clickedInsideForm = e.target.closest('.fda-bookng-form, .fda-booking-form-inner-box');
+          if (!clickedInsideForm && (e.target === modal || e.target.closest('.fda-booking-form-lapping'))) {
+            closeQuoteModal(e);
+          }
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeQuoteModal(e);
+        }
+      });
+
+      window.openQuoteModal = openQuoteModal;
+      window.closeQuoteModal = closeQuoteModal;
+    })();
+  </script>

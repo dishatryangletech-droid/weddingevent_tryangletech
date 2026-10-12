@@ -199,142 +199,6 @@
     </svg>
   </button>
 
-</div> <!-- End Floating Action Buttons flex container -->
-
-<!-- WhatsApp Widget -->
-<style>
-  #whatsappWidget {
-    position: fixed;
-    bottom: 90px;
-    right: 30px;
-    z-index: 10000;
-    width: 340px;
-    background: #e5ddd5;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Inter', sans-serif;
-  }
-
-  @media (max-width: 400px) {
-    #whatsappWidget {
-      right: 15px;
-      bottom: 85px;
-      width: calc(100% - 30px);
-    }
-  }
-
-  #whatsappWidget.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .wa-header {
-    background: #075e54;
-    color: white;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .wa-header img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: white;
-  }
-
-  .wa-header-text h4 {
-    margin: 0;
-    font-size: 16px;
-    color: white;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  .wa-header-text p {
-    margin: 4px 0 0;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .wa-close {
-    margin-left: auto;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: white;
-    padding: 5px;
-  }
-
-  .wa-body {
-    padding: 20px;
-    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .wa-message {
-    background: white;
-    padding: 12px 14px;
-    border-radius: 0 8px 8px 8px;
-    font-size: 14px;
-    color: #333;
-    max-width: 85%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    line-height: 1.4;
-  }
-
-  .wa-message::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -8px;
-    width: 0;
-    height: 0;
-    border-top: 8px solid white;
-    border-left: 8px solid transparent;
-  }
-
-  .wa-footer {
-    padding: 16px;
-    background: white;
-  }
-
-  .wa-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #25d366;
-    color: white;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 24px;
-    font-weight: 600;
-    transition: background 0.2s;
-    font-size: 15px;
-  }
-
-  .wa-btn:hover {
-    background: #128c7e;
-    color: white;
-  }
-</style>
-
-</div> <!-- End Floating Action Buttons flex container -->
 
 <!-- WhatsApp Widget -->
 <style>
@@ -470,9 +334,150 @@
 </style>
 
 <style>
-  /* Override main site button hover color to match new theme */
-  .fda-button-overlay {
+  /* ========================================================
+     Global Button Styling - Consistent Brand Theme
+     Normal: #8f6e2c (Warm Gold) with Crisp White Text
+     Hover:  #0c2e2b (Deep Forest Green / Teal) with White Text
+     Matches the button followed on the service page (/service)
+     ======================================================== */
+  .fda-button-v1,
+  .fda-button-v1:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+  .fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+  .fda-button-v1:where(.w-variant-eab88934-0d4f-9e2a-45db-1b5f6e3bb731),
+  .fda-button-v1:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+  .fda-button-v1:where(.w-variant-19292096-129d-eac0-5141-e12ec5469267),
+  .fda-button-v1:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+  .fda-button-v1.balck,
+  .fda-navbar-button .fda-button-v1 {
+    background-color: #8f6e2c !important;
+    border-color: #8f6e2c !important;
+    color: #ffffff !important;
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease !important;
+  }
+
+  /* Default button overlay matches warm gold #8f6e2c so button is not prematurely dark */
+  .fda-button-overlay,
+  .fda-button-overlay:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+  .fda-button-overlay:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+  .fda-button-overlay.balck-5,
+  .fda-navbar-button .fda-button-overlay {
+    background-color: #8f6e2c !important;
+    transition: background-color 0.35s ease !important;
+  }
+
+  /* Ensure text inside all buttons remains white */
+  .fda-button-v1 .fda-button-text,
+  .fda-button-text.fda-1,
+  .fda-button-text.fda-2,
+  .fda-button-text.fda-1:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+  .fda-button-text.fda-1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+  .fda-button-text.fda-1:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+  .fda-button-text.fda-1:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+  .fda-button-text.fda-1.balck-3,
+  .fda-navbar-button .fda-button-text {
+    color: #ffffff !important;
+  }
+
+  /* Button hover background and border: #0c2e2b across all variants */
+  .fda-button-v1:hover,
+  .fda-button-v1:hover:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+  .fda-button-v1:hover:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+  .fda-button-v1:hover:where(.w-variant-eab88934-0d4f-9e2a-45db-1b5f6e3bb731),
+  .fda-button-v1:hover:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+  .fda-button-v1:hover:where(.w-variant-19292096-129d-eac0-5141-e12ec5469267),
+  .fda-button-v1:hover:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+  .fda-button-v1.balck:hover,
+  .fda-navbar-button:hover .fda-button-v1,
+  .fda-navbar-button:focus-within .fda-button-v1 {
     background-color: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+  }
+
+  /* Webflow button hover overlay: only on hover/active/focus */
+  .fda-button-v1:hover .fda-button-overlay,
+  .fda-button-v1:focus .fda-button-overlay,
+  .fda-button-v1:active .fda-button-overlay,
+  .fda-navbar-button:hover .fda-button-overlay,
+  .fda-navbar-button:focus-within .fda-button-overlay,
+  .fda-button-overlay:hover {
+    background-color: #0c2e2b !important;
+  }
+
+  /* Button text on hover */
+  .fda-button-v1:hover .fda-button-text,
+  .fda-button-v1:hover .fda-button-text.fda-1,
+  .fda-button-v1:hover .fda-button-text.fda-2,
+  .fda-navbar-button:hover .fda-button-text,
+  .fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b):hover .fda-button-text.fda-2 {
+    color: #ffffff !important;
+  }
+
+  /* Custom Buttons (Portfolio, Lightboxes, Modals, etc.) */
+  .btn-connect-lovio,
+  #modal-full-link {
+    background: #8f6e2c !important;
+    color: #ffffff !important;
+    border-color: #8f6e2c !important;
+  }
+  .btn-connect-lovio:hover,
+  .btn-connect-lovio:focus,
+  .btn-connect-lovio:active,
+  #modal-full-link:hover,
+  #modal-full-link:focus,
+  #modal-full-link:active {
+    background: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+  }
+
+  .btn-explore-entire {
+    background: #8f6e2c !important;
+    color: #ffffff !important;
+  }
+  .btn-explore-entire:hover {
+    background: #0c2e2b !important;
+    color: #ffffff !important;
+  }
+
+  #home-modal-link {
+    background: #8f6e2c !important;
+    border-color: #8f6e2c !important;
+    color: #ffffff !important;
+  }
+  #home-modal-link:hover,
+  #home-modal-link:focus,
+  #home-modal-link:active {
+    background: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+  }
+
+  /* Quick View / Preview Buttons */
+  .btn-quick-preview,
+  .home-btn-quick-preview {
+    background: #8f6e2c !important;
+    border: 1px solid #8f6e2c !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease !important;
+  }
+  .btn-quick-preview:hover,
+  .btn-quick-preview:focus,
+  .btn-quick-preview:active,
+  .home-btn-quick-preview:hover,
+  .home-btn-quick-preview:focus,
+  .home-btn-quick-preview:active {
+    background: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(12, 46, 43, 0.35) !important;
+  }
+
+  /* Blog post card button arrow */
+  .fda-post-item:hover .fda-post-button,
+  .fda-post-button:hover {
+    background-color: #0c2e2b !important;
+    border-color: #0c2e2b !important;
   }
 </style>
 

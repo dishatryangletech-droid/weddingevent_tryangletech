@@ -18919,7 +18919,7 @@ a.w-webflow-badge,
 }
 
 .fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b):hover .fda-button-text.fda-2 {
-  color: #8f6e2c !important;
+  color: #ffffff !important;
 }
 
 .fda-button-text.fda-1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b) {
@@ -18954,4 +18954,119 @@ a.w-webflow-badge,
 
 .fda-post-arrow-icon {
   filter: invert(100%) !important;
+}
+
+/* Unified Button Styling - Consistent Brand Theme (#8f6e2c normal, #0c2e2b hover) */
+.fda-button-v1,
+.fda-button-v1:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+.fda-button-v1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+.fda-button-v1:where(.w-variant-eab88934-0d4f-9e2a-45db-1b5f6e3bb731),
+.fda-button-v1:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+.fda-button-v1:where(.w-variant-19292096-129d-eac0-5141-e12ec5469267),
+.fda-button-v1:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+.fda-button-v1.balck,
+.fda-navbar-button .fda-button-v1 {
+  background-color: #8f6e2c !important;
+  border-color: #8f6e2c !important;
+  color: #ffffff !important;
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease !important;
+}
+
+/* Default button overlay matches warm gold #8f6e2c so button is not prematurely dark */
+.fda-button-overlay,
+.fda-button-overlay:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+.fda-button-overlay:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+.fda-button-overlay.balck-5,
+.fda-navbar-button .fda-button-overlay {
+  background-color: #8f6e2c !important;
+  transition: background-color 0.35s ease !important;
+}
+
+.fda-button-v1 .fda-button-text,
+.fda-button-text.fda-1,
+.fda-button-text.fda-2,
+.fda-button-text.fda-1:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+.fda-button-text.fda-1:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+.fda-button-text.fda-1:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+.fda-button-text.fda-1:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+.fda-button-text.fda-1.balck-3,
+.fda-navbar-button .fda-button-text {
+  color: #ffffff !important;
+}
+
+.fda-button-v1:hover,
+.fda-button-v1:hover:where(.w-variant-37e9e6b2-81fa-735b-b246-547b818c5d40),
+.fda-button-v1:hover:where(.w-variant-2ee44d8a-cff8-2fcb-a55a-93f0ccd8b45b),
+.fda-button-v1:hover:where(.w-variant-eab88934-0d4f-9e2a-45db-1b5f6e3bb731),
+.fda-button-v1:hover:where(.w-variant-15a48d83-c7c5-7d54-88b9-d154266f84bb),
+.fda-button-v1:hover:where(.w-variant-19292096-129d-eac0-5141-e12ec5469267),
+.fda-button-v1:hover:where(.w-variant-a89219d8-6aa3-0062-dfb6-8cd5a113af8a),
+.fda-button-v1.balck:hover,
+.fda-navbar-button:hover .fda-button-v1,
+.fda-navbar-button:focus-within .fda-button-v1 {
+  background-color: #0c2e2b !important;
+  border-color: #0c2e2b !important;
+  color: #ffffff !important;
+}
+
+/* Webflow button hover overlay: only on hover/active/focus */
+.fda-button-v1:hover .fda-button-overlay,
+.fda-button-v1:focus .fda-button-overlay,
+.fda-button-v1:active .fda-button-overlay,
+.fda-navbar-button:hover .fda-button-overlay,
+.fda-navbar-button:focus-within .fda-button-overlay,
+.fda-button-overlay:hover {
+  background-color: #0c2e2b !important;
+}
+
+.fda-button-v1:hover .fda-button-text,
+.fda-button-v1:hover .fda-button-text.fda-1,
+.fda-button-v1:hover .fda-button-text.fda-2,
+.fda-navbar-button:hover .fda-button-text {
+  color: #ffffff !important;
+}
+
+/* Portfolio Quick View and Modal Details Buttons */
+.btn-quick-preview,
+.home-btn-quick-preview {
+  background: #8f6e2c !important;
+  border: 1px solid #8f6e2c !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-quick-preview:hover,
+.btn-quick-preview:focus,
+.btn-quick-preview:active,
+.home-btn-quick-preview:hover,
+.home-btn-quick-preview:focus,
+.home-btn-quick-preview:active {
+  background: #0c2e2b !important;
+  border-color: #0c2e2b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(12, 46, 43, 0.35) !important;
+}
+
+#modal-full-link,
+#home-modal-link,
+.btn-connect-lovio {
+  background: #8f6e2c !important;
+  border-color: #8f6e2c !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+#modal-full-link:hover,
+#modal-full-link:focus,
+#modal-full-link:active,
+#home-modal-link:hover,
+#home-modal-link:focus,
+#home-modal-link:active,
+.btn-connect-lovio:hover,
+.btn-connect-lovio:focus,
+.btn-connect-lovio:active {
+  background: #0c2e2b !important;
+  border-color: #0c2e2b !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(12, 46, 43, 0.4) !important;
 }

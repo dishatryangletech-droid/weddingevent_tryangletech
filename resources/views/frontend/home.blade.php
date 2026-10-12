@@ -87,6 +87,8 @@
     flex-direction: column;
 }
 .home-overflow-portfolio-img {
+    display: block;
+    text-decoration: none;
     position: relative;
     width: 100%;
     height: 380px;
@@ -201,9 +203,11 @@
     transform: translateX(4px);
 }
 .home-btn-quick-preview {
-    background: #ffffff;
-    border: 1px solid #e2dad0;
-    color: #3a3735;
+    display: inline-block;
+    text-decoration: none;
+    background: #8f6e2c;
+    border: 1px solid #8f6e2c;
+    color: #ffffff;
     padding: 7px 14px;
     border-radius: 6px;
     font-size: 11px;
@@ -211,11 +215,32 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.home-btn-quick-preview:hover {
-            background: #8f6e2c;
-            color: #ffffff;
-            border-color: #8f6e2c;
-        }
+.home-btn-quick-preview:hover,
+.home-btn-quick-preview:focus,
+.home-btn-quick-preview:active {
+    background: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(12, 46, 43, 0.35);
+}
+.home-btn-quick-preview:active {
+    transform: scale(0.96);
+}
+#home-modal-link {
+    background: #8f6e2c !important;
+    border: 1px solid #8f6e2c !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+#home-modal-link:hover,
+#home-modal-link:focus,
+#home-modal-link:active {
+    background: #0c2e2b !important;
+    border-color: #0c2e2b !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(12, 46, 43, 0.4) !important;
+    transform: translateY(-2px);
+}
 .btn-explore-entire {
     display: inline-block;
     background: #8f6e2c;
@@ -470,7 +495,7 @@
                 @if(!empty($recommendedPortfoliosData))
                     @foreach(array_slice($recommendedPortfoliosData, 0, 3) as $index => $item)
                         <div class="home-item-portfolio-lovio" style="animation-delay: {{ 0.12 + ($index * 0.16) }}s;">
-                            <div class="home-overflow-portfolio-img" onclick='openHomeModal({{ json_encode($item) }})'>
+                            <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="home-overflow-portfolio-img">
                                 <img src="{{ asset($item['cover_image']) }}" alt="{{ $item['title'] }}" class="home-image-portfolio-page" loading="lazy">
                                 <div class="home-badge-category-tag">{{ $item['category'] }}</div>
                                 <div class="home-card-hover-overlay-lovio">
@@ -478,7 +503,7 @@
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                             <div class="home-block-portfolio-page">
                                 <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="home-heading-portfolio">
                                     {{ $item['title'] }}
@@ -488,7 +513,7 @@
                                     <a href="{{ route('portfolio.detail', ['slug' => $item['slug']]) }}" class="home-link-learn-more">
                                         learn more →
                                     </a>
-                                    <button class="home-btn-quick-preview" onclick='openHomeModal({{ json_encode($item) }})'>
+                                    <button class="home-btn-quick-preview" onclick="openHomeModalByIndex({{ $index }})">
                                         Quick View
                                     </button>
                                 </div>
@@ -523,13 +548,20 @@
             <h3 id="home-modal-title" style="font-family: 'Playfair Display', serif; font-size: 26px; color: #1c1917; margin-bottom: 8px;"></h3>
             <p id="home-modal-desc" style="font-size: 15px; color: #57534e; line-height: 1.6; margin-bottom: 20px;"></p>
             <div style="display: flex; justify-content: flex-end;">
-                <a id="home-modal-link" href="#" style="background: #8f6e2c; color: #1c1917; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none;">View Full Details Page →</a>
+                <a id="home-modal-link" href="{{ url('/portfolio/jennifer-oliver') }}" style="display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; position: relative; z-index: 10000; pointer-events: auto !important; background: #8f6e2c; color: #ffffff;">View Full Details Page →</a>
             </div>
         </div>
     </div>
 
     <script>
+        const homePortfolioItems = @json(array_values(array_slice($recommendedPortfoliosData ?? [], 0, 3)));
         let homeCurrentItem = null;
+
+        function openHomeModalByIndex(index) {
+            const item = homePortfolioItems[index];
+            if (!item) return;
+            openHomeModal(item);
+        }
 
         function formatHomeUrl(path) {
             if (!path) return '';
@@ -539,11 +571,32 @@
             return "{{ asset('') }}" + path;
         }
 
-        function openHomeModal(item) {
+        document.addEventListener("DOMContentLoaded", function() {
+            var homeLink = document.getElementById("home-modal-link");
+            if (homeLink) {
+                homeLink.onclick = function(e) {
+                    if (e && typeof e.stopPropagation === "function") {
+                        e.stopPropagation();
+                    }
+                    var targetUrl = this.href;
+                    if (homeCurrentItem && homeCurrentItem.slug) {
+                        targetUrl = "{{ url('/portfolio') }}/" + homeCurrentItem.slug;
+                    }
+                    if (targetUrl && targetUrl !== "#" && !targetUrl.endsWith("#")) {
+                        window.location.href = targetUrl;
+                    }
+                };
+            }
+        });
+function openHomeModal(item) {
             homeCurrentItem = item;
             document.getElementById('home-modal-title').innerText = item.title;
             document.getElementById('home-modal-desc').innerHTML = item.description || item.subtitle || '';
-            document.getElementById('home-modal-link').href = `/portfolio/${item.slug}`;
+            var hLink = document.getElementById("home-modal-link");
+            if (hLink) {
+                hLink.href = "{{ url('/portfolio') }}/" + item.slug;
+                hLink.setAttribute("data-url", "{{ url('/portfolio') }}/" + item.slug);
+            }
 
             const thumbsBar = document.getElementById('home-modal-thumbs');
             thumbsBar.innerHTML = '';
