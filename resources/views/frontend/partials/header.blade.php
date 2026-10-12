@@ -6,10 +6,27 @@
     font-size: 17px !important;
     font-weight: 700 !important;
   }
+
+  /* Sticky Navbar */
+  .fda-navbar {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    background-color: #ffffff !important;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease !important;
+  }
+
+  .fda-navbar.is-sticky {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  }
 </style>
-<div data-wf--fda-navbar--variant="normal" class="fda-navbar-main w-variant-7b561c28-18c3-ecdb-7aaa-a21923b0fa6e">
-  </div>
-  </div>
+<!-- Sticky Header Navbar -->
+
+
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease"
     role="banner" class="fda-navbar w-nav">
     <div class="w-layout-blockcontainer fda-container-medium w-container">
@@ -373,5 +390,19 @@
 
       window.openQuoteModal = openQuoteModal;
       window.closeQuoteModal = closeQuoteModal;
+
+      // Sticky Navbar Scroll Handler
+      var navbar = document.querySelector('.fda-navbar');
+      if (navbar) {
+        var onScroll = function() {
+          if (window.scrollY > 30) {
+            navbar.classList.add('is-sticky');
+          } else {
+            navbar.classList.remove('is-sticky');
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
     })();
   </script>
