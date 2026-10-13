@@ -1,6 +1,18 @@
 @php
   $fs = $footerSetting ?? \App\Models\FooterSetting::getSettings();
 @endphp
+<style>
+  .fda-footer-underline {
+    display: none !important;
+  }
+  .fda-footer a,
+  .fda-footer .fda-footer-link,
+  .fda-footer .fda-footer-text-link,
+  .fda-footer .fda-color-peach,
+  .fda-footer .fda-link-text-hover {
+    text-decoration: none !important;
+  }
+</style>
 <section class="fda-footer fda-overflow-hidden">
   <div class="fda-footer-block" style="background-color: #0c2e2b;
 ;">
@@ -17,37 +29,29 @@
                   @foreach($fs->services_links as $link)
                     <a href="{{ url($link['url'] ?? '#') }}" class="fda-footer-link w-inline-block">
                       <div class="fda-text-color-light-grey fda-footer-text-link">{{ $link['title'] }}</div>
-                      <div class="fda-footer-underline"></div>
                     </a>
                   @endforeach
                 @else
                   <a href="{{ route('home') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Home</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('about') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">About</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('service-three') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Service</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('event') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Events</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('portfolio') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Portfolio</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('blog') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Blog</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                   <a href="{{ route('contact') }}" class="fda-footer-link w-inline-block">
                     <div class="fda-text-color-light-grey fda-footer-text-link">Contact</div>
-                    <div class="fda-footer-underline"></div>
                   </a>
                 @endif
               </div>
@@ -79,7 +83,6 @@
                         alt="Call-logo" /></div><a href="tel:{{ preg_replace('/[^0-9\+]/', '', $fs->phone) }}"
                       class="fda-footer-link w-inline-block">
                       <div class="fda-text-color-light-grey fda-footer-text-link">{{ $fs->phone }}</div>
-                      <div class="fda-footer-underline"></div>
                     </a>
                   </div>
                 @endif
