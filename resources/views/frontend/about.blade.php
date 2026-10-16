@@ -6,22 +6,27 @@
 <head>
   <meta charset="utf-8" />
   <link href="https://cdn.prod.website-files.com" rel="preconnect" />
-  <title>Knotcraft - The Passionate Team Behind Your Big Day</title>
-  <meta
-    content="Meet the passionate team behind your dream weddings. Learn about our story, our creative vision, and how we bring your unique love story to life beautifully."
-    name="description" />
-  <meta content="Knotcraft - The Passionate Team Behind Your Big Day" property="og:title" />
-  <meta
-    content="Meet the passionate team behind your dream weddings. Learn about our story, our creative vision, and how we bring your unique love story to life beautifully."
-    property="og:description" />
-  <meta content="{{ asset('images/6a55f9eed1559bc4c6522ae5_Site-graph-image.avif') }}" property="og:image" />
-  <meta content="Knotcraft - The Passionate Team Behind Your Big Day" name="twitter:title" />
-  <meta
-    content="Meet the passionate team behind your dream weddings. Learn about our story, our creative vision, and how we bring your unique love story to life beautifully."
-    name="twitter:description" />
-  <meta content="{{ asset('images/6a55f9eed1559bc4c6522ae5_Site-graph-image.avif') }}" name="twitter:image" />
+  <title>About Us | Elegant Occasions - Luxury Wedding & Event Planning</title>
+  <meta name="description" content="Meet the passionate team behind Elegant Occasions. Learn about our story, creative vision, and how we bring your dream wedding celebrations to life." />
   <meta property="og:type" content="website" />
-  <meta content="summary_large_image" name="twitter:card" />
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta property="og:site_name" content="Elegant Occasions" />
+  <meta property="og:title" content="About Us | Elegant Occasions - Luxury Wedding & Event Planning" />
+  <meta property="og:description" content="Meet the passionate team behind Elegant Occasions. Learn about our story, creative vision, and how we bring your dream wedding celebrations to life." />
+  <meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:secure_url" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Elegant Occasions - Luxury Wedding & Event Planning" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Us | Elegant Occasions - Luxury Wedding & Event Planning" />
+  <meta name="twitter:description" content="Meet the passionate team behind Elegant Occasions. Learn about our story, creative vision, and how we bring your dream wedding celebrations to life." />
+  <meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+  <link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Webflow" name="generator" />
   <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />
@@ -72,7 +77,7 @@
             </div>
             <h1 banner-text-appear="" class="fda-gap-none fda-color-white fda-gap-medium">{!! $aboutBanner->title ?? 'Artfully directed wedding experiences' !!}</h1>
             <div class="fda-gap-large">
-              <p banner-text-appear="" class="fda-gap-none fda-color-white fda-hero-v13-paragraph">{{ $aboutBanner->subtitle ?? 'A walkthrough of how we translate your personal love story into a visual language at Knotcraft.' }}</p>
+              <p banner-text-appear="" class="fda-gap-none fda-color-white fda-hero-v13-paragraph">{{ $aboutBanner->subtitle ?? 'A walkthrough of how we translate your personal love story into a visual language at Elegant Occasions.' }}</p>
             </div>
             <div banner-text-appear="" class="w-layout-hflex"><a data-wf--fda-button-v1--variant="base"
                 href="{{ url($aboutBanner->button_link ?? route('booking-inquiry')) }}" class="fda-button-v1 w-inline-block">
@@ -457,16 +462,16 @@
     <section class="fda-moment-video-wrap">
       <div class="w-layout-hflex fda-moment-video">
         <div
-          data-poster-url="{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Knotcraft-home-two-video-1-_poster.0000000.jpg') }}"
-          data-video-urls="{{ asset('videos/6a6305bf5040b777232a17a6_Knotcraft-home-two-video-1-_mp4.mp4') }},{{ asset('videos/6a6305bf5040b777232a17a6_Knotcraft-home-two-video-1-_webm.webm') }}"
+          data-poster-url="{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Elegant Occasions-home-two-video-1-_poster.0000000.jpg') }}"
+          data-video-urls="{{ asset('videos/6a6305bf5040b777232a17a6_Elegant Occasions-home-two-video-1-_mp4.mp4') }},{{ asset('videos/6a6305bf5040b777232a17a6_Elegant Occasions-home-two-video-1-_webm.webm') }}"
           data-autoplay="true" data-loop="true" data-wf-ignore="true"
           class="fda-full-height-and-width fda-flex-center w-background-video w-background-video-atom"><video
             id="01fadb35-35b3-ceef-58f3-99ba47971e79-video" autoplay="" loop=""
-            style="background-image:url(&quot;{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Knotcraft-home-two-video-1-_poster.0000000.jpg') }}&quot;)"
+            style="background-image:url(&quot;{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Elegant Occasions-home-two-video-1-_poster.0000000.jpg') }}&quot;)"
             muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
-            <source src="{{ asset('videos/6a6305bf5040b777232a17a6_Knotcraft-home-two-video-1-_mp4.mp4') }}"
+            <source src="{{ asset('videos/6a6305bf5040b777232a17a6_Elegant Occasions-home-two-video-1-_mp4.mp4') }}"
               data-wf-ignore="true" />
-            <source src="{{ asset('videos/6a6305bf5040b777232a17a6_Knotcraft-home-two-video-1-_webm.webm') }}"
+            <source src="{{ asset('videos/6a6305bf5040b777232a17a6_Elegant Occasions-home-two-video-1-_webm.webm') }}"
               data-wf-ignore="true" />
           </video><noscript>
             <style>
@@ -485,7 +490,7 @@
                 }
               }
             </style><img data-wf-bgvideo-fallback-img="true"
-              src="{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Knotcraft-home-two-video-1-_poster.0000000.jpg') }}"
+              src="{{ asset('images/69e06bfff096fe744c997c8d_6a435f1052c6cbd76b28033d_Elegant Occasions-home-two-video-1-_poster.0000000.jpg') }}"
               alt="" />
           </noscript>
           <div aria-live="polite"><button type="button" data-w-bg-video-control="true"

@@ -3,9 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous"/>
-    <title>Portfolio - Lovio & Knotcraft Webflow Template</title>
-    <meta content="Event design to make your heart skip a beat. Explore our luxury wedding portfolio, destination celebrations, pre-wedding shoots, and floral styling." name="description"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Portfolio | Elegant Occasions - Real Weddings & Celebrations</title>
+<meta name="description" content="Browse our portfolio of luxury weddings and celebrations. Discover unforgettable wedding stories crafted with artistry and elegance." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ url()->current() }}" />
+<meta property="og:site_name" content="Elegant Occasions" />
+<meta property="og:title" content="Portfolio | Elegant Occasions - Real Weddings & Celebrations" />
+<meta property="og:description" content="Browse our portfolio of luxury weddings and celebrations. Discover unforgettable wedding stories crafted with artistry and elegance." />
+<meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+<meta property="og:image:secure_url" content="{{ asset('images/og-preview.png') }}" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Elegant Occasions - Luxury Wedding & Event Planning" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Portfolio | Elegant Occasions - Real Weddings & Celebrations" />
+<meta name="twitter:description" content="Browse our portfolio of luxury weddings and celebrations. Discover unforgettable wedding stories crafted with artistry and elegance." />
+<meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+<link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
+<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}" />
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/google-fonts.css') }}">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>

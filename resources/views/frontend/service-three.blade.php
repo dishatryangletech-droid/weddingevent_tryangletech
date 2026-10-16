@@ -6,22 +6,27 @@
 <head>
   <meta charset="utf-8" />
   <link href="https://cdn.prod.website-files.com" rel="preconnect" />
-  <title>Knotcraft - Tailored Services For Your Dream Wedding</title>
-  <meta
-    content="Discover our comprehensive wedding services designed for your peace of mind. From decor to catering, we provide everything needed for a flawless celebration."
-    name="description" />
-  <meta content="Knotcraft - Tailored Services For Your Dream Wedding" property="og:title" />
-  <meta
-    content="Discover our comprehensive wedding services designed for your peace of mind. From decor to catering, we provide everything needed for a flawless celebration."
-    property="og:description" />
-  <meta content="{{ asset('images/6a55f9eed1559bc4c6522ae5_Site-graph-image.avif') }}" property="og:image" />
-  <meta content="Knotcraft - Tailored Services For Your Dream Wedding" name="twitter:title" />
-  <meta
-    content="Discover our comprehensive wedding services designed for your peace of mind. From decor to catering, we provide everything needed for a flawless celebration."
-    name="twitter:description" />
-  <meta content="{{ asset('images/6a55f9eed1559bc4c6522ae5_Site-graph-image.avif') }}" name="twitter:image" />
+  <title>Services | Elegant Occasions - Tailored Wedding & Event Planning</title>
+  <meta name="description" content="Discover bespoke wedding and event management services by Elegant Occasions. From concept to execution, we craft unforgettable luxury celebrations." />
   <meta property="og:type" content="website" />
-  <meta content="summary_large_image" name="twitter:card" />
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta property="og:site_name" content="Elegant Occasions" />
+  <meta property="og:title" content="Services | Elegant Occasions - Tailored Wedding & Event Planning" />
+  <meta property="og:description" content="Discover bespoke wedding and event management services by Elegant Occasions. From concept to execution, we craft unforgettable luxury celebrations." />
+  <meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:secure_url" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Elegant Occasions - Luxury Wedding & Event Planning" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Services | Elegant Occasions - Tailored Wedding & Event Planning" />
+  <meta name="twitter:description" content="Discover bespoke wedding and event management services by Elegant Occasions. From concept to execution, we craft unforgettable luxury celebrations." />
+  <meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+  <link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Webflow" name="generator" />
   <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />
@@ -90,7 +95,7 @@
               </div>
               <div class="fda-gap-large fda-hero-v7-description-wrapper">
                 <p banner-text-appear="" class="fda-gap-none fda-color-white">
-                  {{ $serviceBanner->subtitle ?? 'A walkthrough of how we translate your personal love story into a visual language at Knotcraft.' }}
+                  {{ $serviceBanner->subtitle ?? 'A walkthrough of how we translate your personal love story into a visual language at Elegant Occasions.' }}
                 </p>
               </div>
               <div banner-text-appear=""><a data-wf--fda-button-v1--variant="base"

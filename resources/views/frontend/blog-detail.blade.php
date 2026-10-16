@@ -3,7 +3,19 @@
 <head>
     <meta charset="utf-8"/>
     <link href="https://cdn.prod.website-files.com" rel="preconnect" />
-    <title>{{ $blog->title ?? 'Blog Detail' }} - Knotcraft</title>
+    <title>{{ $blog->title ?? 'Blog Detail' }} | Elegant Occasions</title>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:site_name" content="Elegant Occasions" />
+    <meta property="og:title" content="{{ $blog->title ?? 'Blog Detail' }} | Elegant Occasions" />
+    <meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $blog->title ?? 'Blog Detail' }} | Elegant Occasions" />
+    <meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+    <link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
     <meta content="{{ Str::limit(strip_tags($blog->content ?? $blog->title), 160) }}" name="description"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />

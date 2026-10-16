@@ -7,22 +7,26 @@
 <head>
   <meta charset="utf-8" />
   <link href="https://cdn.prod.website-files.com" rel="preconnect" />
-  <title>Knotcraft - Romantic garden couple shoot</title>
-  <meta
-    content="A romantic garden-inspired couple edit capturing timeless elegance, soft florals, and intimate wedding moments."
-    name="description" />
-  <meta content="Knotcraft - Romantic garden couple shoot" property="og:title" />
-  <meta
-    content="A romantic garden-inspired couple edit capturing timeless elegance, soft florals, and intimate wedding moments."
-    property="og:description" />
-  <meta content="{{ asset('images/6a6305bf5040b777232a182e_Event-image-one.avif') }}" property="og:image" />
-  <meta content="Knotcraft - Romantic garden couple shoot" name="twitter:title" />
-  <meta
-    content="A romantic garden-inspired couple edit capturing timeless elegance, soft florals, and intimate wedding moments."
-    name="twitter:description" />
-  <meta content="{{ asset('images/6a6305bf5040b777232a182e_Event-image-one.avif') }}" name="twitter:image" />
-  <meta property="og:type" content="website" />
-  <meta content="summary_large_image" name="twitter:card" />
+  <title>{{ $item['title'] ?? 'Wedding Event' }} | Elegant Occasions</title>
+  <meta content="{{ $item['description'] ?? 'Curated luxury wedding event by Elegant Occasions.' }}" name="description" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta property="og:site_name" content="Elegant Occasions" />
+  <meta property="og:title" content="{{ $item['title'] ?? 'Wedding Event' }} | Elegant Occasions" />
+  <meta property="og:description" content="{{ $item['description'] ?? 'Curated luxury wedding event by Elegant Occasions.' }}" />
+  <meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:secure_url" content="{{ asset('images/og-preview.png') }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ $item['title'] ?? 'Wedding Event' }} | Elegant Occasions" />
+  <meta name="twitter:description" content="{{ $item['description'] ?? 'Curated luxury wedding event by Elegant Occasions.' }}" />
+  <meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+  <link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Webflow" name="generator" />
   <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />

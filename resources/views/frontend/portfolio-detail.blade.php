@@ -3,8 +3,26 @@
 <head>
     <meta charset="utf-8"/>
     <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous"/>
-    <title>{{ $item['title'] }} - Lovio & Knotcraft Wedding Story</title>
+    <title>{{ $item['title'] }} | Elegant Occasions Wedding Story</title>
     <meta content="{{ $item['description'] }}" name="description"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:site_name" content="Elegant Occasions" />
+    <meta property="og:title" content="{{ $item['title'] }} | Elegant Occasions Wedding Story" />
+    <meta property="og:description" content="{{ $item['description'] }}" />
+    <meta property="og:image" content="{{ asset('images/og-preview.png') }}" />
+    <meta property="og:image:secure_url" content="{{ asset('images/og-preview.png') }}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $item['title'] }} | Elegant Occasions Wedding Story" />
+    <meta name="twitter:description" content="{{ $item['description'] }}" />
+    <meta name="twitter:image" content="{{ asset('images/og-preview.png') }}" />
+    <link rel="image_src" href="{{ asset('images/og-preview.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}" />
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="{{ asset('css/knotcraft.webflow.shared.3f78cfc4d.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
