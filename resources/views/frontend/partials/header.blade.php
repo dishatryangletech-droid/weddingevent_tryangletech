@@ -21,11 +21,17 @@
     will-change: transform;
     transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
                 box-shadow 0.3s ease, 
-                background-color 0.3s ease !important;
+                background-color 0.3s ease,
+                backdrop-filter 0.3s ease !important;
   }
 
+  /* When shown on scroll up (sticky state) -> luxury transparent frosted glass */
   .fda-navbar.is-sticky {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    background-color: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(14px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
   }
 
   /* Smart Hide on Scroll Down */
