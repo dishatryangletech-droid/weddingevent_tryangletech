@@ -7,7 +7,7 @@
     font-weight: 700 !important;
   }
 
-  /* Sticky Navbar */
+  /* Smart Sticky / Auto-Hide Navbar */
   .fda-navbar {
     position: -webkit-sticky !important;
     position: sticky !important;
@@ -17,11 +17,28 @@
     width: 100% !important;
     z-index: 9999 !important;
     background-color: #ffffff !important;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease !important;
+    transform: translateY(0);
+    will-change: transform;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.3s ease, 
+                background-color 0.3s ease !important;
   }
 
   .fda-navbar.is-sticky {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Smart Hide on Scroll Down */
+  .fda-navbar.nav-hidden {
+    transform: translateY(-100%) !important;
+    box-shadow: none !important;
+  }
+
+  /* Keep navbar visible if mobile nav menu is open */
+  .fda-navbar.menu-open,
+  .fda-navbar:has(.w-nav-button.w--open),
+  .fda-navbar:has(.w-nav-menu.w--open) {
+    transform: translateY(0) !important;
   }
 </style>
 <!-- Sticky Header Navbar -->
@@ -391,18 +408,67 @@
       window.openQuoteModal = openQuoteModal;
       window.closeQuoteModal = closeQuoteModal;
 
-      // Sticky Navbar Scroll Handler
+      // Smart Auto-Hide Navbar: Scroll Down = Hide, Scroll Up = Show
       var navbar = document.querySelector('.fda-navbar');
       if (navbar) {
-        var onScroll = function() {
-          if (window.scrollY > 30) {
+        var lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        var ticking = false;
+        var scrollThreshold = 8; // Minimum scroll delta in px to trigger toggle
+        var topThreshold = 80;   // Keep navbar revealed when near top of page
+
+        function updateNavbar() {
+          var currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+          if (currentScrollY < 0) currentScrollY = 0; // Prevent rubber-band negative values
+
+          var isMenuOpen = navbar.querySelector('.w-nav-button.w--open, .w-nav-menu.w--open');
+          var isModalOpen = document.querySelector('.fda-booking-form-box.modal-active');
+
+          // If mobile menu or quote modal is open, ensure navbar stays visible
+          if (isMenuOpen || isModalOpen) {
+            navbar.classList.remove('nav-hidden');
+            lastScrollY = currentScrollY;
+            ticking = false;
+            return;
+          }
+
+          // Sticky shadow handling
+          if (currentScrollY > 30) {
             navbar.classList.add('is-sticky');
           } else {
             navbar.classList.remove('is-sticky');
           }
-        };
+
+          var maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+
+          // Smart Hide/Show logic
+          if (currentScrollY <= topThreshold) {
+            // At or near top: always show
+            navbar.classList.remove('nav-hidden');
+          } else if (currentScrollY < maxScroll - 30) {
+            var diff = currentScrollY - lastScrollY;
+            if (diff > scrollThreshold) {
+              // Scrolling down -> hide navbar
+              navbar.classList.add('nav-hidden');
+            } else if (diff < -scrollThreshold) {
+              // Scrolling up -> show navbar
+              navbar.classList.remove('nav-hidden');
+            }
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(updateNavbar);
+            ticking = true;
+          }
+        }
+
         window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
+        document.addEventListener('scroll', onScroll, { passive: true });
+        updateNavbar();
       }
     })();
   </script>
